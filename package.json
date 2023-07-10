@@ -1,0 +1,21 @@
+{
+  "name": "buzz-lang.dev",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "resolutions": {
+    "prismjs": "github:buzz-language/prism#buzz"
+  },
+  "devDependencies": {
+    "@vuepress/client": "2.0.0-beta.64",
+    "vue": "^3.3.4",
+    "vuepress": "2.0.0-beta.64"
+  }
+}

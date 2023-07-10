@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="generator" content="VuePress 2.0.0-beta.64">
+    <style>
+      :root {
+        --c-bg: #fff;
+      }
+      html.dark {
+        --c-bg: #22272e;
+      }
+      html, body {
+        background-color: var(--c-bg);
+      }
+    </style>
+    <script>
+      const userMode = localStorage.getItem('vuepress-color-scheme');
+			const systemDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+			if (userMode === 'dark' || (userMode !== 'light' && systemDarkMode)) {
+				document.documentElement.classList.toggle('dark', true);
+			}
+    </script>
+    <meta name="theme-color" content="#221328"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black"><title>buzz</title><meta name="description" content="A small/lightweight statically typed scripting language (in development)">
+    <link rel="preload" href="/assets/style-408d9c5e.css" as="style"><link rel="stylesheet" href="/assets/style-408d9c5e.css">
+    <link rel="modulepreload" href="/assets/app-0d40671f.js"><link rel="modulepreload" href="/assets/404.html-60b35caa.js"><link rel="modulepreload" href="/assets/404.html-f9cce6e4.js"><link rel="prefetch" href="/assets/index.html-8b5bd24d.js" as="script"><link rel="prefetch" href="/assets/index.html-d6b28c5e.js" as="script"><link rel="prefetch" href="/assets/building-installing.html-4745569f.js" as="script"><link rel="prefetch" href="/assets/calling-native-code.html-355bb31b.js" as="script"><link rel="prefetch" href="/assets/control-flow.html-2b674fc6.js" as="script"><link rel="prefetch" href="/assets/enums.html-36b9e9d1.js" as="script"><link rel="prefetch" href="/assets/errors.html-3dd49cda.js" as="script"><link rel="prefetch" href="/assets/fibers.html-09aa1783.js" as="script"><link rel="prefetch" href="/assets/functions.html-c52f4844.js" as="script"><link rel="prefetch" href="/assets/generics.html-168f34f1.js" as="script"><link rel="prefetch" href="/assets/import-export.html-a720e470.js" as="script"><link rel="prefetch" href="/assets/objects.html-3ce495a1.js" as="script"><link rel="prefetch" href="/assets/operators.html-4f95f03d.js" as="script"><link rel="prefetch" href="/assets/optionals.html-3887ed5a.js" as="script"><link rel="prefetch" href="/assets/protocols.html-817a19c2.js" as="script"><link rel="prefetch" href="/assets/types-and-variables.html-fc05faf2.js" as="script"><link rel="prefetch" href="/assets/index.html-d6fa8c41.js" as="script"><link rel="prefetch" href="/assets/buffer.html-eeff871a.js" as="script"><link rel="prefetch" href="/assets/crypto.html-b59676b5.js" as="script"><link rel="prefetch" href="/assets/debug.html-0149a2b9.js" as="script"><link rel="prefetch" href="/assets/errors.html-5d808436.js" as="script"><link rel="prefetch" href="/assets/fibers.html-c1a0f84e.js" as="script"><link rel="prefetch" href="/assets/fs.html-87891903.js" as="script"><link rel="prefetch" href="/assets/gc.html-9af620de.js" as="script"><link rel="prefetch" href="/assets/io.html-4b96d925.js" as="script"><link rel="prefetch" href="/assets/json.html-9030eaab.js" as="script"><link rel="prefetch" href="/assets/lists.html-fe66f871.js" as="script"><link rel="prefetch" href="/assets/maps.html-0832475b.js" as="script"><link rel="prefetch" href="/assets/math.html-77438fb6.js" as="script"><link rel="prefetch" href="/assets/os.html-7cba912b.js" as="script"><link rel="prefetch" href="/assets/patterns.html-71c8fccf.js" as="script"><link rel="prefetch" href="/assets/std.html-f7238057.js" as="script"><link rel="prefetch" href="/assets/strings.html-9f3653c9.js" as="script"><link rel="prefetch" href="/assets/index.html-26af9210.js" as="script"><link rel="prefetch" href="/assets/index.html-f07990be.js" as="script"><link rel="prefetch" href="/assets/building-installing.html-9f586af5.js" as="script"><link rel="prefetch" href="/assets/calling-native-code.html-80f2776f.js" as="script"><link rel="prefetch" href="/assets/control-flow.html-2c522ed6.js" as="script"><link rel="prefetch" href="/assets/enums.html-3acfbf05.js" as="script"><link rel="prefetch" href="/assets/errors.html-b44100ad.js" as="script"><link rel="prefetch" href="/assets/fibers.html-6f02f8c9.js" as="script"><link rel="prefetch" href="/assets/functions.html-cc650cc9.js" as="script"><link rel="prefetch" href="/assets/generics.html-afd28af5.js" as="script"><link rel="prefetch" href="/assets/import-export.html-ed5fcd29.js" as="script"><link rel="prefetch" href="/assets/objects.html-d0ff713f.js" as="script"><link rel="prefetch" href="/assets/operators.html-d67c792d.js" as="script"><link rel="prefetch" href="/assets/optionals.html-42657414.js" as="script"><link rel="prefetch" href="/assets/protocols.html-252f858f.js" as="script"><link rel="prefetch" href="/assets/types-and-variables.html-256a7696.js" as="script"><link rel="prefetch" href="/assets/index.html-3e88d8ca.js" as="script"><link rel="prefetch" href="/assets/buffer.html-dc8587a8.js" as="script"><link rel="prefetch" href="/assets/crypto.html-d2e1acab.js" as="script"><link rel="prefetch" href="/assets/debug.html-39d2edab.js" as="script"><link rel="prefetch" href="/assets/errors.html-ba58773d.js" as="script"><link rel="prefetch" href="/assets/fibers.html-244bac6b.js" as="script"><link rel="prefetch" href="/assets/fs.html-a37b25ee.js" as="script"><link rel="prefetch" href="/assets/gc.html-12f95249.js" as="script"><link rel="prefetch" href="/assets/io.html-ad1101ef.js" as="script"><link rel="prefetch" href="/assets/json.html-adc0d997.js" as="script"><link rel="prefetch" href="/assets/lists.html-982ef2ff.js" as="script"><link rel="prefetch" href="/assets/maps.html-cb634619.js" as="script"><link rel="prefetch" href="/assets/math.html-fa36a54b.js" as="script"><link rel="prefetch" href="/assets/os.html-dac38834.js" as="script"><link rel="prefetch" href="/assets/patterns.html-2b19067a.js" as="script"><link rel="prefetch" href="/assets/std.html-e898aa0f.js" as="script"><link rel="prefetch" href="/assets/strings.html-f1c1c4f6.js" as="script">
+  </head>
+  <body>
+    <div id="app"><!--[--><div class="theme-container"><main class="page"><div class="theme-default-content"><h1>404</h1><blockquote>How did we get here?</blockquote><a href="/" class="">Take me home</a></div></main></div><!----><!--]--></div>
+    <script type="module" src="/assets/app-0d40671f.js" defer></script>
+  </body>
+</html>

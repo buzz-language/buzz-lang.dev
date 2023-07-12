@@ -55,3 +55,13 @@ Cast float to a integer value
 fun char(int byte) > str 
 ```
 Return ascii char for given byte
+
+## random
+```buzz
+fun random(int? min = null, int? max = null) > int
+```
+Return evenly distributed random number between `min` and `max`
+- **`min`**: Minimum value, if omitted `0`
+- **`max`**: Maximum value, if omitted `min + 1`
+
+**Returns:** Random value

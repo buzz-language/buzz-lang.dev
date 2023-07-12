@@ -74,21 +74,32 @@ export default defineUserConfig({
         {
           text: 'Reference',
           children: [
-            'strings',
-            'lists',
-            'maps',
-            'patterns',
-            'fibers',
-            'std',
-            'buffer',
-            'crypto',
-            'debug',
-            'fs',
-            'gc',
-            'io',
-            'json',
-            'math',
-            'os'
+            {
+              text: 'Standard Library',
+              children: [
+                '/reference/std/std',
+                '/reference/std/buffer',
+                '/reference/std/crypto',
+                '/reference/std/debug',
+                '/reference/std/fs',
+                '/reference/std/gc',
+                '/reference/std/io',
+                '/reference/std/json',
+                '/reference/std/math',
+                '/reference/std/os'
+              ]
+            },
+            {
+              text: 'Builtins',
+              children: [
+                '/reference/builtins/strings',
+                '/reference/builtins/lists',
+                '/reference/builtins/maps',
+                '/reference/builtins/patterns',
+                '/reference/builtins/fibers'
+              ]
+            },
+            '/reference/api/'
           ]
         }
       ]

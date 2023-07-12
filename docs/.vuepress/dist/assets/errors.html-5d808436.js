@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-d3e0db9e","path":"/reference/errors.html","title":"errors","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1688995707000,"contributors":[{"name":"Benoit Giannangeli","email":"giann008@gmail.com","commits":1}]},"filePathRelative":"reference/errors.md"}');export{e as data};

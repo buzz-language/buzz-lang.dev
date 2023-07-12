@@ -1,7 +1,7 @@
 ---
 home: true
 heroImage: logo.png
-tagline: A small/lightweight statically typed scripting language (in development)
+tagline: A small/lightweight statically typed scripting language
 actions:
     - text: Guide
       link: /guide/

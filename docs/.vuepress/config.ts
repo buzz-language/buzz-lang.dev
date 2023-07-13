@@ -52,7 +52,6 @@ export default defineUserConfig({
         {
           text: 'Guide',
           children: [
-            '',
             'building-installing',
             'types-and-variables',
             'operators',

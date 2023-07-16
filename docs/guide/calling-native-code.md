@@ -1,6 +1,6 @@
 # Calling C/Zig functions
 
-First, define the buzz interface. The `extern` keyword means that buzz we'll look for a dynamic library named `libmylib.dylib/so/dll`):
+First, define the buzz interface. The `extern` keyword means that buzz will look for a dynamic library named `libmylib.dylib/so/dll`:
 
 ```buzz
 | mylib.buzz

@@ -1,37 +1,99 @@
 # Types and variables
 
-## Basic types
+## Booleans
+Either `true` or `false`
 ```buzz
 bool aBoolean = true;
-| Immutable sequence of bytes
+```
+
+##  `null` and `void`
+```buzz
+str? maybe = null;
+{str, void} mapToNothing = { "hello": void };
+```
+The difference between `null` and `void` is a semantic one. `null` is mainly useful to handle the absence of data with [optionals](/guide/optionals.html) whereas `void` is mainly used to specify that a function returns nothing.
+
+## Numbers
+Numbers can either be `int` (32 bits integers) or `float` (64 bits floating point).
+```buzz
+int aNumber = 23; | Decimal notation
+aNumber = 0b110;  | Binary notation
+aNumber = 0xA12F; | Hexadecimal notation
+
+float aFloat = 23.123;
+```
+
+`float` and `int` can be compared without casting but are otherwise not compatible with each other.
+
+## Strings
+`str` represents an immutable sequence of bytes. Buzz makes no assumption about the content of a string.
+```buzz
 str aString = "hello world";
+```
+
+Strings can span accross multiple lines when using the ` delimiters:
+```buzz
 str multiline = `
     i'm on several
     lines
     yes
 `;
-int aNumber = 23; | i32
-aNumber = 0b110;
-aNumber = 0xA12F;
-float aFloat = 23.123; | f64
-| A PCRE regex
-pat aPattern = _hello [a-z]+_;
-| Userdata are pointers to foreign data wrapped inside a buzz obj
-ud userdata = GetSomeForeignData();
-
-| A constant
-const float pi = 3.14;
 ```
 
-## Data structures
+### Interpolation
+Interpolations are expressions delimited by braces within a string:
 ```buzz
-[int] aListOfNumbers = [1, 2, 3];
-| Keys and values can be of any type
+int age = 37;
+
+str msg = "Hello there, I'm {age} years old";
+```
+
+[More on strings](/reference/builtins/strings.html)
+
+### Escaping
+```buzz
+"here's a new line: \n";
+"here's a tab: \t";
+"here's a brace: \{";
+"here's a explicit byte \123";
+```
+
+## User data
+User data are buzz values that wrap a pointer to foreign data. They are mainly used when [binding to native code](/guide/calling-native-code.html).
+
+## Patterns
+Patterns are PCRE regexes. They are commonly used so chances are you are already familiar with them. You can otherwise read the [documentation](https://www.pcre.org/).
+Patterns have their own buzz value type because they wrap a compiled PCRE regex. Arguably, we could lazily compile them at runtime but this would go against the philosophy of buzz which is to prevent runtime errors that could have been detected at compile time.
+```buzz
+pat aPattern = _hello [a-z]+_;
+```
+[More on patterns](/reference/builtins/patterns.html)
+
+## Data structures
+
+### Lists
+List are a sequence of a given type.
+```buzz
+[str] words = ["hello", "world", "yes"];
+```
+You can quickly create a list of integers using ranges.
+```buzz
+[int] range = 0..10;
+
+| If the lower limit > upper limit, then the range will be descending
+foreach (int i in 10..0) {
+    print("{i}");
+}
+```
+[More on lists](/reference/builtins/lists.html)
+
+### Maps
+Maps are key-value records. Order is not guaranted.
+```buzz
 {str, int} aMap = {
     "one": 1,
     "two": 2,
     "three": 3,
 };
-| A range results in a list of ints
-[int] range = 0..10;
 ```
+[More on maps](/reference/builtins/maps.html)

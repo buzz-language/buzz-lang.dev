@@ -97,3 +97,30 @@ Maps are key-value records. Order is not guaranted.
 };
 ```
 [More on maps](/reference/builtins/maps.html)
+
+## `any`
+
+A variable typed with `any` can hold any value.
+```buzz
+any anything = "hello";
+
+anything = 12;
+
+anything = true;
+```
+You can't do much with that kind of variable except passing it around.
+In order to actually use the underlying value, you have to cast it back to a concrete type.
+```buzz
+any anything = "hello";
+
+if (anything as str aString) {
+    print(aString);
+}
+```
+You can also use the `as?` notation which will result in a `null` if the value is not of the expected type:
+```buzz
+any anything = "hello";
+
+int? something = anything as? str;           | -> null
+int somethingElse = (anything as? str) ?? 0; | Using `??` to get a default value
+```

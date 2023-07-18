@@ -690,7 +690,7 @@ packages:
     resolution: {integrity: sha512-nQJJk63LwlRvMhtfSX7wgd6JPYdVs4peAwZsxdD9up8/vbhuENe+FnnsRH9fbgl9+119fvK5y0ckCpWVkebBdA==}
     dependencies:
       '@vuepress/core': 2.0.0-beta.64
-      prismjs: github.com/buzz-language/prism/5673e601fa8f07d94a868389f57dceebe55f7d98
+      prismjs: github.com/buzz-language/prism/494b877d8eff131e385d287aee80406404286a89
     transitivePeerDependencies:
       - '@vue/composition-api'
       - supports-color
@@ -1731,8 +1731,8 @@ packages:
     engines: {node: '>= 14'}
     dev: true
 
-  github.com/buzz-language/prism/5673e601fa8f07d94a868389f57dceebe55f7d98:
-    resolution: {tarball: https://codeload.github.com/buzz-language/prism/tar.gz/5673e601fa8f07d94a868389f57dceebe55f7d98}
+  github.com/buzz-language/prism/494b877d8eff131e385d287aee80406404286a89:
+    resolution: {tarball: https://codeload.github.com/buzz-language/prism/tar.gz/494b877d8eff131e385d287aee80406404286a89}
     name: prismjs
     version: 1.29.0
     engines: {node: '>=6'}

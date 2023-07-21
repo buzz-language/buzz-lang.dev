@@ -61,6 +61,7 @@ export default defineUserConfig({
             'control-flow',
             'objects',
             'protocols',
+            'scope',
             'errors',
             'import-export',
             'fibers',

@@ -14,11 +14,13 @@ fun mayYield() > str > int {
 }
 ```
 
+## Arrow function
 Function which body would only be `return <expression>` can be written with an arrow function. Arrow functions can omit their return type which will be inferred from the expression returned.
 ```buzz
-fun sayHiTo(str name, str? lastName, int age) -> "Hi {name} {lastName ?? ""}!";
+fun count(str name) -> name.len();
 ```
 
+## Arguments
 buzz makes the opinionated choice that any function argument after the first one needs to be labeled for readability.
 That's why, when called, only the first argument name of a function can be omitted. Argument order is not required so long as they are named.
 
@@ -36,6 +38,7 @@ fun doSomething(int x, bool isAvailable = true) > void {
 doSomething(12);
 ```
 
+## Errors
 Any uncaught error type that can arise within the function must be specified in its signature after `!>` (see [Errors](/guide/errors.html)):
 ```buzz
 fun somethingThatCanFail() > str !> FormatError, UnexpectedError {
@@ -43,6 +46,7 @@ fun somethingThatCanFail() > str !> FormatError, UnexpectedError {
 }
 ```
 
+## First-class citizen
 Functions are first-class citizens. Meaning they can be passed around just like any other buzz value:
 
 ```buzz
@@ -51,9 +55,32 @@ Function() fn = fun () > void -> print("hello world"); | Arrow function
 fn(); | -> "hello world"
 ```
 
+## Extern functions
 Functions that refers to a C/Zig function, are prefixed with `extern` (see [Calling C/Zig functions](/guide/calling-native-code.html))
 ```buzz
 extern fun assert(bool condition, str message) > void;
+```
+
+## `main`
+The `main` function is the entry point of your program. Its signature must be.
+```buzz
+fun main([str] args) > int {
+    |...
+}
+
+| or
+
+fun main([str] args) > void {
+    |...
+}
+```
+
+## `test`
+`test` blocks are functions that will be executed when invoked with `buzz --test`.
+```buzz
+test "Some test" {
+    assert(something() == 12, message: "Could use `something`");
+}
 ```
 
 ## Generic types

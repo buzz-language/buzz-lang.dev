@@ -31,6 +31,11 @@ if (anything as str something) {
 }
 ```
 
+`if` can also be inlined and act as an expression.
+```buzz
+int value = if (something > 0) 12 else 13;
+```
+
 ## `while` and `do .. until`
 Repeat a block of statements `while` or `until` a condition is `true`.
 ```buzz
@@ -52,9 +57,6 @@ for (int i = 0; i < 10; i = i + 1) {
     | ...
     break;
 }
-
-| inline if
-int value = if (something > 0) 12 else 13;
 ```
 
 ## `foreach`
@@ -89,5 +91,26 @@ foreach (str char in aString) {
 
 foreach (int i in 0..n) {
     | ...
+}
+```
+
+## `break` and `continue`
+`break` will stop a loop.
+```buzz
+while (true) {
+    if (condition) {
+        break;
+    }
+}
+```
+
+`continue` will skip any following statement and start the loop again.
+```buzz
+while (true) {
+    if (condition) {
+        continue;
+    }
+
+    print("not reached if `condition` is true");
 }
 ```

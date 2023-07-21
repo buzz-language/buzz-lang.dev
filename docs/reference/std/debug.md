@@ -2,7 +2,7 @@
 
 ## dump
 ```buzz
-fun dump(<T>, generic type #19-0 value) > void 
+fun dump(any value) > void 
 ```
 Dump any value to stdout
 

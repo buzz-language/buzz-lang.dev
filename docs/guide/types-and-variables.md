@@ -48,8 +48,6 @@ int age = 37;
 str msg = "Hello there, I'm {age} years old";
 ```
 
-[More on strings](/reference/builtins/strings.html)
-
 ### Escaping
 ```buzz
 "here's a new line: \n";
@@ -57,6 +55,8 @@ str msg = "Hello there, I'm {age} years old";
 "here's a brace: \{";
 "here's a explicit byte \123";
 ```
+
+[More on strings](/reference/builtins/strings.html)
 
 ## User data
 User data are buzz values that wrap a pointer to foreign data. They are mainly used when [binding to native code](/guide/calling-native-code.html).

@@ -1,6 +1,6 @@
 # Protocols
 
-A `protocol` defines a set of methods. Objects can conform to any number of them:
+A `protocol` is a set of methods. Objects can conform to any number of them:
 ```buzz
 protocol Translatable {
     fun translate(dx: int, dy: int) > void;

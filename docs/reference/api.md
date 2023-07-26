@@ -438,7 +438,7 @@ Check the type of a value
 
 ## bz_stringType
 ```zig
-pub extern fn bz_stringType() Value;
+pub extern fn bz_stringType(vm: *VM) Value;
 ```
 Get the string type
 

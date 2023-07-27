@@ -1,5 +1,12 @@
 # os
 
+## sleep
+```buzz
+fun sleep(float ms) > void 
+```
+Wait for the given amount of milliseconds
+- **`ms`:** amount of milliseconds to wait
+
 ## time
 ```buzz
 fun time() > float 

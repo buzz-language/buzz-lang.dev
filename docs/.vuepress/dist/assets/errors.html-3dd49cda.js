@@ -1,1 +1,0 @@
-const e=JSON.parse('{"key":"v-a792103c","path":"/guide/errors.html","title":"Errors","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1688995707000,"contributors":[{"name":"Benoit Giannangeli","email":"giann008@gmail.com","commits":1}]},"filePathRelative":"guide/errors.md"}');export{e as data};

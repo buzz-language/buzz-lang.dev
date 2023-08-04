@@ -64,6 +64,7 @@ User data are buzz values that wrap a pointer to foreign data. They are mainly u
 ## Patterns
 Patterns are PCRE regexes. They are commonly used so chances are you are already familiar with them. You can otherwise read the [documentation](https://www.pcre.org/).
 Patterns have their own buzz value type because they wrap a compiled PCRE regex. Arguably, we could lazily compile them at runtime but this would go against the philosophy of buzz which is to prevent runtime errors that could have been detected at compile time.
+Patterns are delimited by a `_` pair. To use `_` in the pattern double it `__`.
 ```buzz
 pat aPattern = _hello [a-z]+_;
 ```

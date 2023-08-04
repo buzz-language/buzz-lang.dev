@@ -83,6 +83,7 @@ export default defineUserConfig({
                 '/reference/std/fs',
                 '/reference/std/gc',
                 '/reference/std/io',
+                '/reference/std/serialize',
                 '/reference/std/json',
                 '/reference/std/math',
                 '/reference/std/os'

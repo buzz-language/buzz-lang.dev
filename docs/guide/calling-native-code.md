@@ -1,4 +1,4 @@
-# Calling C/Zig functions
+# Buzz API
 
 First, define the buzz interface. The `extern` keyword means that buzz will look for a dynamic library named `libmylib.dylib/so/dll`:
 

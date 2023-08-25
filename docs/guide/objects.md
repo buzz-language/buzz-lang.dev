@@ -30,6 +30,34 @@ object Person {
 }
 ```
 
+### Special methods
+
+If your object has a `fun toString() > str` method, it will be called whenever you interpolate a instance of the object in a string.
+```buzz
+object Person {
+    str name = "Joe",
+
+    fun toString() -> this.name;
+}
+
+|...
+
+Person person = Person{};
+
+print("His name is {person}"); | -> `His name is Joe`
+```
+
+Another special method is `fun collect() > void` which will be called when the object instance is collected by the garbage collector. It's useful when your object holds resources that need to be release.
+```buzz
+object Data {
+    Buffer buffer,
+
+    fun collect() > void {
+        buffer.deinit();
+    }
+}
+```
+
 ## `static`
 Objects can have static method and properties. Meaning they are associated with the object rather than its instances.
 Objects don't have constructors but you can use a static method to write one.

@@ -65,7 +65,8 @@ export default defineUserConfig({
             'errors',
             'import-export',
             'fibers',
-            'calling-native-code'
+            'calling-native-code',
+            'ffi'
           ]
         }
       ],

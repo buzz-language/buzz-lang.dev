@@ -18,11 +18,15 @@ str hello = "hello";
 buzz rarely infers types. This is a conscious choice of buzz which claims to be **unambiguous**.
 :::
 
-An identifier must start with a letter and can consist of letters and numbers only. Keywords can't be used (until [#138](https://github.com/buzz-language/buzz/issues/138) is implemented).
+An identifier must start with a letter and can consist of letters, numbers and the `_` character.
 ```buzz
 str helloWorld2 = "valid";
+str hello_world = "valid too";
+```
 
-str hello_world = "invalid";
+However you can actually use anything as an identifier if you surround it with the `@"..."` notation.
+```buzz
+str @"this is valid too!" = "hello";
 ```
 
 ### Constants

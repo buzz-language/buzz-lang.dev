@@ -99,3 +99,11 @@ fun countMap(<K, V>, {K, V} map) > int {
 countMap(<str, int>, map) == 3;
 ```
 The support of generic types scoped withint an `object` definition [is coming](https://github.com/buzz-language/buzz/issues/82).
+
+::: tip
+Note that, if the first argument of your function is a `type`, it can be mistaken for a generic type by the compiler. To avoid the confusion, use grouping.
+```buzz
+myFunction(<str>, value: "hello");   | Here `<str>` is considered to be a generic type
+myFunction((<str>), value: "hello"); | Not here
+```
+:::

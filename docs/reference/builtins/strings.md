@@ -131,3 +131,24 @@ fun bin() > str
 Converts hexadecimal string to binary string
 
 **Returns:** Binary string
+
+## utf8Len
+```buzz
+fun utf8Len() > int
+```
+
+**Returns:** Number of UTF8 codepoints in the string or `0` if string is not a valid UTF8 sequence
+
+## utf8Valid
+```buzz
+fun utf8Valid() > bool
+```
+
+**Returns:** `true` if string is a valid UTF8 sequence
+
+## utf8Codepoints
+```buzz
+fun utf8Codepoints() > [str]
+```
+
+**Returns:** Return a list of the UTF8 string codepoints or an empty list if the string is not a valid UTF8 sequence

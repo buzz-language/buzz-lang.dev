@@ -71,11 +71,13 @@ buffer.writeStruct(<Data>, Data, values: [data1, data2, datae3]);
 Here's the list of supported types and their buzz counterparts:
 | Zig type        | buzz type      |
 |-----------------|----------------|
+| `c_int`         | `int`          |
 | `u8`            | `int`          |
 | `i8`            | `int`          |
 | `u16`           | `int`          |
 | `i16`           | `int`          |
 | `i32`           | `int`          |
+| `c_uint`        | `float`        |
 | `u32`           | `float`        |
 | `i64`           | `float`        |
 | `f32`           | `float`        |
@@ -86,4 +88,4 @@ Here's the list of supported types and their buzz counterparts:
 | `void`          | `void`         |
 | pointers        | `ud`           |
 | `extern struct` | foreign struct |
-
+| `opaque struct` | foreign struct |

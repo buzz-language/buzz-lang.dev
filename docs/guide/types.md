@@ -19,6 +19,7 @@ Numbers can either be `int` (32 bits integers) or `float` (64 bits floating poin
 int aNumber = 23; | Decimal notation
 aNumber = 0b110;  | Binary notation
 aNumber = 0xA12F; | Hexadecimal notation
+aNumber = 'A';    | Char notation
 
 float aFloat = 23.123;
 ```

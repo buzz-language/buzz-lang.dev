@@ -98,13 +98,17 @@ mightBeNull ?? defaultValue; | Will result in `defaultValue` if `mightBeNull` is
 
 See [Null safety](/guide/null-safety.html).
 
-### Downcasting and `any` unwrapping
+### Type operators
 ```buzz
 something is str;  | true if `something` is of type `str`
 something as? int; | if `something` is not an `int`, will result in a `null`
 ```
 
 See [Null safety](/guide/null-safety.html), [`any` type](/guide/types.html#any).
+
+```buzz
+typeof myList == <[int]>; | returns type of expression
+```
 
 ## Keywords
 
@@ -152,9 +156,12 @@ Here's the exhaustive list of buzz's keywords:
 - [`throw`](/guide/errors.html)
 - [`true`](/guide/types.html#booleans)
 - [`try`](/guide/errors.html)
+- [`type`](/guide/types.html#type-values)
+- [`typeof`](/guide/types.html#type-values)
 - [`ud`](/guide/types.html#user-data)
 - [`until`](/guide/control-flow.html)
 - [`void`](/guide/types.html#null-and-void)
 - [`while`](/guide/control-flow.html)
 - [`xor`](/guide/syntax.html#bitwise)
 - [`yield`](/guide/fibers.html)
+- [`zdef`](/guide/ffi.html)

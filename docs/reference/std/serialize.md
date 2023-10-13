@@ -6,6 +6,15 @@ object Boxed
 ```
 Utility object to manage deserialized data from, for example, decoded JSON
 
+### init
+```buzz
+static fun init(any data) > Boxed !> CircularReference, NotSerializable
+```
+Wrap `data` in a new `Boxed` instance
+- **`data`:** Data to wrap
+
+**Returns:** New `Boxed` instance
+
 ### q
 ```buzz
 fun q([str] path) > Boxed
@@ -86,3 +95,30 @@ fun mapValue() > {str, Boxed}
 fun listValue() > [Boxed]
 ```
 **Returns:** wrapped data list value or empty list if not a list
+
+## serialize
+```buzz
+export extern fun serialize(any value) > any !> CircularReference, NotSerializable
+```
+Transform `data` to data that can be serialized.
+- **`data`:** Data to serialize
+
+**Return:** Serializable data
+
+## jsonEncode
+```buzz
+fun jsonEncode(Boxed data, {Boxed, void}? seen) > str
+```
+Encode a [`Boxed`](/reference/std/serialize.html#boxed) instance to a JSON string
+- **`data`:** Data to encode
+
+**Returns:** The JSON string
+
+## jsonDecode
+```buzz
+static fun jsonDecode(str json) > Boxed !> JsonParseError, WriteWhileReadingError
+```
+Decode string into a [`Boxed`](/reference/std/serialize.html#boxed) instance
+- **`json`:** The JSON string
+
+**Returns:** A [`Boxed`](/reference/std/serialize.html#boxed) instance wrapping the decoded data

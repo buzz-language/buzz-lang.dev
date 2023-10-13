@@ -24,6 +24,12 @@ Open file
 - **`mode`:** Mode with which to open it
 **Returns:** opened file
 
+### collect
+```buzz
+fun collect() > void
+```
+Close file. Automatically called by Garbage Collector.
+
 ### close
 ```buzz
 fun close() > void
@@ -58,6 +64,12 @@ fun write(str bytes) > void !> FileSystemError, ReadWriteError, UnexpectedError
 ```
 Write bytes
 - **`bytes`:** string to write
+
+### isTTY
+```buzz
+fun isTTY() > bool
+```
+**Returns:** `true` if `File` is a terminal
 
 
 ## stdin

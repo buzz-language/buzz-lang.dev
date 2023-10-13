@@ -26,7 +26,7 @@ fun trim() > str
 
 ## byte
 ```buzz
-fun byte(int at) > int
+fun byte(int at = 0) > int
 ```
 Get byte value of character
 - **`at`**: index of character in the string
@@ -99,7 +99,7 @@ Repeat string
 
 **Returns:** New string
 
-## encodeBase
+## encodeBase64
 ```buzz
 fun encodeBase64() > str
 ```
@@ -108,7 +108,7 @@ Base64 encode the string
 **Returns:** Encoded string
 
 
-## decodeBase
+## decodeBase64
 ```buzz
 fun decodeBase64() > str
 ```

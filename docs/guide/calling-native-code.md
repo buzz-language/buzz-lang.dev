@@ -30,7 +30,7 @@ export fn assert(ctx: *api.NativeCtx) c_int {
 }
 ```
 
-Build a dynamic library for it (TODO: instructions for this) and you can use it in your buzz code:
+Build a dynamic library for it and you can use it in your buzz code:
 
 ```buzz
 | main.buzz

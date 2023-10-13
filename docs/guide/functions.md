@@ -84,9 +84,9 @@ test "Some test" {
 ```
 
 ## Generic types
-Generic types can be used by listing them as the first argument of a function within a `<`/`>` pair.
+Generic types can be used by listing them just before the function name:
 ```buzz
-fun countMap(<K, V>, {K, V} map) > int {
+fun countMap::<K, V>({K, V} map) > int {
     return map.size();
 }
 
@@ -96,14 +96,5 @@ fun countMap(<K, V>, {K, V} map) > int {
     "three": 3,
 };
 
-countMap(<str, int>, map) == 3;
+countMap::<str, int>(map) == 3;
 ```
-The support of generic types scoped withint an `object` definition [is coming](https://github.com/buzz-language/buzz/issues/82).
-
-::: tip
-Note that, if the first argument of your function is a `type`, it can be mistaken for a generic type by the compiler. To avoid the confusion, use grouping.
-```buzz
-myFunction(<str>, value: "hello");   | Here `<str>` is considered to be a generic type
-myFunction((<str>), value: "hello"); | Not here
-```
-:::

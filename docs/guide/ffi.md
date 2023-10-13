@@ -41,7 +41,7 @@ get_id(data) == 42;
 
 ::: tip
 When a `[*:0]const u8` pointer is expected, you can provide a buzz string. Note however that we use the `cstr` helper which will add `\0` to the end of the string.
-Avoid using a buzz strings that have multiple `\0` embedded in them.
+Avoid using a buzz strings that has multiple `\0` embedded in them.
 :::
 
 `struct` instances are always passed by reference right now (passing a struct by value can be complex depending on your system ABI). This is why you can pass them directly to functions expecting pointer to a struct.
@@ -56,7 +56,7 @@ zdef("/path/to/libforeign", "fn sum(values: [*]i32) u32;");
 
 Buffer buffer = Buffer.init();
 
-buffer.writeZ(<int>, "i32", values: [1, 2, 3]);
+buffer.writeZ::<int>("i32", values: [1, 2, 3]);
 
 sum(buffer.ptr()) == 6;
 ```
@@ -89,3 +89,4 @@ Here's the list of supported types and their buzz counterparts:
 | pointers        | `ud`           |
 | `extern struct` | foreign struct |
 | `opaque struct` | foreign struct |
+| `extern union`  | foreign struct |

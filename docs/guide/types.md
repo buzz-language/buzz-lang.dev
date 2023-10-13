@@ -22,6 +22,9 @@ aNumber = 0xA12F; | Hexadecimal notation
 aNumber = 'A';    | Char notation
 
 float aFloat = 23.123;
+
+| You can embed a `_` anywhere in a number literal except for the start and end
+var myLargeNumber = 1_000_000;
 ```
 
 `float` and `int` can be compared without casting but are otherwise not compatible with each other.
@@ -137,3 +140,7 @@ type myType = <[str]>;
 
 typeof list == myType;
 ```
+
+## Foreign structs and unions
+
+Special types to hold foreign data, see [FFI](/guide/ffi.html).

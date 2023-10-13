@@ -8,7 +8,7 @@ actions:
     - text: Reference
       link: /reference/
     - text: Latest release
-      link: https://github.com/buzz-language/buzz/releases/tag/0.2.0
+      link: https://github.com/buzz-language/buzz/releases/tag/0.3.0
       type: secondary
 features:
   - title: Statically typed
@@ -19,6 +19,8 @@ features:
     details: No implicit behavior or unexpected type coercion
   - title: Small in size and complexity
     details: Does not take much space on your drive or in your mind
+  - title: Interoperability with C
+    details: Call C functions easily with FFIs and embed buzz with its C API
   - title: Fibers
     details: Single threaded cooperative multitasking
 footer: MIT licensed | Copyright © 2021-present Benoit Giannangeli
@@ -38,8 +40,8 @@ object Person {
     }
 }
 
-fun main([str] args) > void {
-    Person me = Person{
+fun main([str] _) > void {
+    var me = Person{
         name = "Giann",
         age = 36,
     };

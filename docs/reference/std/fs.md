@@ -34,3 +34,12 @@ fun list(str path) > [str] !> FileSystemError, UnexpectedError
 ```
 List files under path
 - **`path`:** directory to list
+
+## exists
+```buzz
+fun exists(str path) > bool !> FileSystemError
+```
+Returns true if path exists
+- **`path`:** Directory/file to test
+
+**Returns:** `true` if file exists

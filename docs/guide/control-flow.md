@@ -31,7 +31,7 @@ if (anything as str something) {
 }
 ```
 
-`if` can also be inlined and act as an expression.
+`if` can also be inlined and act as an expression. However this expression does not support `null` unwrapping or downcasting (those are available in expression using `??` and `as?`);
 ```buzz
 int value = if (something > 0) 12 else 13;
 ```

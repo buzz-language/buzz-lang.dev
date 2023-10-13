@@ -9,14 +9,11 @@ print("Comment ended with a new line");
 ```
 
 ## Variables and identifiers
-A variable declaration is a type followed by an identifier and an initial value;
+A variable declaration is a type or the `var` keyword, followed by an identifier and an initial value;
 ```buzz
 str hello = "hello";
+var bye = "bye"; | Here the `str` type will be inferred from the initial value
 ```
-
-::: tip
-buzz rarely infers types. This is a conscious choice of buzz which claims to be **unambiguous**.
-:::
 
 An identifier must start with a letter and can consist of letters, numbers and the `_` character.
 ```buzz
@@ -29,10 +26,17 @@ However you can actually use anything as an identifier if you surround it with t
 str @"this is valid too!" = "hello";
 ```
 
+A nullable variable can omit its initial value which will automatically be `null`:
+```buzz
+str? maybe;
+
+assert(maybe == null);
+```
+
 ### Constants
 A constant is prefixed with the `const` keyword. It means the variable can't change.
 ```buzz
-const str hello = "hello";
+const hello = "hello";
 
 hello = "bye"; | Not allowed
 ```
@@ -109,59 +113,3 @@ See [Null safety](/guide/null-safety.html), [`any` type](/guide/types.html#any).
 ```buzz
 typeof myList == <[int]>; | returns type of expression
 ```
-
-## Keywords
-
-Here's the exhaustive list of buzz's keywords:
-- [`and`](/guide/syntax.html#logical)
-- [`any`](/guide/types.html#any)
-- [`as`](/guide/control-flow.html#if)
-- [`band`](/guide/syntax.html#bitwise)
-- [`bool`](/guide/syntax.html#bitwise)
-- [`bor`](/guide/syntax.html#bitwise)
-- [`break`](/guide/control-flow.html#break-and-continue)
-- [`catch`](/guide/errors.html)
-- [`const`](/guide/syntax.html#constants)
-- [`continue`](/guide/control-flow.html#break-and-continue)
-- [`do`](/guide/control-flow.html)
-- [`else`](/guide/control-flow.html)
-- [`enum`](/guide/enums.html)
-- [`export`](/guide/import-export.html)
-- [`extern`](/guide/functions.html)
-- [`false`](/guide/types.html#booleans)
-- [`fib`](/guide/fibers.html)
-- [`float`](/guide/syntax.html#numbers)
-- [`for`](/guide/control-flow.html)
-- [`foreach`](/guide/control-flow.html)
-- [`from`](/guide/import-export.html)
-- [`fun`](/guide/functions.html)
-- [`if`](/guide/control-flow.html#if)
-- [`import`](/guide/import-export.html)
-- [`in`](/guide/control-flow.html#foreach)
-- [`int`](/guide/syntax.html#numbers)
-- [`is`](/guide/syntax.html#downcasting-and-any-unwrapping)
-- [`null`](/guide/types.html#null-and-void)
-- [`obj`](/guide/objects.html)
-- [`object`](/guide/objects.html)
-- [`or`](/guide/syntax.html#logical)
-- [`pat`](/guide/types.html#patterns)
-- [`protocol`](/guide/protocols.html)
-- [`resolve`](/guide/fibers.html)
-- [`resume`](/guide/fibers.html)
-- [`return`](/guide/functions.html)
-- [`static`](/guide/objects.html)
-- [`str`](/guide/types.html#strings)
-- [`test`](/guide/functions.html#test)
-- [`this`](/guide/objects.html)
-- [`throw`](/guide/errors.html)
-- [`true`](/guide/types.html#booleans)
-- [`try`](/guide/errors.html)
-- [`type`](/guide/types.html#type-values)
-- [`typeof`](/guide/types.html#type-values)
-- [`ud`](/guide/types.html#user-data)
-- [`until`](/guide/control-flow.html)
-- [`void`](/guide/types.html#null-and-void)
-- [`while`](/guide/control-flow.html)
-- [`xor`](/guide/syntax.html#bitwise)
-- [`yield`](/guide/fibers.html)
-- [`zdef`](/guide/ffi.html)

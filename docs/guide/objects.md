@@ -11,7 +11,7 @@ object Person {
 ## Instanciation
 Instanciating an object is simple. Properties with default values can be omitted.
 ```buzz
-Person me = Person{
+var me = Person{
     name = "Giann"
 };
 ```
@@ -42,7 +42,7 @@ object Person {
 
 |...
 
-Person person = Person{};
+var person = Person{};
 
 print("His name is {person}"); | -> `His name is Joe`
 ```
@@ -89,5 +89,19 @@ fun getInfo() > obj{ str name, int age } {
 
 | ...
 
-obj{ str name, int age } info = getInfo();
+var info = getInfo();
+```
+
+## Generic types
+Generic types can be used by listing them just before the object name:
+```buzz
+object Payload::<K, V> {
+    {K, V} data,
+}
+
+var payload = Payload::<str, int>{
+    data = {
+        "one": 1
+    },
+};
 ```

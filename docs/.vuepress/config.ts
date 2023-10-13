@@ -85,9 +85,9 @@ export default defineUserConfig({
                 '/reference/std/gc',
                 '/reference/std/io',
                 '/reference/std/serialize',
-                '/reference/std/json',
                 '/reference/std/math',
-                '/reference/std/os'
+                '/reference/std/os',
+                '/reference/std/ffi'
               ]
             },
             {
@@ -99,8 +99,7 @@ export default defineUserConfig({
                 '/reference/builtins/patterns',
                 '/reference/builtins/fibers'
               ]
-            },
-            '/reference/api/'
+            }
           ]
         }
       ]

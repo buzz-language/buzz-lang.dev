@@ -2,7 +2,7 @@
 
 ## assert
 ```buzz
-fun assert(bool condition, str message) > void 
+fun assert(bool condition, str? message) > void 
 ```
 If condition is false print message and exit program
 - **`message`:** message printed if `condition` is false
@@ -21,8 +21,7 @@ fun parseInt(str string) > int?
 Parse number, returns false if string does not represent a number
 - **`string`:** string to parse
 
-
-**Returns:**  integer parsed or null
+**Returns:** integer parsed or null
 ## parseFloat
 ```buzz
 fun parseFloat(str string) > float? 
@@ -30,8 +29,7 @@ fun parseFloat(str string) > float?
 Parse number, returns false if string does not represent a number
 - **`string`:** string to parse
 
-
-**Returns:**  float parsed or null
+**Returns:** float parsed or null
 ## toInt
 ```buzz
 fun toInt(float n) > int 
@@ -39,8 +37,7 @@ fun toInt(float n) > int
 Cast integer to a float value
 - **`n`:** value to cast
 
-
-**Returns:**  casted value
+**Returns:** casted value
 ## toFloat
 ```buzz
 fun toFloat(int n) > float 
@@ -48,8 +45,25 @@ fun toFloat(int n) > float
 Cast float to a integer value
 - **`n`:** value to cast
 
+**Returns:** casted value
 
-**Returns:**  casted value
+## toUd
+```buzz
+fun toUd(any n) > ud
+```
+Cast number to a userdata
+- **`n`:** value to cast
+
+## parseUd
+```buzz
+fun parseUd(str string) > ud?
+```
+Parse `ud`, returns `false` if string does not represent a `ud` (u64)
+- **`string`:** string to parse
+
+**Returns:** `ud` parsed or `null`
+
+**Returns:** casted value
 ## char
 ```buzz
 fun char(int byte) > str 
@@ -65,3 +79,9 @@ Return evenly distributed random number between `min` and `max`
 - **`max`**: Maximum value, if omitted `min + 1`
 
 **Returns:** Random value
+
+## currentFiber
+```buzz
+fun currentFiber() > fib<any, any?>
+```
+**Returns:** the current fiber

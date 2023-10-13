@@ -2,12 +2,10 @@
 
 ## append
 ```buzz
-fun append(T value) > T
+fun append(T value) > void
 ```
 Append new element at end of the list
 - **`value`**: New element
-
-**Returns:** The appended value
 
 ## insert
 ```buzz
@@ -61,6 +59,12 @@ Search first occurence of the needle
 
 **Returns:** Index of element or `null` if not found
 
+## clone
+```buzz
+fun clone() > [T]
+```
+**Returns:** Clone of the list
+
 ## join
 ```buzz
 fun join(str separator) > str
@@ -88,7 +92,7 @@ Stable in-place sort. O(n) best case, O(n*log(n)) worst case and average case.
 
 ## map
 ```buzz
-fun map(<S>, Function callback(int index, T element) > S) > [S])
+fun map::<S>(Function callback(int index, T element) > S) > [S]
 ```
 Map list to new list of target type by running `callback` for each element of the list.
 - **`callback`:** Ran for each element
@@ -97,7 +101,7 @@ Map list to new list of target type by running `callback` for each element of th
 
 ## filter
 ```buzz
-fun filter(Function callback(int index, T element) > bool) > [T])
+fun filter(Function callback(int index, T element) > bool) > [T]
 ```
 Filter list keeping element for which `callback` returns `true`.
 - **`callback`:** Ran for each element
@@ -106,7 +110,7 @@ Filter list keeping element for which `callback` returns `true`.
 
 ## reduce
 ```buzz
-fun reduce(Function callback(<S>, int index, T element, S accumulator) > S, S initial) > S)
+fun reduce(Function callback::<S>(int index, T element, S accumulator) > S, S initial) > S
 ```
 Reduce list to value of type `S` by running `callback` with `accumulator` being the value being built.
 - **`callback`:** Ran for each element

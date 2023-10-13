@@ -1,4 +1,5 @@
 import { defaultTheme, defineUserConfig } from 'vuepress'
+import { googleAnalyticsPlugin } from '@vuepress/plugin-google-analytics'
 
 export default defineUserConfig({
   title: 'buzz',
@@ -104,5 +105,11 @@ export default defineUserConfig({
         }
       ]
     }
-  })
+  }),
+
+  plugins: [
+    googleAnalyticsPlugin({
+      id: 'G-02PDWMQLDK'
+    })
+  ]
 })

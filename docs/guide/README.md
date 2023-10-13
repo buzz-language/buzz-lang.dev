@@ -6,3 +6,4 @@ Buzz is a small/lightweight statically typed scripting language written in [Zig]
 - Unambiguous
 - Without nonsensical coercion
 - JIT compiled with [MIR](https://github.com/vnmakarov/mir)
+- FFI

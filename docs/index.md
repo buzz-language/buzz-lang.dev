@@ -7,6 +7,8 @@ actions:
       link: /guide/
     - text: Reference
       link: /reference/
+    - text: Try it
+      link: /repl
     - text: Latest release
       link: https://github.com/buzz-language/buzz/releases/tag/0.3.0
       type: secondary

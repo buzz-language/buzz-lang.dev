@@ -26,37 +26,37 @@ Query the json element at `path`, if nothing matches return `Boxed{}`
 
 ### string
 ```buzz
-str? string
+fun string() > str?
 ```
 When wrapped data is a string
 
 ### boolean
 ```buzz
-bool? boolean
+fun boolean() > bool?
 ```
 When wrapped data is a boolean
 
 ### integer
 ```buzz
-int? integer
+fun integer() > int?
 ```
 When wrapped data is a int
 
 ### floating
 ```buzz
-float? floating
+fun floating() > float?
 ```
 When wrapped data is a float
 
 ### map
 ```buzz
-{str, Boxed}? map
+fun map() > {str, Boxed}?
 ```
 When wrapped data is an object, object property values are themselves wrapped in a `Boxed`
 
 ### list
 ```buzz
-[Boxed]? list
+fun list() > [Boxed]?
 ```
 When wrapped data is a list, list elements are themselves warpped in a `Boxed`
 
@@ -82,7 +82,7 @@ fun integerValue() > int
 ```buzz
 fun floatingValue() > float
 ```
-**Returns:** wrapped data number value or `0` if not a float
+**Returns:** wrapped data number value or `0.0` if not a float
 
 ### mapValue
 ```buzz
@@ -98,10 +98,10 @@ fun listValue() > [Boxed]
 
 ## serialize
 ```buzz
-export extern fun serialize(any value) > any !> CircularReference, NotSerializable
+fun serialize(any value) > any !> CircularReference, NotSerializable
 ```
-Transform `data` to data that can be serialized.
-- **`data`:** Data to serialize
+Transform `value` to data that can be serialized.
+- **`value`:** Data to serialize
 
 **Return:** Serializable data
 
@@ -116,7 +116,7 @@ Encode a [`Boxed`](/reference/std/serialize.html#boxed) instance to a JSON strin
 
 ## jsonDecode
 ```buzz
-static fun jsonDecode(str json) > Boxed !> JsonParseError, WriteWhileReadingError
+fun jsonDecode(str json) > Boxed !> JsonParseError, WriteWhileReadingError
 ```
 Decode string into a [`Boxed`](/reference/std/serialize.html#boxed) instance
 - **`json`:** The JSON string

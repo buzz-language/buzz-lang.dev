@@ -37,9 +37,9 @@ fun tmpFilename(str? prefix) > str
 
 
 **Returns:**  a temporary file name in system tmp dir
-## buzzExit
+## exit
 ```buzz
-fun buzzExit(int exitCode) > void 
+fun exit(int exitCode) > void 
 ```
 Exit program with `exitCode`
 - **`exitCode`:** exit code

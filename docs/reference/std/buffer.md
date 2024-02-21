@@ -122,6 +122,7 @@ Read foreign struct of type `T` from the `Buffer` at index `at`. The struct type
 fun readBoolean() > bool?
 ```
 Read a boolean
+
 **Returns:** Boolean read
 
 ### writeBoolean
@@ -136,6 +137,7 @@ Write a boolean
 fun readInt() > int?
 ```
 Read a integer
+
 **Returns:** Integer read
 
 ### writeInt
@@ -150,6 +152,7 @@ Write an integer
 fun readFloat() > float?
 ```
 Read a float
+
 **Returns:** Float read
 
 ### writeFloat
@@ -173,6 +176,7 @@ Get `Buffer` length
 fun cursor() > int
 ```
 Get current position in the `Buffer`
+
 **Returns:** Current position
 
 ### empty
@@ -196,6 +200,7 @@ Returns pointer at `at * align` in the `Buffer` as userdata
 fun toString() > str
 ```
 Get `Buffer` content as a string
+
 **Returns:** Buffer content
 
 ### at
@@ -204,6 +209,7 @@ fun at(int index) > int !> OutOfBoundError
 ```
 Get byte at given index
 - **`index`:** Which byte to get
+
 **Returns:** Byte
 
 ### setAt

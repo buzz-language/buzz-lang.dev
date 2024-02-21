@@ -35,7 +35,7 @@ fun clone() > {K, V}
 
 ## reduce
 ```buzz
-fun reduce(Function callback::<T>(K key, V value, T accumulator) > T, T initial) > T
+fun reduce::<T>(Function callback(K key, V value, T accumulator) > T, T initial) > T
 ```
 Reduce map to value of type `T` by running `callback` with `accumulator` being the value being built.
 - **`callback`:** Ran for each element

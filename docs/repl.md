@@ -46,6 +46,11 @@ type StdoutElement = {
 }
 let stdout: Ref<Array<StdoutElement>> = ref([]);
 
+type StdoutFormattedElement = {
+    class?: string,
+    content?: string
+}
+
 export default defineComponent({
     data: () => {
         return {
@@ -86,7 +91,7 @@ export default defineComponent({
 
                 // Scroll to end (wait a bit for the content to be rerendered)
                 setTimeout(function() {
-                    const stdoutElement = document.querySelector('#stdout')
+                    const stdoutElement = document.querySelector('#stdout') as HTMLElement
                     stdoutElement.scrollTop = stdoutElement.scrollHeight
                 }, 100)
 
@@ -131,9 +136,9 @@ export default defineComponent({
         },
 
         ansiToHtml(input) {
-            let html = []
-            let previous = null
-            let current = null
+            let html: Array<StdoutFormattedElement> = []
+            let previous: number|null = null
+            let current: StdoutFormattedElement|null = null
             for (const match of input.matchAll(/\033\[([0-9]+)m/g)) {
                 // First element
                 if (previous === null && match.index > 0) {
@@ -142,7 +147,7 @@ export default defineComponent({
                     html.push({
                         content: input.slice(0, match.index)
                     })
-                } else if (match.index > 0) {
+                } else if (match.index > 0 && current !== null) {
                     current.content = input.slice(
                         previous,
                         match.index
@@ -157,8 +162,8 @@ export default defineComponent({
                 };
             }
 
-            if (previous !== null && previous < input.length) {
-                current.textContent = input.slice(previous)
+            if (previous !== null && previous < input.length && current !== null) {
+                current.content = input.slice(previous)
             } else if (previous === null) {
                 // No match
                 html.push({
@@ -214,9 +219,168 @@ export default defineComponent({
             // Write input value into provided memory (truncate if too much)
             buffer.set(encoder.encode(value).slice(0, bufferLength))
 
-            stdin.value = null
+            stdin.value = ''
 
             return Math.min(bufferLength, value.length)
+        }
+
+        // We use JS regexes in place of pcre
+        function patternReplaceLength(
+            stringPtr: number,
+            stringLength: number,
+            replacementPtr: number,
+            replacementLength: number,
+            patternPtr: number,
+            patternLength: number,
+        ): number {
+            const string = decoder.decode(
+                new Uint8Array(memory.buffer, stringPtr, stringLength),
+                {
+                    stream: true
+                }
+            )
+
+            const replacement = decoder.decode(
+                new Uint8Array(memory.buffer, replacementPtr, replacementLength),
+                {
+                    stream: true
+                }
+            )
+
+            const pattern = decoder.decode(
+                new Uint8Array(memory.buffer, patternPtr, patternLength),
+                {
+                    stream: true
+                }
+            )
+
+            return encoder.encode(
+                    string.replace(
+                    new RegExp(pattern),
+                    replacement,
+                )
+            ).length;
+        }
+
+        function patternReplace(
+            stringPtr: number,
+            stringLength: number,
+            replacementPtr: number,
+            replacementLength: number,
+            patternPtr: number,
+            patternLength: number,
+            outputPtr: number,
+            outputLength: number
+        ) {
+            const string = decoder.decode(
+                new Uint8Array(memory.buffer, stringPtr, stringLength),
+                {
+                    stream: true
+                }
+            )
+
+            const replacement = decoder.decode(
+                new Uint8Array(memory.buffer, replacementPtr, replacementLength),
+                {
+                    stream: true
+                }
+            )
+
+            const pattern = decoder.decode(
+                new Uint8Array(memory.buffer, patternPtr, patternLength),
+                {
+                    stream: true
+                }
+            )
+
+            let output = new Uint8Array(memory.buffer, outputPtr, outputLength)
+            output.set(
+                encoder.encode(
+                    string.replace(
+                        new RegExp(pattern),
+                        replacement,
+                    )
+                ).slice(0, outputLength)
+            )
+        }
+
+        function patternReplaceAllLength(
+            stringPtr: number,
+            stringLength: number,
+            replacementPtr: number,
+            replacementLength: number,
+            patternPtr: number,
+            patternLength: number,
+        ): number {
+            const string = decoder.decode(
+                new Uint8Array(memory.buffer, stringPtr, stringLength),
+                {
+                    stream: true
+                }
+            )
+
+            const replacement = decoder.decode(
+                new Uint8Array(memory.buffer, replacementPtr, replacementLength),
+                {
+                    stream: true
+                }
+            )
+
+            const pattern = decoder.decode(
+                new Uint8Array(memory.buffer, patternPtr, patternLength),
+                {
+                    stream: true
+                }
+            )
+
+            return encoder.encode(
+                string.replaceAll(
+                    new RegExp(pattern, 'g'),
+                    replacement,
+                )
+            ).length;
+        }
+
+        function patternReplaceAll(
+            stringPtr: number,
+            stringLength: number,
+            replacementPtr: number,
+            replacementLength: number,
+            patternPtr: number,
+            patternLength: number,
+            outputPtr: number,
+            outputLength: number
+        ) {
+            const string = decoder.decode(
+                new Uint8Array(memory.buffer, stringPtr, stringLength),
+                {
+                    stream: true
+                }
+            )
+
+            const replacement = decoder.decode(
+                new Uint8Array(memory.buffer, replacementPtr, replacementLength),
+                {
+                    stream: true
+                }
+            )
+
+            const pattern = decoder.decode(
+                new Uint8Array(memory.buffer, patternPtr, patternLength),
+                {
+                    stream: true
+                }
+            )
+
+            let output = new Uint8Array(memory.buffer, outputPtr, outputLength)
+            output.set(
+                encoder.encode(
+                    string.replaceAll(
+                        new RegExp(pattern, 'g'),
+                        replacement,
+                    )
+                ).slice(0, outputLength)
+            )
         }
 
         this.wasmImports = (
@@ -224,11 +388,16 @@ export default defineComponent({
                 env: {
                     memory: memory,
                     writeToStderr: writeToStderr,
-                    readFromStdin: readFromStdin
+                    readFromStdin: readFromStdin,
+                    patternReplace: patternReplace,
+                    patternReplaceLength: patternReplaceLength,
+                    patternReplaceAllLength: patternReplaceAllLength,
+                    patternReplaceAll: patternReplaceAll,
                 }
             } as const)
         ).instance.exports as WasmImports
 
+        stdout.value = []
         this.ctx = this.wasmImports.initRepl()
 
         const stdin = document.querySelector('#stdin') as HTMLInputElement

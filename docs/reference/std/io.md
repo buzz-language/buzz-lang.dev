@@ -22,6 +22,7 @@ static fun open(str filename, FileMode mode) > File !> FileSystemError, Unexpect
 Open file
 - **`filename`:** Path of file to open
 - **`mode`:** Mode with which to open it
+
 **Returns:** opened file
 
 ### collect
@@ -41,6 +42,7 @@ Close file
 fun readAll() > str !> ReadWriteError, FileSystemError, UnexpectedError
 ```
 Reads file until `EOF`
+
 **Returns:** read data
 
 ### readLine
@@ -48,6 +50,7 @@ Reads file until `EOF`
 fun readLine() > str? !> ReadWriteError, FileSystemError, UnexpectedError
 ```
 Reads next line, returns null if nothing to read
+
 **Returns:** read data
 
 ### read
@@ -56,6 +59,7 @@ fun read(int n) > str? !> ReadWriteError, FileSystemError, InvalidArgumentError,
 ```
 Reads `n` bytes, returns null if nothing to read
 - **`n`:** how many bytes to read
+
 **Returns:** read data
 
 ### write

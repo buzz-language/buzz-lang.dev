@@ -28,16 +28,16 @@ fun atan(float n) > float
 
 
 **Returns:**  atan of n
-## bzceil
+## ceil
 ```buzz
-fun bzceil(float n) > int 
+fun ceil(float n) > int 
 ```
 
 
 **Returns:**  ceiled n
-## bzcos
+## cos
 ```buzz
-fun bzcos(float n) > float 
+fun cos(float n) > float 
 ```
 
 
@@ -49,21 +49,21 @@ fun bzcos(float n) > float
 fun deg(float n) > float 
 ```
 Convert radian to degree
-## bzexp
+## exp
 ```buzz
-fun bzexp(float n) > float 
+fun exp(float n) > float 
 ```
 
 
 **Returns:**  exp of n
-## bzfloor
+## floor
 ```buzz
-fun bzfloor(float n) > int 
+fun floor(float n) > int 
 ```
 
-## bzlog
+## log
 ```buzz
-fun bzlog(float base, float n) > float 
+fun log(float base, float n) > float 
 ```
 
 
@@ -87,30 +87,24 @@ fun min(float a, float b) > float
 fun rad(float n) > float 
 ```
 Convert degree to radian
-## random
-```buzz
-fun random() > float 
-```
 
-
-**Returns:**  random number between 0 and 1
-## bzsin
+## sin
 ```buzz
-fun bzsin(float n) > float 
+fun sin(float n) > float 
 ```
 
 
 **Returns:**  sin of n
-## bzsqrt
+## sqrt
 ```buzz
-fun bzsqrt(float n) > float 
+fun sqrt(float n) > float 
 ```
 
 
 **Returns:**  square root of n
-## bztan
+## tan
 ```buzz
-fun bztan(float n) > float 
+fun tan(float n) > float 
 ```
 
 
@@ -122,10 +116,3 @@ fun pow(float x, float y) > float !> lib.errors.OverflowError, lib.errors.Underf
 
 
 **Returns:**  `x`^`y`
-## buffer
-
-## src
-```buzz
-object src.lib.buffer.Buffer 
-```
-Read and write data to a string buffer

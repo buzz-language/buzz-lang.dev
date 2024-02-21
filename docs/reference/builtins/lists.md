@@ -110,7 +110,7 @@ Filter list keeping element for which `callback` returns `true`.
 
 ## reduce
 ```buzz
-fun reduce(Function callback::<S>(int index, T element, S accumulator) > S, S initial) > S
+fun reduce::<S>(Function callback(int index, T element, S accumulator) > S, S initial) > S
 ```
 Reduce list to value of type `S` by running `callback` with `accumulator` being the value being built.
 - **`callback`:** Ran for each element

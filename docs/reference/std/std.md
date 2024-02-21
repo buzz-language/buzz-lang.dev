@@ -18,7 +18,7 @@ Prints value on stdout
 ```buzz
 fun parseInt(str string) > int? 
 ```
-Parse number, returns false if string does not represent a number
+Parse number, returns `null` if string does not represent a number
 - **`string`:** string to parse
 
 **Returns:** integer parsed or null
@@ -26,7 +26,7 @@ Parse number, returns false if string does not represent a number
 ```buzz
 fun parseFloat(str string) > float? 
 ```
-Parse number, returns false if string does not represent a number
+Parse number, returns `null` if string does not represent a number
 - **`string`:** string to parse
 
 **Returns:** float parsed or null
@@ -34,7 +34,7 @@ Parse number, returns false if string does not represent a number
 ```buzz
 fun toInt(float n) > int 
 ```
-Cast integer to a float value
+Cast float to a integer value
 - **`n`:** value to cast
 
 **Returns:** casted value
@@ -42,7 +42,7 @@ Cast integer to a float value
 ```buzz
 fun toFloat(int n) > float 
 ```
-Cast float to a integer value
+Cast integer to a float value
 - **`n`:** value to cast
 
 **Returns:** casted value
@@ -58,7 +58,7 @@ Cast number to a userdata
 ```buzz
 fun parseUd(str string) > ud?
 ```
-Parse `ud`, returns `false` if string does not represent a `ud` (u64)
+Parse `ud`, returns `null` if string does not represent a `ud` (u64)
 - **`string`:** string to parse
 
 **Returns:** `ud` parsed or `null`

@@ -1,6 +1,10 @@
 # Functions
 
 Functions start with the keyword `fun`. The return type must be specified after a `>`. If the functions returns nothing the return type is `void`.
+
+
+
+
 ```buzz
 fun sayHiTo(str name, str? lastName, int age) > str {
     return "Hi {name} {lastName ?? ""}!"
@@ -9,7 +13,7 @@ fun sayHiTo(str name, str? lastName, int age) > str {
 
 If the function can yield (see [Fibers](/guide/fibers.html)) or contains a function call to another function that can yield, the yield type must be specified after another `>`.
 ```buzz
-fun mayYield() > str > int {
+fun mayYield() > str *> int? {
     |...
 }
 ```

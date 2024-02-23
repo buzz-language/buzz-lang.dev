@@ -9,7 +9,7 @@ get the wrapped function return value.
 ```buzz
 | Returns a string, yields numbers
 | Always yields an optional type because null is returned if you resume a terminated fiber
-fun count(int n) > str > int? {
+fun count(int n) > str *> int? {  
     for (int i = 0; i < n; i = i + 1) {
         | If the function is not called in a fiber, yields are evaluated and dismissed
         | Otherwise the value is returned as `resume` result

@@ -28,13 +28,13 @@ country == Country.fr;
 
 When the value type is `str`, you can omit case values which will be the same as the case name.
 ```buzz
-Locale {
+enum(str) Locale {
     fr,
     it,
     en,
 }
 
-Local.en.value == "en";
+Locale.en.value == "en";
 ```
 
 If one case value is specified **all** cases must also have a value.

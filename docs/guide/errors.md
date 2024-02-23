@@ -24,10 +24,10 @@ throw SomeObject{ number = 12 }          | -> Error: object instance 0x1feb12 `S
 Functions must specify which error they can raise with `!> type1, type2, ...`. The compiler will detect any unhandled error and require you to either specify it in the function signature or catch the error.
 ```buzz
 fun willFail() > int !> MyErrors, OtherErrors, str {
-    int random = rand();
-    if (random == 1) {
+    int rand = random();
+    if (rand == 1) {
         throw MyErrors.failed;
-    } else if (random == 0) {
+    } else if (rand == 0) {
         throw OtherErrors.failed;
     }
 
@@ -47,7 +47,7 @@ int result = willFail() catch 0;
 Try/catch works as you would expect. If you omit the error type, it'll catch any error.
 ```buzz
 try {
-    willFail();
+    _ = willFail();
 } catch (str error) {
     print("Caught error {error}");
 } catch {

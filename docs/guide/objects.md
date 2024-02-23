@@ -96,7 +96,7 @@ var info = getInfo();
 Generic types can be used by listing them just after the object name:
 ```buzz
 object Payload::<K, V> {
-    {K, V} data,
+    {K: V} data,
 }
 
 var payload = Payload::<str, int>{

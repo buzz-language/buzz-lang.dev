@@ -16,7 +16,7 @@ fun time() > float
 **Returns:**  epoch time in ms
 ## env
 ```buzz
-fun env(str key) > str? !> InvalidArgumentError 
+fun env(str key) > str?
 ```
 Returns environment variable under `key`
 - **`key`:** environment variable name

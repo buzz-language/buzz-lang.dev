@@ -22,7 +22,7 @@ Any variable declared inside a block is local to it. Shadowing a variable from a
 str bye = "bye";
 while (condition) {
     str hello = "hello"; | Local to this block
-    int byte = 12;       | -> Not allowed
+    int bye = 12;       | -> Not allowed
 }
 
 | hello doesn't exist anymore

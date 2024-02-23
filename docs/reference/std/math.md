@@ -42,7 +42,7 @@ fun cos(float n) > float
 
 
 **Returns:**  cos of n
-## `float pi`
+## `const float pi`
 π constant
 ## deg
 ```buzz
@@ -68,16 +68,30 @@ fun log(float base, float n) > float
 
 
 **Returns:**  log(base) of n
-## max
+## maxFloat
 ```buzz
-fun max(float a, float b) > float 
+fun maxFloat(float a, float b) > float 
 ```
 
 
 **Returns:**  max of a and b
-## min
+## minFloat
 ```buzz
-fun min(float a, float b) > float 
+fun minFloat(float a, float b) > float
+```
+
+
+**Returns:**  min of a and b
+## maxInt
+```buzz
+fun maxInt(int a, int b) > int
+```
+
+
+**Returns:**  max of a and b
+## minInt
+```buzz
+fun minInt(int a, int b) > int
 ```
 
 
@@ -111,7 +125,7 @@ fun tan(float n) > float
 **Returns:**  tan of n
 ## pow
 ```buzz
-fun pow(float x, float y) > float !> lib.errors.OverflowError, lib.errors.UnderflowError 
+fun pow(float x, float y) > float !> OverflowError, UnderflowError 
 ```
 
 

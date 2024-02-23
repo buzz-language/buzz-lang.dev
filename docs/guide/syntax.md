@@ -81,7 +81,7 @@ Arithmetic operators are allowed between numbers of the same type.
 The `+` operator can also be used to concatenate strings, lists or maps (of the same type).
 ```buzz
 "hello " + "world" == "hello world";
-[ 1,2,3 ] + [ 3, 4, 5]      | -> [ 1, 2, 3, 4, 5 ]
+[ 1,2,3 ] + [ 3, 4, 5]      | -> [ 1, 2, 3, 3, 4, 5, ]
 { "one": 1 } + { "two": 2 } | -> { "one": 1, "two": 2 }
 ```
 

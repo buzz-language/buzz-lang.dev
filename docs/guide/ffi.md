@@ -15,7 +15,7 @@ This is called a binding and writing those can be time consuming for very little
 ```buzz
 zdef("/path/to/libforeign", "fn hello(name: [*:0]const u8) void;");
 zdef("/path/to/libforeign", `
-    pub const AStruct = struct {
+    pub const AStruct = extern struct {
         id: u32,
         name: [*:0]const u8,
     };
@@ -33,7 +33,7 @@ hello(cstr("world"));
 
 AStruct data = AStruct{
     name = cstr("hello"),
-    id = 42,
+    id = 42.0,
 };
 
 get_id(data) == 42;
@@ -50,7 +50,7 @@ Avoid using a buzz strings that has multiple `\0` embedded in them.
 
 For any other type of pointers. You can use the `Buffer` object provided by the [buffer standard library](/reference/std/buffer.html).
 ```buzz
-zdef("/path/to/libforeign", "fn sum(values: [*]i32) u32;");
+zdef("/path/to/libforeign", "fn sum(values: [*]i32, len: i32) u32;");
 
 |...
 
@@ -58,7 +58,7 @@ Buffer buffer = Buffer.init();
 
 buffer.writeZ::<int>("i32", values: [1, 2, 3]);
 
-sum(buffer.ptr()) == 6;
+sum(buffer.ptr(), len: 3) == 6;
 ```
 
 To write a list of structs, you must use `writeStruct`.

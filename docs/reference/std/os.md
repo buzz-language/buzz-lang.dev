@@ -70,7 +70,7 @@ A socket
 
 ### connect
 ```buzz
-static fun connect(str address, int port, SocketProtocol netProtocol) > Socket !> InvalidArgumentError, SocketError, NotYetImplementedError
+static fun connect(str address, int port = 0, SocketProtocol netProtocol) > Socket !> InvalidArgumentError, SocketError, NotYetImplementedError
 ```
 Opens a socket
 - **`address`:** A string containing either a IPv4, IPv6 or path to a socket file (IPC)
@@ -96,7 +96,7 @@ Receive at most `n` bytes from the socket
 
 ### receiveLine
 ```buzz
-fun receiveLine() > str? !> FileSystemError, UnexpectedError, ReadWriteError
+fun receiveLine(int? maxSize) > str? !> FileSystemError, UnexpectedError, ReadWriteError
 ```
 Receive from socket until it's closed or a linefeed is received
 
@@ -104,7 +104,7 @@ Receive from socket until it's closed or a linefeed is received
 
 ### receiveAll
 ```buzz
-fun receiveAll() > str? !> FileSystemError, UnexpectedError, ReadWriteError
+fun receiveAll(int? maxSize) > str? !> FileSystemError, UnexpectedError, ReadWriteError
 ```
 Receive from socket until it's closed
 

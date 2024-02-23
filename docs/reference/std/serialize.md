@@ -50,7 +50,7 @@ When wrapped data is a float
 
 ### map
 ```buzz
-fun map() > {str, Boxed}?
+fun map() > {str: Boxed}?
 ```
 When wrapped data is an object, object property values are themselves wrapped in a `Boxed`
 
@@ -86,7 +86,7 @@ fun floatingValue() > float
 
 ### mapValue
 ```buzz
-fun mapValue() > {str, Boxed}
+fun mapValue() > {str: Boxed}
 ```
 **Returns:** wrapped data map value or empty map if not a map
 

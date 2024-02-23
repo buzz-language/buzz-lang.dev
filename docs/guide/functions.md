@@ -88,7 +88,7 @@ test "Some test" {
 ```
 
 ## Generic types
-Generic types can be used by listing them just before the function name:
+Generic types can be used by listing them just after the function name:
 ```buzz
 fun countMap::<K, V>({K, V} map) > int {
     return map.size();

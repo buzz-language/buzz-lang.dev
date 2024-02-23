@@ -107,7 +107,7 @@ Transform `value` to data that can be serialized.
 
 ## jsonEncode
 ```buzz
-fun jsonEncode(Boxed data, {Boxed, void}? seen) > str
+fun jsonEncode(Boxed data) > str !> CircularReference, NotSerializable
 ```
 Encode a [`Boxed`](/reference/std/serialize.html#boxed) instance to a JSON string
 - **`data`:** Data to encode

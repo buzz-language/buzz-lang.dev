@@ -39,7 +39,7 @@ Close file
 
 ### readAll
 ```buzz
-fun readAll() > str !> ReadWriteError, FileSystemError, UnexpectedError
+fun readAll(int? maxSize) > str !> ReadWriteError, FileSystemError, UnexpectedError
 ```
 Reads file until `EOF`
 
@@ -47,7 +47,7 @@ Reads file until `EOF`
 
 ### readLine
 ```buzz
-fun readLine() > str? !> ReadWriteError, FileSystemError, UnexpectedError
+fun readLine(int? maxSize) > str? !> ReadWriteError, FileSystemError, UnexpectedError
 ```
 Reads next line, returns null if nothing to read
 

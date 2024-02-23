@@ -147,6 +147,21 @@ fun writeInt(int number) > void !> WriteWhileReadingError
 Write an integer
 - **`number`:** Integer to write
 
+### readUserData
+```buzz
+fun readUserData() > ud?
+```
+Read a ud
+
+**Returns:** ud read
+
+### writeUserData
+```buzz
+fun writeUserData(ud userdata) > void !> WriteWhileReadingError
+```
+Write an ud
+- **`userdata`:** ud to write
+
 ### readFloat
 ```buzz
 fun readFloat() > float?

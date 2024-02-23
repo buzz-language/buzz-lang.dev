@@ -2,7 +2,7 @@
 
 ## assert
 ```buzz
-fun assert(bool condition, str? message) > void 
+fun assert(bool condition, str? message = null) > void 
 ```
 If condition is false print message and exit program
 - **`message`:** message printed if `condition` is false
@@ -85,3 +85,9 @@ Return evenly distributed random number between `min` and `max`
 fun currentFiber() > fib<any, any?>
 ```
 **Returns:** the current fiber
+
+## panic
+```buzz
+fun panic(str message) > void
+```
+Print message and exit program

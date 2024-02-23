@@ -9,7 +9,7 @@ bool aBoolean = true;
 ##  `null` and `void`
 ```buzz
 str? maybe = null;
-{str, void} mapToNothing = { "hello": void };
+{str: void} mapToNothing = { "hello": void };  
 ```
 The difference between `null` and `void` is a semantic one. `null` is mainly useful to handle the absence of data with [optionals](/guide/optionals.html) whereas `void` is mainly used to specify that a function returns nothing.
 
@@ -123,11 +123,13 @@ if (anything as str aString) {
 }
 ```
 You can also use the `as?` notation which will result in a `null` if the value is not of the expected type:
+
+
 ```buzz
 any anything = "hello";
 
-int? something = anything as? str;           | -> null
-int somethingElse = (anything as? str) ?? 0; | Using `??` to get a default value
+int? something = anything as? int;           | -> null
+int somethingElse = (anything as? int) ?? 0; | Using `??` to get a default value
 ```
 
 ## Type values

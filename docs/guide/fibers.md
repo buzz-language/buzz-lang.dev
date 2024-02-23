@@ -13,7 +13,7 @@ fun count(int n) > str *> int? {  
     for (int i = 0; i < n; i = i + 1) {
         | If the function is not called in a fiber, yields are evaluated and dismissed
         | Otherwise the value is returned as `resume` result
-        yield i;
+        _ = yield i;
     }
 
     return "Counting is done!";

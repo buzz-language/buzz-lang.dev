@@ -3,7 +3,7 @@
 A `protocol` is a set of methods. Objects can conform to any number of them:
 ```buzz
 protocol Translatable {
-    fun translate(dx: int, dy: int) > void;
+    fun translate(int dx, int dy) > void;
 }
 
 protocol Printable {
@@ -14,7 +14,7 @@ object(Translatable, Printable) Point {
     int x,
     int y,
 
-    fun translate(dx: int, dy: int) > void {
+    fun translate(int dx, int dy) > void {
         this.x = this.x + dx;
         this.y = this.y + dy;
     }

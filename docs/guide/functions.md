@@ -90,11 +90,11 @@ test "Some test" {
 ## Generic types
 Generic types can be used by listing them just after the function name:
 ```buzz
-fun countMap::<K, V>({K, V} map) > int {
+fun countMap::<K, V>({K: V} map) > int {
     return map.size();
 }
 
-{str, int} map = {
+{str: int} map = {
     "one": 1,
     "two": 2,
     "three": 3,

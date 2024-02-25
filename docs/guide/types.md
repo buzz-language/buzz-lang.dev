@@ -95,7 +95,7 @@ foreach (int i in 10..0) {
 ### Maps
 Maps are key-value records. Order is not guaranted.
 ```buzz
-{str, int} aMap = {
+{str: int} aMap = {
     "one": 1,
     "two": 2,
     "three": 3,

@@ -29,7 +29,7 @@ fun values() > [V]
 
 ## clone
 ```buzz
-fun clone() > {K, V}
+fun clone() > {K: V}
 ```
 **Returns:** Clone of the map
 
@@ -45,7 +45,7 @@ Reduce map to value of type `T` by running `callback` with `accumulator` being t
 
 ## filter
 ```buzz
-fun filter(Function callback(K key, V value) > bool) > {K, V}
+fun filter(Function callback(K key, V value) > bool) > {K: V}
 ```
 Filter map keeping element for which `callback` returns `true`.
 - **`callback`:** Ran for each element
@@ -61,7 +61,7 @@ Runs `callback` for each element of the map.
 
 ## map
 ```buzz
-fun map::<A, B>(Function callback(K key, V value) > obj{ A key, B value }) > {A, B}
+fun map::<A, B>(Function callback(K key, V value) > obj{ A key, B value }) > {A: B}
 ```
 Transform map to new map of target type by running `callback` for each element of the map.
 - **`callback`:** Ran for each element
@@ -70,7 +70,7 @@ Transform map to new map of target type by running `callback` for each element o
 
 ## sort
 ```buzz
-fun sort(Function callback(K left, K right) > bool) > {K, V}
+fun sort(Function callback(K left, K right) > bool) > {K: V}
 ```
 Stable in-place sort. O(n) best case, O(n*log(n)) worst case and average case.
 - **`callback`:** Used to compare elements
@@ -79,7 +79,7 @@ Stable in-place sort. O(n) best case, O(n*log(n)) worst case and average case.
 
 ## diff
 ```buzz
-fun diff({K, V} other) > {K, V}
+fun diff({K: V} other) > {K: V}
 ```
 Returns elements of the map no present in `other`.
 - **`other`:** Other map of the same type
@@ -88,7 +88,7 @@ Returns elements of the map no present in `other`.
 
 ## intersect
 ```buzz
-fun intersect({K, V} other) > {K, V}
+fun intersect({K: V} other) > {K: V}
 ```
 Returns elements present in both current map and `other`.
 - **`other`:** Other map of the same type

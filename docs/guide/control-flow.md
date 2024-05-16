@@ -114,3 +114,26 @@ while (true) {
     print("not reached if `condition` is true");
 }
 ```
+
+You can add a label to any loop and `break`/`continue` to it. This is useful when you have nested loops and want to break to an upper scope:
+```buzz
+while (true) :here {
+    if (condition) {
+        break here;
+    }
+
+    print("not reached if `condition` is true");
+}
+```
+
+## Block expression
+
+Block expression are lexical blocks that produce a value:
+```buzz
+var value = from {
+    | Doing so work here...
+
+    out result;
+}
+```
+`out` must appear once at the end of the block.

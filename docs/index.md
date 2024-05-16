@@ -10,7 +10,7 @@ actions:
     - text: Try it
       link: /repl
     - text: Latest release
-      link: https://github.com/buzz-language/buzz/releases/tag/0.3.0
+      link: https://github.com/buzz-language/buzz/releases/tag/0.4.0
       type: secondary
 features:
   - title: Statically typed
@@ -48,6 +48,6 @@ fun main([str] _) > void {
         age = 36,
     };
 
-    print("Hello I'm {me.name} and I'm {me.age}.");
+    std.print("Hello I'm {me.name} and I'm {me.age}.");
 }
 ```

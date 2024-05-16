@@ -98,7 +98,8 @@ export default defineUserConfig({
                 '/reference/builtins/lists',
                 '/reference/builtins/maps',
                 '/reference/builtins/patterns',
-                '/reference/builtins/fibers'
+                '/reference/builtins/fibers',
+                '/reference/builtins/ranges'
               ]
             }
           ]

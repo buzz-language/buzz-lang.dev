@@ -6,7 +6,7 @@ To import another script, use the `import` statement:
 ```buzz
 import "std";
 
-print("hello"); | print is defined in `std`
+std.print("hello");
 ```
 
 When importing, buzz will search the script in common places. With `?` being the library name:
@@ -38,22 +38,31 @@ When defining [`extern` functions](/guide/calling-native-code.html), buzz will s
 - `$BUZZ_PATH/?/src/lib?.so`
 
 ### Alias
-You can scope the imported symbol behind a prefix to avoid name collision or for readability.
+You can rename the imported namespace like so:
 ```buzz
-import "std" as std;
-import "io" as io;
+import "std" as standard;
 
-| Defining our own print function
-fun print(str message) > void {
-    io.stdout.write(message);
-}
+| ...
+
+standard.print("hello");
+```
+
+You can also erase the namespace:
+```buzz
+import "std" as _;
+
+| ...
+
+print("hello");
 ```
 
 ## Exporting
 
-To export symbols, use the `export` statement:
+To export symbols, use the `export` statement. If your script exports at least one symbol. You have to define a namespace for the script:
 
 ```buzz
+namespace hello;
+
 | hello.buzz
 fun sayHello() > void {
     print("Hello world!");
@@ -68,7 +77,7 @@ export sayHello;
 import "hello";
 
 fun main([str] args) > void {
-    sayHello();
+    hello.sayHello();
 }
 ```
 
@@ -95,6 +104,6 @@ export sayHello as hello;
 import "hello";
 
 fun main([str] args) > void {
-    hello();
+    hello.hello();
 }
 ```

@@ -2,9 +2,6 @@
 
 Functions start with the keyword `fun`. The return type must be specified after a `>`. If the functions returns nothing the return type is `void`.
 
-
-
-
 ```buzz
 fun sayHiTo(str name, str? lastName, int age) > str {
     return "Hi {name} {lastName ?? ""}!"
@@ -40,6 +37,16 @@ fun doSomething(int x, bool isAvailable = true) > void {
 
 | Then calling it
 doSomething(12);
+```
+
+If the argument value is a variable with the same name as the argument, you can omit the name:
+```buzz
+fun call(str firstname, str lastname) > void {
+    | ...
+}
+
+var lastname = "Doe";
+call("joe", lastname)
 ```
 
 ## Errors

@@ -77,20 +77,28 @@ pat aPattern = $"hello [a-z]+";
 ## Data structures
 
 ### Lists
-List are a sequence of a given type.
+Lists are a sequence of a given type.
 ```buzz
 [str] words = ["hello", "world", "yes"];
 ```
-You can quickly create a list of integers using ranges.
-```buzz
-[int] range = 0..10;
-
-| If the lower limit > upper limit, then the range will be descending
-foreach (int i in 10..0) {
-    print("{i}");
-}
-```
 [More on lists](/reference/builtins/lists.html)
+
+### Ranges
+Ranges are useful to create quick list of integers. They can also be used in `foreach` statements:
+```buzz
+foreach (int i in 0..n) {
+    | ...
+}
+
+| Boundaries can be descendant
+rg range = n..0;
+
+| You can make a list from it
+var list = range.toList(); | -> [n, n-1, ... , 0]
+
+| You can access its boundaries
+std.print("My range is {range.low}..{range.high}");
+```
 
 ### Maps
 Maps are key-value records. Order is not guaranted.

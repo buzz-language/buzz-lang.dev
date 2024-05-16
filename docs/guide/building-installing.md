@@ -4,7 +4,7 @@
 - Since this is built with Zig, you should be able to build buzz on a wide variety of architectures even though this has only been tested on x86/M1.
 - Linux or macOS (Windows support [is coming](https://github.com/buzz-language/buzz/issues/74))
 - libc
-- zig master
+- zig master (exact version [here](https://github.com/buzz-language/buzz/blob/main/build.zig#L101))
 
 ## Build
 1. Clone the project: `git clone https://github.com/buzz-language/buzz <buzz_dir>`
@@ -14,7 +14,9 @@
 cd vendors/mir
 make
 ```
-4. Have fun: `zig build run -- <myscript.buzz>`
+4. Have fun:
+  - `zig build run -- <myscript.buzz>` to run a script
+  - `zig build run` to start the REPL
 
 ## Install
 

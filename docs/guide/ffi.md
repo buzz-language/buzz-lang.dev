@@ -29,10 +29,10 @@ import "ffi";
 
 |...
 
-hello(cstr("world"));
+hello(ffi.cstr("world"));
 
 AStruct data = AStruct{
-    name = cstr("hello"),
+    name = ffi.cstr("hello"),
     id = 42.0,
 };
 

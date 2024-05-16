@@ -99,6 +99,15 @@ Map list to new list of target type by running `callback` for each element of th
 
 **Returns:** New list of item type `S`
 
+## fill
+```buzz
+fun fill(T value) > [T]
+```
+Fill the list with `value` and returns itself.
+- **`value`:** Value to fill the list with
+
+**Returns:** the list
+
 ## filter
 ```buzz
 fun filter(Function callback(int index, T element) > bool) > [T]
@@ -117,3 +126,9 @@ Reduce list to value of type `S` by running `callback` with `accumulator` being 
 - **`initial`:** Initial value
 
 **Returns:** Reduced value
+
+## reverse
+```buzz
+fun reverse() > [T]
+```
+**Returns:** A new list with inverted values (e.g. `[1, 2, 3]` becomes `[3, 2, 1]`)

@@ -16,6 +16,15 @@ var me = Person{
 };
 ```
 
+If a property value is a variable with the same name as the property, you can omit its name:
+```buzz
+var name = "Giann";
+
+var me = Person{
+    name
+};
+```
+
 ## Methods
 Methods are function associated with an object. Within a method you can use the current instance of the object with `this`.
 ```buzz

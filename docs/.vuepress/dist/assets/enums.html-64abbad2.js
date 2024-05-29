@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-0cb9a273","path":"/guide/enums.html","title":"Enums","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1716987425000,"contributors":[{"name":"Benoit Giannangeli","email":"giann008@gmail.com","commits":3},{"name":"hshq","email":"hshqcn@qq.com","commits":1}]},"filePathRelative":"guide/enums.md"}');export{e as data};

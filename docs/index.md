@@ -30,24 +30,27 @@ footer: MIT licensed | Copyright © 2021-present Benoit Giannangeli
 ```buzz
 import "std";
 
-| 👨‍🚀 buzz is a simple unambiguous scripting language
-object Person {
-    str name,
-    int age = 18,
+fun fibonacci(int n) > void *> int? {
+    var n1 = 0;
+    var n2 = 1;
+    int? next = null;
 
-    fun growUp() > int {
-        this.age = this.age + 1;
-
-        return this.age;
+    foreach (var _ in 0..n) {
+        _ = yield n1;
+        next = n1 + n2;
+        n1 = n2;
+        n2 = next!;
     }
 }
 
-fun main([str] _) > void {
-    var me = Person{
-        name = "Giann",
-        age = 36,
-    };
+fun main([str] args) > void {
+    const N = if (args.len() > 0)
+            std.parseInt(args[0]) ?? 10
+        else
+            10;
 
-    std.print("Hello I'm {me.name} and I'm {me.age}.");
+    foreach (var n in &fibonacci(N)) {
+        std.print("{n}");
+    }
 }
 ```

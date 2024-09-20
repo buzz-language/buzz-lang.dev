@@ -8,7 +8,7 @@ fun size() > int
 
 ## remove
 ```buzz
-fun remove(K key) > V?
+fun remove(key: K) > V?
 ```
 Remove element from the map
 - **`key``**: Key of element to remove
@@ -35,7 +35,7 @@ fun clone() > {K: V}
 
 ## reduce
 ```buzz
-fun reduce::<T>(Function callback(K key, V value, T accumulator) > T, T initial) > T
+fun reduce::<T>(callback: fun (key: K, value: V, accumulator: T) > T, initial: T) > T
 ```
 Reduce map to value of type `T` by running `callback` with `accumulator` being the value being built.
 - **`callback`:** Ran for each element
@@ -45,7 +45,7 @@ Reduce map to value of type `T` by running `callback` with `accumulator` being t
 
 ## filter
 ```buzz
-fun filter(Function callback(K key, V value) > bool) > {K: V}
+fun filter(callback: fun (key: K, value: V) > bool) > {K: V}
 ```
 Filter map keeping element for which `callback` returns `true`.
 - **`callback`:** Ran for each element
@@ -54,14 +54,14 @@ Filter map keeping element for which `callback` returns `true`.
 
 ## forEach
 ```buzz
-fun forEach(Function callback(K key, V value) > void) > void
+fun forEach(callback: fun (key: K, value: V) > void) > void
 ```
 Runs `callback` for each element of the map.
 - **`callback`:** Ran for each element
 
 ## map
 ```buzz
-fun map::<A, B>(Function callback(K key, V value) > obj{ A key, B value }) > {A: B}
+fun map::<A, B>(callback: fun (key: K, value: V) > obj{ key: A, value: B }) > {A: B}
 ```
 Transform map to new map of target type by running `callback` for each element of the map.
 - **`callback`:** Ran for each element
@@ -70,7 +70,7 @@ Transform map to new map of target type by running `callback` for each element o
 
 ## sort
 ```buzz
-fun sort(Function callback(K left, K right) > bool) > {K: V}
+fun sort(callback: fun (left: K, right: K) > bool) > {K: V}
 ```
 Stable in-place sort. O(n) best case, O(n*log(n)) worst case and average case.
 - **`callback`:** Used to compare elements
@@ -79,7 +79,7 @@ Stable in-place sort. O(n) best case, O(n*log(n)) worst case and average case.
 
 ## diff
 ```buzz
-fun diff({K: V} other) > {K: V}
+fun diff(other: {K: V}) > {K: V}
 ```
 Returns elements of the map no present in `other`.
 - **`other`:** Other map of the same type
@@ -88,7 +88,7 @@ Returns elements of the map no present in `other`.
 
 ## intersect
 ```buzz
-fun intersect({K: V} other) > {K: V}
+fun intersect(other: {K: V}) > {K: V}
 ```
 Returns elements present in both current map and `other`.
 - **`other`:** Other map of the same type

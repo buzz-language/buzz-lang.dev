@@ -3,28 +3,28 @@
 ## Booleans
 Either `true` or `false`
 ```buzz
-bool aBoolean = true;
+const aBoolean = true;
 ```
 
 ##  `null` and `void`
 ```buzz
-str? maybe = null;
-{str: void} mapToNothing = { "hello": void };  
+const maybe: str? = null;
+const mapToNothing = { "hello": void };  
 ```
 The difference between `null` and `void` is a semantic one. `null` is mainly useful to handle the absence of data with [optionals](/guide/optionals.html) whereas `void` is mainly used to specify that a function returns nothing.
 
 ## Numbers
 Numbers can either be `int` (32 bits integers) or `float` (64 bits floating point).
 ```buzz
-int aNumber = 23; | Decimal notation
-aNumber = 0b110;  | Binary notation
-aNumber = 0xA12F; | Hexadecimal notation
-aNumber = 'A';    | Char notation
+var aNumber = 23; // Decimal notation
+aNumber = 0b110;  // Binary notation
+aNumber = 0xA12F; // Hexadecimal notation
+aNumber = 'A';    // Char notation
 
-float aFloat = 23.123;
+const aFloat = 23.123;
 
-| You can embed a `_` anywhere in a number literal except for the start and end
-var myLargeNumber = 1_000_000;
+// You can embed a `_` anywhere in a number literal except for the start and end
+const myLargeNumber = 1_000_000;
 ```
 
 `float` and `int` can be compared without casting but are otherwise not compatible with each other.
@@ -32,12 +32,12 @@ var myLargeNumber = 1_000_000;
 ## Strings
 `str` represents an immutable sequence of bytes. Buzz makes no assumption about the content of a string.
 ```buzz
-str aString = "hello world";
+const aString = "hello world";
 ```
 
 Strings can span accross multiple lines when using the ` delimiters:
 ```buzz
-str multiline = `
+const multiline = `
     i'm on several
     lines
     yes
@@ -47,9 +47,9 @@ str multiline = `
 ### Interpolation
 Interpolations are expressions delimited by braces within a string:
 ```buzz
-int age = 37;
+const age = 37;
 
-str msg = "Hello there, I'm {age} years old";
+const msg = "Hello there, I'm {age} years old";
 ```
 
 ### Escaping
@@ -70,7 +70,7 @@ Patterns are PCRE regexes. They are commonly used so chances are you are already
 Patterns have their own buzz value type because they wrap a compiled PCRE regex. Arguably, we could lazily compile them at runtime but this would go against the philosophy of buzz which is to prevent runtime errors that could have been detected at compile time.
 Patterns are delimited with `$"..."`. To use `"` in the pattern, escape it with `\`.
 ```buzz
-pat aPattern = $"hello [a-z]+";
+const aPattern = $"hello [a-z]+";
 ```
 [More on patterns](/reference/builtins/patterns.html)
 
@@ -79,31 +79,31 @@ pat aPattern = $"hello [a-z]+";
 ### Lists
 Lists are a sequence of a given type.
 ```buzz
-[str] words = ["hello", "world", "yes"];
+const words = ["hello", "world", "yes"];
 ```
 [More on lists](/reference/builtins/lists.html)
 
 ### Ranges
 Ranges are useful to create quick list of integers. They can also be used in `foreach` statements:
 ```buzz
-foreach (int i in 0..n) {
-    | ...
+foreach (i in 0..n) {
+    // ...
 }
 
-| Boundaries can be descendant
-rg range = n..0;
+// Boundaries can be descendant
+const range = n..0;
 
-| You can make a list from it
-var list = range.toList(); | -> [n, n-1, ... , 0]
+// You can make a list from it
+const list = range.toList(); // -> [n, n-1, ... , 0]
 
-| You can access its boundaries
-std.print("My range is {range.low}..{range.high}");
+// You can access its boundaries
+std\print("My range is {range.low}..{range.high}");
 ```
 
 ### Maps
 Maps are key-value records. Order is not guaranted.
 ```buzz
-{str: int} aMap = {
+const aMap = {
     "one": 1,
     "two": 2,
     "three": 3,
@@ -115,7 +115,7 @@ Maps are key-value records. Order is not guaranted.
 
 A variable typed with `any` can hold any value.
 ```buzz
-any anything = "hello";
+var anything: any = "hello";
 
 anything = 12;
 
@@ -124,9 +124,9 @@ anything = true;
 You can't do much with that kind of variable except passing it around.
 In order to actually use the underlying value, you have to cast it back to a concrete type.
 ```buzz
-any anything = "hello";
+const anything: any = "hello";
 
-if (anything as str aString) {
+if (anything as aString: str) {
     print(aString);
 }
 ```
@@ -134,19 +134,19 @@ You can also use the `as?` notation which will result in a `null` if the value i
 
 
 ```buzz
-any anything = "hello";
+const anything: any = "hello";
 
-int? something = anything as? int;           | -> null
-int somethingElse = (anything as? int) ?? 0; | Using `??` to get a default value
+const something = anything as? int;            // -> null
+const somethingElse = (anything as? int) ?? 0; // Using `??` to get a default value
 ```
 
 ## Type values
 
 In buzz, types can be manipulated like any other values. You can get the type of a value using the `typeof` operator.
 ```buzz
-type myType = <[str]>;
+const myType = <[str]>;
 
-[str] list = ["one", "two", "three"];
+const list = ["one", "two", "three"];
 
 typeof list == myType;
 ```

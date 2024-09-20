@@ -3,8 +3,8 @@
 First, define the buzz interface. The `extern` keyword means that buzz will look for a dynamic library named `libmylib.dylib/so/dll`:
 
 ```buzz
-| mylib.buzz
-export extern fun assert(bool condition, str message) > void
+// mylib.buzz
+export extern fun assert(condition: bool, message: str) > void
 ```
 
 Then implement it in Zig or C using the [buzz_api](https://github.com/buzz-language/buzz/blob/main/lib/buzz_api.zig):
@@ -34,10 +34,10 @@ export fn assert(ctx: *api.NativeCtx) c_int {
 Build a dynamic library for it and you can use it in your buzz code:
 
 ```buzz
-| main.buzz
+// main.buzz
 import "mylib"
 
-fun main([str] args) > void {
+fun main(_: [str]) > void {
     assert(1 + 1 == 2, message: "Congrats on doing math!");
 }
 ```

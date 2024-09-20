@@ -2,33 +2,33 @@
 
 ## Comments
 
-Comments are any text following a `|` up until a new line.
+Comments are any text following `//` up until a new line.
 ```buzz
-| A comment
-print("Comment ended with a new line");
+// A comment
+std\print("Comment ended with a new line");
 ```
 
 ## Variables and identifiers
-A variable declaration is a type or the `var` keyword, followed by an identifier and an initial value;
+A variable declaration is a qualifier (either `var` or `const`) followed by an identifier and a type which can be omitted;
 ```buzz
-str hello = "hello";
-var bye = "bye"; | Here the `str` type will be inferred from the initial value
+const hello: str = "hello";
+var bye = "bye"; // Here the `str` type will be inferred from the initial value
 ```
 
 An identifier must start with a letter and can consist of letters, numbers and the `_` character.
 ```buzz
-str helloWorld2 = "valid";
-str hello_world = "valid too";
+const helloWorld2 = "valid";
+const hello_world = "valid too";
 ```
 
 However you can actually use anything as an identifier if you surround it with the `@"..."` notation.
 ```buzz
-str @"this is valid too!" = "hello";
+const @"this is valid too!" = "hello";
 ```
 
 A nullable variable can omit its initial value which will automatically be `null`:
 ```buzz
-str? maybe;
+var maybe: str?;
 
 assert(maybe == null);
 ```
@@ -38,14 +38,14 @@ A constant is prefixed with the `const` keyword. It means the variable can't cha
 ```buzz
 const hello = "hello";
 
-hello = "bye"; | Not allowed
+hello = "bye"; // Not allowed
 ```
 Objects, list and maps variables are only reference to them. Meaning you can't assign a new list to a constant variable but you can modify the list itself.
 ```buzz
-const [int] list = [ 1, 2, 3 ];
+const list = [ 1, 2, 3 ];
 
-list = [ 4, 5, 6 ]; | Not allowed
-list.append(12);    | Allowed
+list = [ 4, 5, 6 ]; // Not allowed
+list.append(12);    // Allowed
 ```
 
 ## Operators
@@ -81,35 +81,35 @@ Arithmetic operators are allowed between numbers of the same type.
 The `+` operator can also be used to concatenate strings, lists or maps (of the same type).
 ```buzz
 "hello " + "world" == "hello world";
-[ 1,2,3 ] + [ 3, 4, 5]      | -> [ 1, 2, 3, 3, 4, 5, ]
-{ "one": 1 } + { "two": 2 } | -> { "one": 1, "two": 2 }
+[ 1,2,3 ] + [ 3, 4, 5]      // -> [ 1, 2, 3, 3, 4, 5, ]
+{ "one": 1 } + { "two": 2 } // -> { "one": 1, "two": 2 }
 ```
 
 ### Bitwise
 ```buzz
-15 << 3 == 120; | shift left
-15 >> 3 == 1;   | shift right
-12 & 23 == 4    | and
-15 ^ 3 == 12;   | xor
-15 \ 3 == 15;   | or
-~15 == -16;     | not
+15 << 3 == 120; // shift left
+15 >> 3 == 1;   // shift right
+12 & 23 == 4    // and
+15 ^ 3 == 12;   // xor
+15 | 3 == 15;   // or
+~15 == -16;     // not
 ```
 
 ### Null safety
 ```buzz
-mightBeNull ?? defaultValue; | Will result in `defaultValue` if `mightBeNull` is null
+mightBeNull ?? defaultValue; // Will result in `defaultValue` if `mightBeNull` is null
 ```
 
 See [Null safety](/guide/null-safety.html).
 
 ### Type operators
 ```buzz
-something is str;  | true if `something` is of type `str`
-something as? int; | if `something` is not an `int`, will result in a `null`
+something is str;  // true if `something` is of type `str`
+something as? int; // if `something` is not an `int`, will result in a `null`
 ```
 
 See [Null safety](/guide/null-safety.html), [`any` type](/guide/types.html#any).
 
 ```buzz
-typeof myList == <[int]>; | returns type of expression
+typeof myList == <[int]>; // returns type of expression
 ```

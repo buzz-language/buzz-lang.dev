@@ -27,12 +27,12 @@ The definitions are written in C ABI compatible zig code. Once you've declared y
 ```buzz
 import "ffi";
 
-|...
+// ...
 
-hello(ffi.cstr("world"));
+hello(ffi\cstr("world"));
 
-AStruct data = AStruct{
-    name = ffi.cstr("hello"),
+const data = AStruct{
+    name = ffi\cstr("hello"),
     id = 42.0,
 };
 
@@ -40,7 +40,7 @@ get_id(data) == 42;
 ```
 
 ::: tip
-When a `[*:0]const u8` pointer is expected, you can provide a buzz string. Note however that we use the `cstr` helper which will add `\0` to the end of the string.
+When a `[*:0]const u8` pointer is expected, you can provide a buzz string. Note however that we use the `ffi\cstr` helper which will add `\0` to the end of the string.
 Avoid using a buzz strings that has multiple `\0` embedded in them.
 :::
 
@@ -52,9 +52,9 @@ For any other type of pointers. You can use the `Buffer` object provided by the 
 ```buzz
 zdef("/path/to/libforeign", "fn sum(values: [*]i32, len: i32) u32;");
 
-|...
+// ...
 
-Buffer buffer = Buffer.init();
+const buffer = Buffer.init();
 
 buffer.writeZ::<int>("i32", values: [1, 2, 3]);
 

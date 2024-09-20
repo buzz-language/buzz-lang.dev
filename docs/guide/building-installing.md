@@ -9,10 +9,16 @@
 ## Build
 1. Clone the project: `git clone https://github.com/buzz-language/buzz <buzz_dir>`
 2. Checkout submodules: `git submodule update --init`
-3. Build MIR:
+3. Copy `pcre2_chartables`:
 ```bash
-cd vendors/mir
-make
+ln -s vendors/pcre2/src/pcre2_chartables.c.dist vendors/pcre2/src/pcre2_chartables.c
+```
+3. Configure pcre2:
+```bash
+cd vendors/pcre2
+./autogen.sh
+./configure
+cd ../..
 ```
 4. Have fun:
   - `zig build run -- <myscript.buzz>` to run a script

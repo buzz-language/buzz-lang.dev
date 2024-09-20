@@ -6,7 +6,7 @@ To import another script, use the `import` statement:
 ```buzz
 import "std";
 
-std.print("hello");
+std\print("hello");
 ```
 
 When importing, buzz will search the script in common places. With `?` being the library name:
@@ -42,16 +42,16 @@ You can rename the imported namespace like so:
 ```buzz
 import "std" as standard;
 
-| ...
+// ...
 
-standard.print("hello");
+standard\print("hello");
 ```
 
 You can also erase the namespace:
 ```buzz
 import "std" as _;
 
-| ...
+// ...
 
 print("hello");
 ```
@@ -61,23 +61,20 @@ print("hello");
 To export symbols, use the `export` statement. If your script exports at least one symbol. You have to define a namespace for the script:
 
 ```buzz
+// hello.buzz
 namespace hello;
 
-| hello.buzz
-fun sayHello() > void {
-    print("Hello world!");
+export fun sayHello() > void {
+    std\print("Hello world!");
 }
-
-| Make it visible when imported
-export sayHello;
 ```
 
 ```buzz
-| main.buzz
+// main.buzz
 import "hello";
 
-fun main([str] args) > void {
-    hello.sayHello();
+fun main(_: [str]) > void {
+    hello\sayHello();
 }
 ```
 
@@ -88,22 +85,29 @@ export fun sayHello() > void {
 };
 ```
 
+### Namespace
+
+A namespace is any number of identifiers separated by `\`. It must be the first statement of a script and is required if the script exports at least one symbol:
+```buzz
+namespace some\valid\name;
+```
+
 ### Alias
 You can export a declaration with another name.
 ```buzz
-| hello.buzz
+// hello.buzz
 fun sayHello() > void {
-    print("Hello world!");
+    std\print("Hello world!");
 }
 
 export sayHello as hello;
 ```
 
 ```buzz
-| main.buzz
+// main.buzz
 import "hello";
 
-fun main([str] args) > void {
-    hello.hello();
+fun main(args: [str]) > void {
+    hello\hello();
 }
 ```

@@ -26,7 +26,7 @@ fun trim() > str
 
 ## byte
 ```buzz
-fun byte(int at = 0) > int
+fun byte(at: int = 0) > int
 ```
 Get byte value of character
 - **`at`**: index of character in the string
@@ -35,7 +35,7 @@ Get byte value of character
 
 ## indexOf
 ```buzz
-fun indexOf(str needle) > int?
+fun indexOf(needle: str) > int?
 ```
 Find needle in string
 - **`needle`**: needle to find
@@ -44,7 +44,7 @@ Find needle in string
 
 ## startsWith
 ```buzz
-fun startsWith(str needle) > bool
+fun startsWith(needle: str) > bool
 ```
 Test if strings starts with needle
 - **`needle`**: needle to find
@@ -53,7 +53,7 @@ Test if strings starts with needle
 
 ## endsWith
 ```buzz
-fun endsWith(str needle) > bool
+fun endsWith(needle: str) > bool
 ```
 Test if strings ends with needle
 - **`needle`**: needle to find
@@ -63,7 +63,7 @@ Test if strings ends with needle
 
 ## replace
 ```buzz
-fun replace(str needle, str with) > str
+fun replace(needle: str, with: str) > str
 ```
 Replace first occurence of needle
 - **`needle`**: needle to find
@@ -73,7 +73,7 @@ Replace first occurence of needle
 
 ## split
 ```buzz
-fun split(str separator) > [str]
+fun split(separator: str) > [str]
 ```
 Split string
 - **`separator`**: separator by which the string will be split
@@ -82,7 +82,7 @@ Split string
 
 ## sub
 ```buzz
-fun sub(int start, int? len) > str
+fun sub(start: int, len: int?) > str
 ```
 Get sub string
 - **`start`**: Sub string start index
@@ -92,7 +92,7 @@ Get sub string
 
 ## repeat
 ```buzz
-fun repeat(int n) > str
+fun repeat(n: int) > str
 ```
 Repeat string
 - **`n`**: How many times the string will be repeated

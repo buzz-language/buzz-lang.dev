@@ -3,7 +3,7 @@
 A `protocol` is a set of methods. Objects can conform to any number of them:
 ```buzz
 protocol Translatable {
-    fun translate(int dx, int dy) > void;
+    fun translate(dx: int, dy: int) > void;
 }
 
 protocol Printable {
@@ -11,31 +11,31 @@ protocol Printable {
 }
 
 object(Translatable, Printable) Point {
-    int x,
-    int y,
+    x: int,
+    y: int,
 
-    fun translate(int dx, int dy) > void {
+    fun translate(dx: int, dy: int) > void {
         this.x = this.x + dx;
         this.y = this.y + dy;
     }
 
     fun print() > void {
-        print("Point ({this.x}, {this.y})");
+        std\print("Point ({this.x}, {this.y})");
     }
 }
 
 object(Printable) Line {
-    Point start,
-    Point end,
+    start: Point,
+    end: Point,
 
     fun print() > void {
-        print("Line ({this.start.x}, {this.start.y}) ({this.end.x}, {this.end.y})");
+        std\print("Line ({this.start.x}, {this.start.y}) ({this.end.x}, {this.end.y})");
     }
 }
 
 | ...
 
-[Printable] elements = [
+const elements = [
     Point{ x = 0, y = 0 },
     Line{
         start = Point{ x = 10, y = 10 },
@@ -43,7 +43,7 @@ object(Printable) Line {
     },
 ];
 
-foreach (int i, Printable element in elements) {
+foreach (i, element in elements) {
     element.print();
 }
 ```

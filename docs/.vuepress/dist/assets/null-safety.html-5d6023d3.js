@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-4d633aed","path":"/guide/null-safety.html","title":"Null safety","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1726835926000,"contributors":[{"name":"Benoit Giannangeli","email":"giann008@gmail.com","commits":2}]},"filePathRelative":"guide/null-safety.md"}');export{e as data};

@@ -23,7 +23,7 @@ The value type must be one of: `str`, `int`, `float`, `pat`, `rg`, `ud`, `void`.
 
 To get the enum case from its value, you can call the enum like a function with the value as argument.
 ```buzz
-Country? country = Country("France");
+var country = Country("France");
 country == Country.fr;
 ```
 

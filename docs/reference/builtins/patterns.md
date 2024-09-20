@@ -2,7 +2,7 @@
 
 ## match
 ```buzz
-fun match(str subject) > [str]?
+fun match(subject: str) > [str]?
 ```
 Get first match of the pattern against a string
 - **`subject`**: Subject to match the pattern against
@@ -11,7 +11,7 @@ Get first match of the pattern against a string
 
 ## matchAll
 ```buzz
-fun matchAll(str subject) > [[str]]?
+fun matchAll(subject: str) > [[str]]?
 ```
 Get all matches of the pattern against a string
 - **`subject`**: Subject to match the pattern against
@@ -20,7 +20,7 @@ Get all matches of the pattern against a string
 
 ## replace
 ```buzz
-fun replace(str subject, str with) > str
+fun replace(subject: str, with: str) > str
 ```
 Replace first occurence of the pattern
 - **`subject`**: Subject to match the pattern against
@@ -30,7 +30,7 @@ Replace first occurence of the pattern
 
 ## replaceAll
 ```buzz
-fun replaceAll(str subject, str with) > str
+fun replaceAll(subject: str, with: str) > str
 ```
 Replace all occurence of the pattern
 - **`subject`**: Subject to match the pattern against

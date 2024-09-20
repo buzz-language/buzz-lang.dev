@@ -2,14 +2,14 @@
 
 ## append
 ```buzz
-fun append(T value) > void
+fun append(value: T) > void
 ```
 Append new element at end of the list
 - **`value`**: New element
 
 ## insert
 ```buzz
-fun insert(int index, T value) > T
+fun insert(index: int, value: T) > T
 ```
 Insert new element at `index` of the list. If `index` is less than `0`, element will be inserted at `0`. If `index` is greather than list length, it'll be appended at the end of the list.
 - **`index`**: Index at which element will be inserted
@@ -19,7 +19,7 @@ Insert new element at `index` of the list. If `index` is less than `0`, element 
 
 ## remove
 ```buzz
-fun remove(int at) > T
+fun remove(at: int) > T
 ```
 Remove element form the list shifting elements after index
 - **`at`**: Index of element to remove
@@ -42,7 +42,7 @@ fun len() > int
 
 ## sub
 ```buzz
-fun sub(int start, int? len) > [T]
+fun sub(start: int, len: int?) > [T]
 ```
 Get sub list
 - **`start`**: Start index of sub list
@@ -52,7 +52,7 @@ Get sub list
 
 ## indexOf
 ```buzz
-fun indexOf(T needle) > int?
+fun indexOf(needle: T) > int?
 ```
 Search first occurence of the needle
 - **`needle`**: Element to find
@@ -67,7 +67,7 @@ fun clone() > [T]
 
 ## join
 ```buzz
-fun join(str separator) > str
+fun join(separator: str) > str
 ```
 Join list element in a string with a separator. Elements are converted to a string just like an interpolation would.
 - **`separator`**: Separator to put between each elements
@@ -76,14 +76,14 @@ Join list element in a string with a separator. Elements are converted to a stri
 
 ## forEach
 ```buzz
-fun forEach(Function callback(int index, T element) > void) > void
+fun forEach(callback: fun (index: int, element: T) > void) > void
 ```
 Runs `callback` for each element of the list.
 - **`callback`:** Ran for each element
 
 ## sort
 ```buzz
-fun sort(Function callback(T left, T right) > bool) > [T]
+fun sort(callback: fun (left: T, right: T) > bool) > [T]
 ```
 Stable in-place sort. O(n) best case, O(n*log(n)) worst case and average case.
 - **`callback`:** Used to compare elements
@@ -92,7 +92,7 @@ Stable in-place sort. O(n) best case, O(n*log(n)) worst case and average case.
 
 ## map
 ```buzz
-fun map::<S>(Function callback(int index, T element) > S) > [S]
+fun map::<S>(callback: fun (index: int, element: T) > S) > [S]
 ```
 Map list to new list of target type by running `callback` for each element of the list.
 - **`callback`:** Ran for each element
@@ -101,7 +101,7 @@ Map list to new list of target type by running `callback` for each element of th
 
 ## fill
 ```buzz
-fun fill(T value) > [T]
+fun fill(value: T) > [T]
 ```
 Fill the list with `value` and returns itself.
 - **`value`:** Value to fill the list with
@@ -110,7 +110,7 @@ Fill the list with `value` and returns itself.
 
 ## filter
 ```buzz
-fun filter(Function callback(int index, T element) > bool) > [T]
+fun filter(callback: fun (index: int, element: T) > bool) > [T]
 ```
 Filter list keeping element for which `callback` returns `true`.
 - **`callback`:** Ran for each element
@@ -119,7 +119,7 @@ Filter list keeping element for which `callback` returns `true`.
 
 ## reduce
 ```buzz
-fun reduce::<S>(Function callback(int index, T element, S accumulator) > S, S initial) > S
+fun reduce::<S>(callback: fun (index: int, element: T, accumulator: S) > S, S initial) > S
 ```
 Reduce list to value of type `S` by running `callback` with `accumulator` being the value being built.
 - **`callback`:** Ran for each element

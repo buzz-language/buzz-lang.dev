@@ -16,15 +16,15 @@ throw MyErrors.ohno;
 
 When throwing an object instance, if the object has a `str message` field, its content will be printed instead of the object name.
 ```buzz
-throw .{ message = "Something's wrong" } | -> Error: Something's wrong
-throw SomeObject{ number = 12 }          | -> Error: object instance 0x1feb12 `SomeObject`
+throw .{ message = "Something's wrong" } // -> Error: Something's wrong
+throw SomeObject{ number = 12 }          // -> Error: object instance 0x1feb12 `SomeObject`
 ```
 
 ## Function signatures
 Functions must specify which error they can raise with `!> type1, type2, ...`. The compiler will detect any unhandled error and require you to either specify it in the function signature or catch the error.
 ```buzz
 fun willFail() > int !> MyErrors, OtherErrors, str {
-    int rand = random();
+    const rand = random();
     if (rand == 1) {
         throw MyErrors.failed;
     } else if (rand == 0) {
@@ -39,8 +39,8 @@ fun willFail() > int !> MyErrors, OtherErrors, str {
 
 When calling a function that can throw an error, you can choose to discard the error by providing a default value.
 ```buzz
-| If `willFail` throws an error, `0` will be returned
-int result = willFail() catch 0;
+// If `willFail` throws an error, `0` will be returned
+const result = willFail() catch 0;
 ```
 
 ## Try/catch
@@ -48,9 +48,9 @@ Try/catch works as you would expect. If you omit the error type, it'll catch any
 ```buzz
 try {
     _ = willFail();
-} catch (str error) {
-    print("Caught error {error}");
+} catch (error: str) {
+    std\print("Caught error {error}");
 } catch {
-    print("Catches everything");
+    std\print("Catches everything");
 }
 ```

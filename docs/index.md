@@ -10,7 +10,7 @@ actions:
     - text: Try it
       link: /repl
     - text: Latest release
-      link: https://github.com/buzz-language/buzz/releases/tag/0.4.0
+      link: https://github.com/buzz-language/buzz/releases/tag/0.5.0
       type: secondary
 features:
   - title: Statically typed
@@ -30,12 +30,12 @@ footer: MIT licensed | Copyright © 2021-present Benoit Giannangeli
 ```buzz
 import "std";
 
-fun fibonacci(int n) > void *> int? {
+fun fibonacci(n: int) > void *> int? {
     var n1 = 0;
     var n2 = 1;
-    int? next = null;
+    var next: int? = null;
 
-    foreach (var _ in 0..n) {
+    foreach (_ in 0..n) {
         _ = yield n1;
         next = n1 + n2;
         n1 = n2;
@@ -43,14 +43,11 @@ fun fibonacci(int n) > void *> int? {
     }
 }
 
-fun main([str] args) > void {
-    const N = if (args.len() > 0)
-            std.parseInt(args[0]) ?? 10
-        else
-            10;
+fun main(args: [str]) > void {
+    const N = std\parseInt(args[?0] ?? "10") ?? 10;
 
-    foreach (var n in &fibonacci(N)) {
-        std.print("{n}");
+    foreach (n in &fibonacci(N)) {
+        std\print("{n}");
     }
 }
 ```

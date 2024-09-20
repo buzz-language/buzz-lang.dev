@@ -1,1 +1,0 @@
-const t=JSON.parse('{"key":"v-6417f8ca","path":"/guide/protocols.html","title":"Protocols","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1708677813000,"contributors":[{"name":"Benoit Giannangeli","email":"giann008@gmail.com","commits":2},{"name":"hshq","email":"hshqcn@qq.com","commits":1}]},"filePathRelative":"guide/protocols.md"}');export{t as data};

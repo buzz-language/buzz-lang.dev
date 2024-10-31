@@ -1,6 +1,6 @@
 # Objects
 
-An `object` is a struct-like data structures. 
+An `object` is a struct-like data structure. 
 ```buzz
 object Person {
     name: str = "Joe", // Fields can have default values
@@ -8,8 +8,8 @@ object Person {
 }
 ```
 
-## Instanciation
-Instanciating an object is simple. Properties with default values can be omitted.
+## Instantiation
+Instantiating an object is simple. Properties with default values can be omitted.
 ```buzz
 var me = Person{
     name = "Giann"

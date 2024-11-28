@@ -13,7 +13,7 @@ Natural.zero.value == 0;
 
 If the enum's value type is not `int`, it must be specified between parentheses after the `enum` keyword.
 ```buzz
-enum(str) Country {
+enum<str> Country {
     usa = "United States of America",
     uk = "United Kingdoms",
     fr = "France",
@@ -29,7 +29,7 @@ country == Country.fr;
 
 When the value type is `str`, you can omit case values which will be the same as the case name.
 ```buzz
-enum(str) Locale {
+enum<str> Locale {
     fr,
     it,
     en,

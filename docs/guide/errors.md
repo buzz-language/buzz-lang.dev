@@ -5,7 +5,7 @@ Any type of value can be thrown. Error can't be raised in the global scope. `tes
 ```buzz
 throw "This failed";
 
-enum(str) MyErrors {
+enum<str> MyErrors {
     failed = "Something failed",
     bad = "Something bad",
     ohno = "Oh no!",

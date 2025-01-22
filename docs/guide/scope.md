@@ -13,16 +13,16 @@ object A {
 }
 
 // Only a constant value is allowed here
-const globalValue = "hello";
+final globalValue = "hello";
 ```
 
 ## Local scope
 Any variable declared inside a block is local to it. Shadowing a variable from an upper scope is not allowed.
 ```buzz
-const bye = "bye";
+final bye = "bye";
 while (condition) {
-    const hello = "hello"; // Local to this block
-    const bye = 12;        // -> Not allowed
+    final hello = "hello"; // Local to this block
+    final bye = 12;        // -> Not allowed
 }
 
 // hello doesn't exist anymore
@@ -32,7 +32,7 @@ while (condition) {
 If a reference to a variable from a upper scope is made inside a function's body, the function will carry a reference to it even when the variable goes out of scope. This is **an upvalue**.
 ```buzz
 fun getFn() > fun() > void {
-    const upvalue = "up there";
+    final upvalue = "up there";
 
     return fun () => print(upvalue);
 }

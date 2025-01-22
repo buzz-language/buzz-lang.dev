@@ -7,12 +7,12 @@ First, define the buzz interface. The `extern` keyword means that buzz will look
 export extern fun assert(condition: bool, message: str) > void
 ```
 
-Then implement it in Zig or C using the [buzz_api](https://github.com/buzz-language/buzz/blob/main/lib/buzz_api.zig):
+Then implement it in Zig or C using the buzz API:
 
 ```zig
 // buzz_mylib.zig
-const std = @import("std");
-const api = @import("buzz_api.zig");
+final std = @import("std");
+final api = @import("buzz_api.zig");
 
 // The function must always have this signature
 // It returns: 
@@ -20,7 +20,7 @@ const api = @import("buzz_api.zig");
 //     - 1 if there's a return value (that you must push on the stack before returning)
 //     - -1 if there's an error (that you also push on the stack before returning)
 export fn assert(ctx: *api.NativeCtx) c_int {
-    const condition: bool = ctx.vm.bz_peek(1).boolean();
+    final condition: bool = ctx.vm.bz_peek(1).boolean();
 
     if (!condition) {
         ctx.vm.bz_throw(ctx.vm.bz_peek(0));
@@ -41,3 +41,7 @@ fun main(_: [str]) > void {
     assert(1 + 1 == 2, message: "Congrats on doing math!");
 }
 ```
+
+::: tip
+The API is no yet stable and moves a lot. That's why you won't find any documentation for it here.
+:::

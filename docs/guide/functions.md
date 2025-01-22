@@ -8,7 +8,7 @@ fun sayHiTo(name: str, lastName: str?, age: int) > str {
 }
 ```
 
-If the function can yield (see [Fibers](/guide/fibers.html)) or contains a function call to another function that can yield, the yield type must be specified after another `>`.
+If the function can yield (see [Fibers](/guide/fibers.html)) or contains a function call to another function that can yield, the yield type must be specified after `*>`. The yield type is always nullable.
 ```buzz
 fun mayYield() > str *> int? {
     //...
@@ -45,8 +45,16 @@ fun call(firstname: str, lastname: str) > void {
     // ...
 }
 
-var lastname = "Doe";
+final lastname = "Doe";
 call("joe", lastname)
+```
+
+
+If an argument must be in the function's signature (e.g. you're implementing a protocol), but you don't use it in the function's body, you must name it `_` otherwise the compiler will complain about it not being used.
+```
+fun doSomething(_: str, value: int) > int {
+    return value * 2;
+}
 ```
 
 ## Errors
@@ -61,7 +69,7 @@ fun somethingThatCanFail() > str !> FormatError, UnexpectedError {
 Functions are first-class citizens. Meaning they can be passed around just like any other buzz value:
 
 ```buzz
-const fn = fun () > void => print("hello world"); // Arrow function
+final fn = fun () > void => print("hello world"); // Arrow function
 
 fn(); // -> "hello world"
 ```
@@ -84,13 +92,19 @@ fun main(args: [str]) > int {
 fun main(args: [str]) > void {
     //...
 }
+
+// or
+
+fun main() > void {
+    //...
+}
 ```
 
 ## `test`
 `test` blocks are functions that will be executed when invoked with `buzz --test`.
 ```buzz
 test "Some test" {
-    assert(something() == 12, message: "Could use `something`");
+    std\assert(something() == 12, message: "Could use `something`");
 }
 ```
 
@@ -101,7 +115,7 @@ fun countMap::<K, V>(map: {K: V}) > int {
     return map.size();
 }
 
-const map = {
+final map = {
     "one": 1,
     "two": 2,
     "three": 3,

@@ -9,21 +9,21 @@ std\print("Comment ended with a new line");
 ```
 
 ## Variables and identifiers
-A variable declaration is a qualifier (either `var` or `const`) followed by an identifier and a type which can be omitted;
+A variable declaration is a qualifier (either `var` or `final`) followed by an identifier and a type which can be omitted
 ```buzz
-const hello: str = "hello";
+final hello: str = "hello";
 var bye = "bye"; // Here the `str` type will be inferred from the initial value
 ```
 
 An identifier must start with a letter and can consist of letters, numbers and the `_` character.
 ```buzz
-const helloWorld2 = "valid";
-const hello_world = "valid too";
+final helloWorld2 = "valid";
+final hello_world = "valid too";
 ```
 
 However you can actually use anything as an identifier if you surround it with the `@"..."` notation.
 ```buzz
-const @"this is valid too!" = "hello";
+final @"this is valid too!" = "hello";
 ```
 
 A nullable variable can omit its initial value which will automatically be `null`:
@@ -33,19 +33,12 @@ var maybe: str?;
 assert(maybe == null);
 ```
 
-### Constants
-A constant is prefixed with the `const` keyword. It means the variable can't change.
+### `final`
+A `final` variable can only be assigned once
 ```buzz
-const hello = "hello";
+final hello = "hello";
 
 hello = "bye"; // Not allowed
-```
-Objects, list and maps variables are only reference to them. Meaning you can't assign a new list to a constant variable but you can modify the list itself.
-```buzz
-const list = [ 1, 2, 3 ];
-
-list = [ 4, 5, 6 ]; // Not allowed
-list.append(12);    // Allowed
 ```
 
 ## Operators
@@ -59,7 +52,7 @@ list.append(12);    // Allowed
 12 > 11;
 12 < 13;
 ```
-`int` and `float` can be compared with one another.
+`int` and `double` can be compared with one another.
 
 ### Arithmetic
 ```buzz

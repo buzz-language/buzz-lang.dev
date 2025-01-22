@@ -14,7 +14,7 @@ actions:
       type: secondary
 features:
   - title: Statically typed
-    details: Find out bugs in your IDE rather than in production
+    details: Find out bugs in your IDE rather than production
   - title: JIT compiled
     details: Uses MIR, a fast and lightweight JIT compiler
   - title: Unambiguous
@@ -44,7 +44,7 @@ fun fibonacci(n: int) > void *> int? {
 }
 
 fun main(args: [str]) > void {
-    const N = std\parseInt(args[?0] ?? "10") ?? 10;
+    final N = std\parseInt(args[?0] ?? "10")!;
 
     foreach (n in &fibonacci(N)) {
         std\print("{n}");

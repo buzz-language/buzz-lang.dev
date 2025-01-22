@@ -162,20 +162,20 @@ fun writeUserData(ud userdata) > void !> WriteWhileReadingError
 Write an ud
 - **`userdata`:** ud to write
 
-### readFloat
+### readDouble
 ```buzz
-fun readFloat() > float?
+fun readDouble() > double?
 ```
-Read a float
+Read a double
 
-**Returns:** Float read
+**Returns:** Double read
 
-### writeFloat
+### writeDouble
 ```buzz
-fun writeFloat(float number) > void !> WriteWhileReadingError
+fun writeDouble(double number) > void !> WriteWhileReadingError
 ```
-Write an float
-- **`number`:** Float to write
+Write an double
+- **`number`:** Double to write
 
 ### len
 ```buzz

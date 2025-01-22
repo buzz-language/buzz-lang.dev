@@ -21,7 +21,7 @@ fun count(n: int) > str *> int? {  
 
 fun main(_: [str]) > void {
     // Wraps the call to `count` in a fiber, however the fiber is not started until a `resolve` or `resume` instruction
-    const counter = &count(10);
+    final counter = &count(10);
 
     int sum = 0;
     while (!counter.over()) {

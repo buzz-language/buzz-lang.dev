@@ -3,18 +3,18 @@
 A `protocol` is a set of methods. Objects can conform to any number of them:
 ```buzz
 protocol Translatable {
-    fun translate(dx: int, dy: int) > void;
+    mut fun translate(dx: int, dy: int) > void;
 }
 
 protocol Printable {
     fun print() > void;
 }
 
-object(Translatable, Printable) Point {
+object<Translatable, Printable> Point {
     x: int,
     y: int,
 
-    fun translate(dx: int, dy: int) > void {
+    mut fun translate(dx: int, dy: int) > void {
         this.x = this.x + dx;
         this.y = this.y + dy;
     }
@@ -24,7 +24,7 @@ object(Translatable, Printable) Point {
     }
 }
 
-object(Printable) Line {
+object<Printable> Line {
     start: Point,
     end: Point,
 
@@ -33,9 +33,9 @@ object(Printable) Line {
     }
 }
 
-| ...
+// ...
 
-const elements = [
+final elements = [
     Point{ x = 0, y = 0 },
     Line{
         start = Point{ x = 10, y = 10 },
@@ -43,7 +43,7 @@ const elements = [
     },
 ];
 
-foreach (i, element in elements) {
+foreach (element in elements) {
     element.print();
 }
 ```

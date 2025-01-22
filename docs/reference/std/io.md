@@ -78,15 +78,15 @@ fun isTTY() > bool
 
 ## stdin
 ```buzz
-const File stdin
+final File stdin
 ```
 ## stdout
 ```buzz
-const File stdout
+final File stdout
 ```
 ## stderr
 ```buzz
-const File stderr
+final File stderr
 ```
 ## runFile
 ```buzz

@@ -24,7 +24,7 @@ throw SomeObject{ number = 12 }          // -> Error: object instance 0x1feb12 `
 Functions must specify which error they can raise with `!> type1, type2, ...`. The compiler will detect any unhandled error and require you to either specify it in the function signature or catch the error.
 ```buzz
 fun willFail() > int !> MyErrors, OtherErrors, str {
-    const rand = random();
+    final rand = random();
     if (rand == 1) {
         throw MyErrors.failed;
     } else if (rand == 0) {
@@ -40,7 +40,7 @@ fun willFail() > int !> MyErrors, OtherErrors, str {
 When calling a function that can throw an error, you can choose to discard the error by providing a default value.
 ```buzz
 // If `willFail` throws an error, `0` will be returned
-const result = willFail() catch 0;
+final result = willFail() catch 0;
 ```
 
 ## Try/catch

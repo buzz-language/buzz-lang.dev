@@ -22,27 +22,27 @@ Parse number, returns `null` if string does not represent a number
 - **`string`:** string to parse
 
 **Returns:** integer parsed or null
-## parseFloat
+## parseDouble
 ```buzz
-fun parseFloat(str string) > float? 
+fun parseDouble(str string) > double? 
 ```
 Parse number, returns `null` if string does not represent a number
 - **`string`:** string to parse
 
-**Returns:** float parsed or null
+**Returns:** double parsed or null
 ## toInt
 ```buzz
-fun toInt(float n) > int 
+fun toInt(double n) > int 
 ```
-Cast float to a integer value
+Cast double to a integer value
 - **`n`:** value to cast
 
 **Returns:** casted value
-## toFloat
+## toDouble
 ```buzz
-fun toFloat(int n) > float 
+fun toDouble(int n) > double 
 ```
-Cast integer to a float value
+Cast integer to a double value
 - **`n`:** value to cast
 
 **Returns:** casted value

@@ -3,41 +3,41 @@
 ## Booleans
 Either `true` or `false`
 ```buzz
-const aBoolean = true;
+final aBoolean: bool = true;
 ```
 
 ##  `null` and `void`
 ```buzz
-const maybe: str? = null;
-const mapToNothing = { "hello": void };  
+final maybe: str? = null;
+final mapToNothing = { "hello": void };  
 ```
-The difference between `null` and `void` is a semantic one. `null` is mainly useful to handle the absence of data with [optionals](/guide/optionals.html) whereas `void` is mainly used to specify that a function returns nothing.
+The difference between `null` and `void` is a semantic one. `null` is mainly useful to handle the absence of data with [null safety](/guide/null-safety.html) whereas `void` is mainly used to specify that a function returns nothing.
 
 ## Numbers
-Numbers can either be `int` (32 bits integers) or `float` (64 bits floating point).
+Numbers can either be `int` (32 bits integers) or `double` (64 bits floating point).
 ```buzz
-var aNumber = 23; // Decimal notation
+var aNumber: int = 23; // Decimal notation
 aNumber = 0b110;  // Binary notation
 aNumber = 0xA12F; // Hexadecimal notation
 aNumber = 'A';    // Char notation
 
-const aFloat = 23.123;
+final aDouble: double = 23.123;
 
 // You can embed a `_` anywhere in a number literal except for the start and end
-const myLargeNumber = 1_000_000;
+final myLargeNumber = 1_000_000;
 ```
 
-`float` and `int` can be compared without casting but are otherwise not compatible with each other.
+`double` and `int` can be compared without casting but are otherwise not compatible with each other.
 
 ## Strings
 `str` represents an immutable sequence of bytes. Buzz makes no assumption about the content of a string.
 ```buzz
-const aString = "hello world";
+final aString: str = "hello world";
 ```
 
 Strings can span accross multiple lines when using the ` delimiters:
 ```buzz
-const multiline = `
+final multiline = `
     i'm on several
     lines
     yes
@@ -47,9 +47,9 @@ const multiline = `
 ### Interpolation
 Interpolations are expressions delimited by braces within a string:
 ```buzz
-const age = 37;
+final age = 37;
 
-const msg = "Hello there, I'm {age} years old";
+final msg = "Hello there, I'm {age} years old";
 ```
 
 ### Escaping
@@ -58,6 +58,15 @@ const msg = "Hello there, I'm {age} years old";
 "here's a tab: \t";
 "here's a brace: \{";
 "here's a explicit byte \123";
+```
+
+### Checked subscript
+If you make an out-of-bound access to a string you will get a runtime error. The _checked subscript_ notation will resolve to `null` if the provided index is out of bounds.
+```buzz
+final string = "hello world";
+
+string[100]; // Will raise a runtime error
+string[?100]; // Will return null
 ```
 
 [More on strings](/reference/builtins/strings.html)
@@ -70,7 +79,7 @@ Patterns are PCRE regexes. They are commonly used so chances are you are already
 Patterns have their own buzz value type because they wrap a compiled PCRE regex. Arguably, we could lazily compile them at runtime but this would go against the philosophy of buzz which is to prevent runtime errors that could have been detected at compile time.
 Patterns are delimited with `$"..."`. To use `"` in the pattern, escape it with `\`.
 ```buzz
-const aPattern = $"hello [a-z]+";
+final aPattern: pat = $"hello [a-z]+";
 ```
 [More on patterns](/reference/builtins/patterns.html)
 
@@ -79,8 +88,31 @@ const aPattern = $"hello [a-z]+";
 ### Lists
 Lists are a sequence of a given type.
 ```buzz
-const words = ["hello", "world", "yes"];
+final words = ["hello", "world", "yes"];
 ```
+
+#### Immutability
+They are immutable by default. To get a mutable list, precede it with the `mut` keyword:
+```buzz
+final list: mut [int] = mut [ 1, 2, 3 ];
+final immutableList: [int] = [ 1, 2, 3 ];
+
+list.append(4); // Ok
+immutableList.append(4); // Will not compile
+
+list[0] = 10; // Ok
+immutableList[0] = 10; // Will not compile
+```
+
+#### Checked subscript
+If you make an out-of-bound access to a list you will get a runtime error. The _checked subscript_ notation will resolve to `null` if the provided index is out of bounds.
+```buzz
+final list = [ 1, 2, 3 ];
+
+list[100]; // Will raise a runtime error
+list[?100]; // Will return null
+```
+
 [More on lists](/reference/builtins/lists.html)
 
 ### Ranges
@@ -91,24 +123,35 @@ foreach (i in 0..n) {
 }
 
 // Boundaries can be descendant
-const range = n..0;
+final range: rg = n..0;
 
 // You can make a list from it
-const list = range.toList(); // -> [n, n-1, ... , 0]
+final list = range.toList(); // -> [n, n-1, ... , 0]
 
 // You can access its boundaries
-std\print("My range is {range.low}..{range.high}");
+std\print("My range is {range.low()}..{range.high()}");
 ```
 
 ### Maps
 Maps are key-value records. Order is not guaranted.
 ```buzz
-const aMap = {
+final aMap: {str: int} = {
     "one": 1,
     "two": 2,
     "three": 3,
 };
 ```
+
+#### Immutability
+They are immutable by default. To get a mutable map, precede it with the `mut` keyword:
+```buzz
+final map = mut { "one": 1 };
+final immutableMap = { "one": 1 };
+
+map["two"] = 2; // Ok
+immutableMap["two"] = 2; // Will not compile
+```
+
 [More on maps](/reference/builtins/maps.html)
 
 ## `any`
@@ -124,7 +167,7 @@ anything = true;
 You can't do much with that kind of variable except passing it around.
 In order to actually use the underlying value, you have to cast it back to a concrete type.
 ```buzz
-const anything: any = "hello";
+final anything: any = "hello";
 
 if (anything as aString: str) {
     print(aString);
@@ -134,19 +177,19 @@ You can also use the `as?` notation which will result in a `null` if the value i
 
 
 ```buzz
-const anything: any = "hello";
+final anything: any = "hello";
 
-const something = anything as? int;            // -> null
-const somethingElse = (anything as? int) ?? 0; // Using `??` to get a default value
+final something = anything as? int;            // -> null
+final somethingElse = (anything as? int) ?? 0; // Using `??` to get a default value
 ```
 
 ## Type values
 
 In buzz, types can be manipulated like any other values. You can get the type of a value using the `typeof` operator.
 ```buzz
-const myType = <[str]>;
+final myType: type = <[str]>;
 
-const list = ["one", "two", "three"];
+final list = [ "one", "two", "three" ];
 
 typeof list == myType;
 ```

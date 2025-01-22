@@ -2,82 +2,82 @@
 
 ## abs
 ```buzz
-fun abs(float n) > float 
+fun abs(double n) > double 
 ```
 
 
 **Returns:**  absolute value of n
 ## acos
 ```buzz
-fun acos(float n) > float 
+fun acos(double n) > double 
 ```
 
 
 **Returns:**  acos of n
 ## asin
 ```buzz
-fun asin(float n) > float 
+fun asin(double n) > double 
 ```
 
 
 **Returns:**  asin of n
 ## atan
 ```buzz
-fun atan(float n) > float 
+fun atan(double n) > double 
 ```
 
 
 **Returns:**  atan of n
 ## ceil
 ```buzz
-fun ceil(float n) > int 
+fun ceil(double n) > int 
 ```
 
 
 **Returns:**  ceiled n
 ## cos
 ```buzz
-fun cos(float n) > float 
+fun cos(double n) > double 
 ```
 
 
 **Returns:**  cos of n
-## `const float pi`
-π constant
+## `final double pi`
+π
 ## deg
 ```buzz
-fun deg(float n) > float 
+fun deg(double n) > double 
 ```
 Convert radian to degree
 ## exp
 ```buzz
-fun exp(float n) > float 
+fun exp(double n) > double 
 ```
 
 
 **Returns:**  exp of n
 ## floor
 ```buzz
-fun floor(float n) > int 
+fun floor(double n) > int 
 ```
 
 ## log
 ```buzz
-fun log(float base, float n) > float 
+fun log(double base, double n) > double 
 ```
 
 
 **Returns:**  log(base) of n
-## maxFloat
+## maxDouble
 ```buzz
-fun maxFloat(float a, float b) > float 
+fun maxDouble(double a, double b) > double 
 ```
 
 
 **Returns:**  max of a and b
-## minFloat
+## minDouble
 ```buzz
-fun minFloat(float a, float b) > float
+fun minDouble(double a, double b) > double
 ```
 
 
@@ -98,34 +98,34 @@ fun minInt(int a, int b) > int
 **Returns:**  min of a and b
 ## rad
 ```buzz
-fun rad(float n) > float 
+fun rad(double n) > double 
 ```
 Convert degree to radian
 
 ## sin
 ```buzz
-fun sin(float n) > float 
+fun sin(double n) > double 
 ```
 
 
 **Returns:**  sin of n
 ## sqrt
 ```buzz
-fun sqrt(float n) > float 
+fun sqrt(double n) > double 
 ```
 
 
 **Returns:**  square root of n
 ## tan
 ```buzz
-fun tan(float n) > float 
+fun tan(double n) > double 
 ```
 
 
 **Returns:**  tan of n
 ## pow
 ```buzz
-fun pow(float x, float y) > float !> OverflowError, UnderflowError 
+fun pow(double x, double y) > double !> OverflowError, UnderflowError 
 ```
 
 

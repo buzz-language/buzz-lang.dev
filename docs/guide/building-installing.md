@@ -9,18 +9,7 @@
 ## Build
 1. Clone the project: `git clone https://github.com/buzz-language/buzz <buzz_dir>`
 2. Checkout submodules: `git submodule update --init`
-3. Copy `pcre2_chartables`:
-```bash
-ln -s vendors/pcre2/src/pcre2_chartables.c.dist vendors/pcre2/src/pcre2_chartables.c
-```
-3. Configure pcre2:
-```bash
-cd vendors/pcre2
-./autogen.sh
-./configure
-cd ../..
-```
-4. Have fun:
+3. Have fun:
   - `zig build run -- <myscript.buzz>` to run a script
   - `zig build run` to start the REPL
 

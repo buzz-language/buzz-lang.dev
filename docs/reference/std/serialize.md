@@ -44,9 +44,9 @@ When wrapped data is a int
 
 ### floating
 ```buzz
-fun floating() > float?
+fun floating() > double?
 ```
-When wrapped data is a float
+When wrapped data is a double
 
 ### map
 ```buzz
@@ -80,9 +80,9 @@ fun integerValue() > int
 
 ### floatingValue
 ```buzz
-fun floatingValue() > float
+fun floatingValue() > double
 ```
-**Returns:** wrapped data number value or `0.0` if not a float
+**Returns:** wrapped data number value or `0.0` if not a double
 
 ### mapValue
 ```buzz

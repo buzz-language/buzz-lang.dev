@@ -31,7 +31,7 @@ import "ffi";
 
 hello(ffi\cstr("world"));
 
-const data = AStruct{
+final data = AStruct{
     name = ffi\cstr("hello"),
     id = 42.0,
 };
@@ -54,9 +54,9 @@ zdef("/path/to/libforeign", "fn sum(values: [*]i32, len: i32) u32;");
 
 // ...
 
-const buffer = Buffer.init();
+final buffer = Buffer.init();
 
-buffer.writeZ::<int>("i32", values: [1, 2, 3]);
+buffer.writeZ::<int>("i32", values: [ 1, 2, 3 ]);
 
 sum(buffer.ptr(), len: 3) == 6;
 ```
@@ -77,11 +77,11 @@ Here's the list of supported types and their buzz counterparts:
 | `u16`           | `int`          |
 | `i16`           | `int`          |
 | `i32`           | `int`          |
-| `c_uint`        | `float`        |
-| `u32`           | `float`        |
-| `i64`           | `float`        |
-| `f32`           | `float`        |
-| `f64`           | `float`        |
+| `c_uint`        | `double`        |
+| `u32`           | `double`        |
+| `i64`           | `double`        |
+| `f32`           | `double`        |
+| `f64`           | `double`        |
 | `u64`           | `ud`           |
 | `usize`         | `ud`           |
 | `bool`          | `bool`         |

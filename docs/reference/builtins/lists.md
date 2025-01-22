@@ -59,11 +59,17 @@ Search first occurence of the needle
 
 **Returns:** Index of element or `null` if not found
 
-## clone
+## cloneMutable
+```buzz
+fun clone() > mut [T]
+```
+**Returns:** Mutable clone of the list
+
+## cloneImmutable
 ```buzz
 fun clone() > [T]
 ```
-**Returns:** Clone of the list
+**Returns:** Immutable clone of the list
 
 ## join
 ```buzz
@@ -131,4 +137,4 @@ Reduce list to value of type `S` by running `callback` with `accumulator` being 
 ```buzz
 fun reverse() > [T]
 ```
-**Returns:** A new list with inverted values (e.g. `[1, 2, 3]` becomes `[3, 2, 1]`)
+**Returns:** A new list with inverted values (e.g. `[ 1, 2, 3 ]` becomes `[3, 2, 1]`)

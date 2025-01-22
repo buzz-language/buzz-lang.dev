@@ -4,7 +4,7 @@ Null safety prevents errors that result from unintentional access of variables s
 buzz will require you to declare any nullable value with a `?`.
 
 ```buzz
-const aStringOrNull: str? = "hello";
+final aStringOrNull: str? = "hello";
 ```
 
 It'll also require you to check for `null` before accessing the value.
@@ -12,13 +12,13 @@ This reduces greatly any runtime error related to nullable values. The language 
 
 ```buzz
 // Null coalescing operator is `??`
-const unwrapped: str = aStringOrNull ?? "default value"
+final unwrapped: str = aStringOrNull ?? "default value"
 
 // Force unwrapping with `!`
-const unwrapped: str = aStringOrNull!;
+final unwrapped: str = aStringOrNull!;
 
 // Graceful unwrapping
-const optList: [int]? = null;
+final optList: [int]? = null;
 
 std\print(optList?.len()); // -> null
 

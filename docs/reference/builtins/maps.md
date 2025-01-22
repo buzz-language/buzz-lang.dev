@@ -27,11 +27,17 @@ fun values() > [V]
 ```
 **Returns:** Return list of the map values
 
-## clone
+## cloneMutable
 ```buzz
-fun clone() > {K: V}
+fun cloneMutable() > mut {K, V}
 ```
-**Returns:** Clone of the map
+**Returns:** A mutable clone of the map
+
+## cloneImmutable
+```buzz
+fun cloneImmutable() > {K, V}
+```
+**Returns:** An immutable clone of the map
 
 ## reduce
 ```buzz

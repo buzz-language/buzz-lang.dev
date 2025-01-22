@@ -2,14 +2,14 @@
 
 ## sleep
 ```buzz
-fun sleep(float ms) > void 
+fun sleep(double ms) > void 
 ```
 Wait for the given amount of milliseconds
 - **`ms`:** amount of milliseconds to wait
 
 ## time
 ```buzz
-fun time() > float 
+fun time() > double 
 ```
 
 

@@ -22,7 +22,7 @@ if (opt -> unwrapped) {
 
 You can downcast a value with the `as` operator.
 ```buzz
-const anything: any = "hello";
+final anything: any = "hello";
 
 |...
 
@@ -33,7 +33,7 @@ if (anything as something: str) {
 
 `if` can also be inlined and act as an expression. However this expression does not support `null` unwrapping or downcasting (those are available in expression using `??` and `as?`);
 ```buzz
-const value = if (something > 0) 12 else 13;
+final value = if (something > 0) 12 else 13;
 ```
 
 ## `while` and `do .. until`
@@ -79,7 +79,7 @@ foreach (i, char in aString) {
     // ...
 }
 
-const fibonnaciFib = &fibonnaci(10);
+final fibonnaciFib = &fibonnaci(10);
 foreach (value in fibonnaciFib) {
     // ...
 }
@@ -131,7 +131,7 @@ while (true) :here {
 Block expression are lexical blocks that produce a value:
 ```buzz
 var value = from {
-    // Doing so work here...
+    // Doing some work here...
 
     out result;
 }

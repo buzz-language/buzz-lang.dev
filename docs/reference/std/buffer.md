@@ -1,236 +1,220 @@
-# `Buffer`
+# buffer
+
+## WriteWhileReadingError
+```buzz
+object WriteWhileReadingError
+```
+Error raised when a buffer is written after reading has started.
+
+## OutOfBoundError
+```buzz
+object OutOfBoundError
+```
+Error raised when a buffer index is out of bounds.
 
 ## Buffer
 ```buzz
-object Buffer 
+object Buffer
 ```
-Read and write data to a string `Buffer`
+Read and write data to a string buffer
 
 ### init
 ```buzz
-static fun init(int capacity = 0) > Buffer
+static fun init(capacity: int = 0) > Buffer
 ```
-Create a `Buffer`
-- **`capacity`:** Optional initial capacity of the `Buffer`
-
-**Returns:** New `Buffer`
+**Returns:** A new `Buffer`
 
 ### fromStr
 ```buzz
-static fun fromStr(str string) > Buffer
+static fun fromStr(string: str) > Buffer
 ```
-Create a `Buffer` with `string` as its initial value
-- **`string`:** Initial value
-
-**Returns:** New `Buffer`
+Creates a buffer initialized with `string`.
+- **`string`:** Bytes to write into the new buffer
+**Returns:** A new `Buffer`
 
 ### collect
 ```buzz
 fun collect() > void
 ```
-Free underlying memory (automatically called by the Garbage Collector)
+Frees the buffer
 
 ### read
 ```buzz
-fun read(int n = 1) > str?
+fun read(n: int = 1) > str?
 ```
-Read bytes
-- **`n`:** How many bytes to read
-
-**Returns:** Binary string
+Reads `n` bytes
+**Returns:** Read bytes or `null` if nothing to read
 
 ### write
 ```buzz
-fun write(str bytes) > void !> WriteWhileReadingError
+fun write(bytes: str) > void !> WriteWhileReadingError
 ```
-Write bytes
+Writes a string
 - **`bytes`:** Bytes to write
 
 ### writeZ
 ```buzz
-fun writeZ::<T>(str zigType, [T] values) > void !> WriteWhileReadingError, FFITypeMismatchError
+fun writeZ::<T>(zigType: str, values: [T]) > void !> FFITypeMismatchError
 ```
-Write `values` to the `Buffer` checking that `T` matches the zig type specified by `zigType`
-- **`zigType`:** Zig type (must match C ABI)
+Writes values using a Zig type layout.
+- **`zigType`:** Zig type expression
 - **`values`:** Values to write
 
 ### writeZAt
 ```buzz
-fun writeZAt::<T>(int at, str zigType, [T] values) > void !> WriteWhileReadingError, FFITypeMismatchError
+fun writeZAt::<T>(at: int, zigType: str, values: [T]) > void !> FFITypeMismatchError
 ```
-Write `values` to the `Buffer` at index `at`, checking that `T` matches the zig type specified by `zigType`
-- **`at`:** Where to write the data in the `Buffer`
-- **`zigType`:** Zig type (must match C ABI)
+Writes values at `at` using a Zig type layout.
+- **`at`:** Offset at which to write
+- **`zigType`:** Zig type expression
 - **`values`:** Values to write
 
 ### readZ
 ```buzz
-fun readZ::<T>(str zigType) > T !> FFITypeMismatchError
+fun readZ::<T>(zigType: str) > T !> FFITypeMismatchError
 ```
-Read data from the `Buffer` checking that `T` matches the zig type specified by `zigType`
-- **`zigType`:** Zig type (must match C ABI)
-
-**Returns:** Data read of buzz type `T` and zig type `zigType`
+Reads a value using a Zig type layout.
+- **`zigType`:** Zig type expression
+**Returns:** Read value
 
 ### readZAt
 ```buzz
-fun readZAt::<T>(int at, str zigType) > T !> FFITypeMismatchError
+fun readZAt::<T>(at: int, zigType: str) > T !> FFITypeMismatchError
 ```
-Read data from the `Buffer` at index `at`, checking that `T` matches the zig type specified by `zigType`
-- **`at`:** Where to read the data in the `Buffer`
-- **`zigType`:** Zig type (must match C ABI)
-
-**Returns:** Data read of buzz type `T` and zig type `zigType`
+Reads a value at `at` using a Zig type layout.
+- **`at`:** Offset from which to read
+- **`zigType`:** Zig type expression
+**Returns:** Read value
 
 ### writeStruct
 ```buzz
-fun writeStruct::<T>(type structType, [T] values) > void !> WriteWhileReadingError, FFITypeMismatchError
+fun writeStruct::<T>(structType: type, values: [T]) > void !> FFITypeMismatchError
 ```
-Write foreign struct(s) of type `T` to the `Buffer`. The struct type is specified both for the compiler with generic type `T` and to the function with `structType` which will be used to know the specific layout and size of the struct.
-- **`structType`**: Struct type
-- **`values`**: Values to write
+Writes values using a Buzz object type as a Zig struct layout.
+- **`structType`:** Buzz object type to use as struct layout
+- **`values`:** Values to write
 
 ### writeStructAt
 ```buzz
-fun writeStructAt::<T>(type structType, int at, [T] values) > void !> WriteWhileReadingError, FFITypeMismatchError
+fun writeStructAt::<T>(structType: type, at: int, values: [T]) > void !> FFITypeMismatchError
 ```
-Write foreign struct(s) of type `T` to the `Buffer` at index `at`. The struct type is specified both for the compiler with generic type `T` and to the function with `structType` which will be used to know the specific layout and size of the struct.
-- **`structType`**: Struct type
-- **`at`:** Where to write the data to the `Buffer`
-- **`values`**: Values to write
+Writes values at `at` using a Buzz object type as a Zig struct layout.
+- **`structType`:** Buzz object type to use as struct layout
+- **`at`:** Offset at which to write
+- **`values`:** Values to write
 
 ### readStruct
 ```buzz
-fun readStruct::<T>(type structType) > T !> FFITypeMismatchError
+fun readStruct::<T>(structType: type) > T
 ```
-Read foreign struct of type `T` from the `Buffer`. The struct type is specified both for the compiler with generic type `T` and to the function with `structType` which will be used to know the specific layout and size of the struct.
-- **`structType`**: Struct type
-
-**Returns:** Value read
+Reads a value using a Buzz object type as a Zig struct layout.
+- **`structType`:** Buzz object type to use as struct layout
+**Returns:** Read value
 
 ### readStructAt
 ```buzz
-fun readStructAt::<T>(type structType, int at) > T !> FFITypeMismatchError
+fun readStructAt::<T>(structType: type, at: int) > T
 ```
-Read foreign struct of type `T` from the `Buffer` at index `at`. The struct type is specified both for the compiler with generic type `T` and to the function with `structType` which will be used to know the specific layout and size of the struct.
-- **`structType`**: Struct type
-
-**Returns:** Value read
+Reads a value at `at` using a Buzz object type as a Zig struct layout.
+- **`structType`:** Buzz object type to use as struct layout
+- **`at`:** Offset from which to read
+**Returns:** Read value
 
 ### readBoolean
 ```buzz
 fun readBoolean() > bool?
 ```
-Read a boolean
-
-**Returns:** Boolean read
+Reads a boolean
+**Returns:** Boolean we read or `null` if nothing to read
 
 ### writeBoolean
 ```buzz
-fun writeBoolean(bool boolean) > void !> WriteWhileReadingError
+fun writeBoolean(boolean: bool) > void !> WriteWhileReadingError
 ```
-Write a boolean
+Writes a boolean
 - **`boolean`:** Boolean to write
 
 ### readInt
 ```buzz
-fun readInt() > int?
+fun readInt() > int? !> ReadWriteError
 ```
-Read a integer
-
-**Returns:** Integer read
+Reads an integer
+**Returns:** Read integer or `null` if nothing to read
 
 ### writeInt
 ```buzz
-fun writeInt(int number) > void !> WriteWhileReadingError
+fun writeInt(number: int) > void !> WriteWhileReadingError
 ```
-Write an integer
+Writes an integer
 - **`number`:** Integer to write
 
 ### readUserData
 ```buzz
-fun readUserData() > ud?
+fun readUserData() > ud? !> ReadWriteError
 ```
-Read a ud
-
-**Returns:** ud read
+Reads an ud
+**Returns:** Read ud or `null` if nothing to read
 
 ### writeUserData
 ```buzz
-fun writeUserData(ud userdata) > void !> WriteWhileReadingError
+fun writeUserData(userdata: ud) > void !> WriteWhileReadingError
 ```
-Write an ud
-- **`userdata`:** ud to write
+Writes an ud
+- **`number`:** UserDataeger to write
 
 ### readDouble
 ```buzz
-fun readDouble() > double?
+fun readDouble() > double? !> ReadWriteError
 ```
-Read a double
-
-**Returns:** Double read
+Reads a double
+**Returns:** Read double or `null` if nothing to read
 
 ### writeDouble
 ```buzz
-fun writeDouble(double number) > void !> WriteWhileReadingError
+fun writeDouble(number: double) > void !> WriteWhileReadingError
 ```
-Write an double
+Writes a double
 - **`number`:** Double to write
 
 ### len
 ```buzz
-fun len(int align = 1) > int
+fun len(align: int = 1) > int
 ```
-Get `Buffer` length
-- **`align`:** Alignement
-
-**Returns:** Buffer length
+**Returns:** Length of the buffer
 
 ### cursor
 ```buzz
 fun cursor() > int
 ```
-Get current position in the `Buffer`
-
-**Returns:** Current position
+**Returns:** Position of the reading cursor
 
 ### empty
 ```buzz
 fun empty() > void
 ```
-Empty the `Buffer` (retains capacity)
-
-### ptr
-```buzz
-fun ptr(int at = 0, int align = 1) > ud
-```
-Returns pointer at `at * align` in the `Buffer` as userdata
-- **`at`:** From where to get the pointer
-- **`align`:** Alignment
-
-**Returns:** Pointer
+Empties the buffer
 
 ### toString
 ```buzz
 fun toString() > str
 ```
-Get `Buffer` content as a string
+Get buffer as string
 
-**Returns:** Buffer content
+### ptr
+```buzz
+fun ptr(at: int = 0, align: int = 1) > ud
+```
+Get buffer's ptr
 
 ### at
 ```buzz
-fun at(int index) > int !> OutOfBoundError
+fun at(index: int) > int !> OutOfBoundError
 ```
-Get byte at given index
-- **`index`:** Which byte to get
-
-**Returns:** Byte
+Get byte at `index`
 
 ### setAt
 ```buzz
-fun setAt(int index, int value) > void !> WriteWhileReadingError, OutOfBoundError
+fun setAt(index: int, value: int) > void !> WriteWhileReadingError, OutOfBoundError
 ```
-Set byte at given index
-- **`index`:** Which byte to set
-- **`value`:** Value to set
+Set byte at `index`
+

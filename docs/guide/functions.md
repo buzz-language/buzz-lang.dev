@@ -1,6 +1,6 @@
 # Functions
 
-Functions start with the keyword `fun`. The return type must be specified after a `>`. If the functions returns nothing the return type is `void`.
+Functions start with the keyword `fun`. The return type must be specified after a `>`. If the function returns nothing, the return type is `void`.
 
 ```buzz
 fun sayHiTo(name: str, lastName: str?, age: int) > str {
@@ -16,7 +16,7 @@ fun mayYield() > str *> int? {
 ```
 
 ## Arrow function
-Function which body would only be `return <expression>` can be written with an arrow function. Arrow functions can omit their return type which will be inferred from the expression returned.
+A function whose body would only be `return <expression>` can be written with an arrow function. Arrow functions can omit their return type, which will be inferred from the expression returned.
 ```buzz
 fun count(name: str) => name.len();
 ```
@@ -29,7 +29,7 @@ That's why, when called, only the first argument name of a function can be omitt
 sayHiTo("Joe", age: 35, lastName: "Doe"); // -> "Hi Joe Doe!"
 ```
 
-Arguments with default value can be omitted completely:
+Arguments with default values can be omitted completely:
 ```buzz
 fun doSomething(x: int, isAvailable: bool = true) > void {
     // ...
@@ -49,9 +49,22 @@ final lastname = "Doe";
 call("joe", lastname)
 ```
 
+If the only argument you provide is an anonymous object literal, the call parentheses can be omitted:
+```buzz
+object Payload {
+    data: str,
+}
 
-If an argument must be in the function's signature (e.g. you're implementing a protocol), but you don't use it in the function's body, you must name it `_` otherwise the compiler will complain about it not being used.
+fun len(payload: Payload) => payload.data.len();
+
+len .{
+    data = "hello",
+}; // -> 5
 ```
+
+
+If an argument must be in the function's signature (e.g. you're implementing a protocol), but you don't use it in the function's body, you must name it `_`; otherwise the compiler will complain about it not being used.
+```buzz
 fun doSomething(_: str, value: int) > int {
     return value * 2;
 }
@@ -65,8 +78,8 @@ fun somethingThatCanFail() > str !> FormatError, UnexpectedError {
 }
 ```
 
-## First-class citizen
-Functions are first-class citizens. Meaning they can be passed around just like any other buzz value:
+## First-class citizens
+Functions are first-class citizens. This means they can be passed around just like any other buzz value:
 
 ```buzz
 final fn = fun () > void => print("hello world"); // Arrow function
@@ -75,13 +88,15 @@ fn(); // -> "hello world"
 ```
 
 ## Extern functions
-Functions that refers to a C/Zig function, are prefixed with `extern` (see [Calling C/Zig functions](/guide/calling-native-code.html))
+Functions that refer to a C/Zig function are prefixed with `extern` (see [Calling C/Zig functions](/guide/calling-native-code.html))
 ```buzz
 extern fun assert(condition: bool, message: str) > void;
 ```
 
 ## `main`
-The `main` function is the entry point of your program. Its signature must be.
+The `main` function is the entry point of your program. It can return `void` or an `int` exit code.
+
+If you need command line arguments, accept a single `[str]` argument:
 ```buzz
 fun main(args: [str]) > int {
     //...
@@ -92,9 +107,10 @@ fun main(args: [str]) > int {
 fun main(args: [str]) > void {
     //...
 }
+```
 
-// or
-
+If you do not need command line arguments, omit the argument:
+```buzz
 fun main() > void {
     //...
 }

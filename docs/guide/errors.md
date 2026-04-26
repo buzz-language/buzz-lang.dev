@@ -1,7 +1,7 @@
 # Error handling
 
 ## Throw an error
-Any type of value can be thrown. Error can't be raised in the global scope. `test` functions ignore errors.
+Any type of value can be thrown. Errors can't be raised in the global scope. `test` functions ignore errors.
 ```buzz
 throw "This failed";
 

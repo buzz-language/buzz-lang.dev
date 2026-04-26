@@ -10,7 +10,7 @@ fun over() > bool
 ```buzz
 fun cancel() > void
 ```
-Cancel the fiber by changing its internal status to `over` preventing further `resume` or `resolve`
+Cancel the fiber by changing its internal status to `over`, preventing further `resume` or `resolve`
 
 ## isMain
 ```buzz

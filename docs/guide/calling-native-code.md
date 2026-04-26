@@ -1,18 +1,20 @@
-# Buzz API
+# buzz API
 
-First, define the buzz interface. The `extern` keyword means that buzz will look for a dynamic library named `libmylib.dylib/so/dll`:
+First, define the buzz interface. The `extern` keyword means that buzz will look for the function in a native library loaded for this imported module:
 
 ```buzz
 // mylib.buzz
-export extern fun assert(condition: bool, message: str) > void
+namespace mylib;
+
+export extern fun assert(condition: bool, message: str) > void;
 ```
 
-Then implement it in Zig or C using the buzz API:
+Then implement it in Zig or C using the buzz API. A native library exposes one lookup function named after the library. That function receives the Buzz symbol name and returns the matching native function pointer.
 
 ```zig
 // buzz_mylib.zig
-final std = @import("std");
-final api = @import("buzz_api.zig");
+const std = @import("std");
+const api = @import("buzz_api.zig");
 
 // The function must always have this signature
 // It returns: 
@@ -29,19 +31,27 @@ export fn assert(ctx: *api.NativeCtx) c_int {
 
     return 0;
 }
+
+pub export fn mylib(symbol: [*:0]const u8) callconv(.c) ?api.NativeFn {
+    if (std.mem.eql(u8, std.mem.span(symbol), "assert")) {
+        return &assert;
+    }
+
+    return null;
+}
 ```
 
 Build a dynamic library for it and you can use it in your buzz code:
 
 ```buzz
 // main.buzz
-import "mylib"
+import "mylib";
 
 fun main(_: [str]) > void {
-    assert(1 + 1 == 2, message: "Congrats on doing math!");
+    mylib\assert(1 + 1 == 2, message: "Congrats on doing math!");
 }
 ```
 
 ::: tip
-The API is no yet stable and moves a lot. That's why you won't find any documentation for it here.
+The API is not yet stable and moves a lot. That's why you won't find any documentation for it here.
 :::

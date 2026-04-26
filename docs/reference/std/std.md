@@ -2,92 +2,97 @@
 
 ## assert
 ```buzz
-fun assert(bool condition, str? message = null) > void 
+fun assert(condition: bool, message: str? = null) > void
 ```
 If condition is false print message and exit program
+- **`condition`:** assert condition
 - **`message`:** message printed if `condition` is false
 
 ## print
 ```buzz
-fun print(str value) > void 
+fun print(value: str) > void
 ```
 Prints value on stdout
 - **`value`:** value to print
 
 ## parseInt
 ```buzz
-fun parseInt(str string) > int? 
+fun parseInt(string: str) > int?
 ```
-Parse number, returns `null` if string does not represent a number
+Parse integer, returns null if string does not represent a integer
 - **`string`:** string to parse
-
 **Returns:** integer parsed or null
+
 ## parseDouble
 ```buzz
-fun parseDouble(str string) > double? 
+fun parseDouble(string: str) > double?
 ```
-Parse number, returns `null` if string does not represent a number
+Parse double, returns null if string does not represent a double
 - **`string`:** string to parse
-
 **Returns:** double parsed or null
+
 ## toInt
 ```buzz
-fun toInt(double n) > int 
-```
-Cast double to a integer value
-- **`n`:** value to cast
-
-**Returns:** casted value
-## toDouble
-```buzz
-fun toDouble(int n) > double 
+fun toInt(n: double) > int
 ```
 Cast integer to a double value
 - **`n`:** value to cast
+**Returns:** casted value
 
+## toDouble
+```buzz
+fun toDouble(n: int) > double
+```
+Cast double to a integer value
+- **`n`:** value to cast
 **Returns:** casted value
 
 ## toUd
 ```buzz
-fun toUd(any n) > ud
+fun toUd(n: any) > ud
 ```
-Cast number to a userdata
+Cast double or integer to userdata
 - **`n`:** value to cast
+**Returns:** casted value or 0 if value provided is not a number
 
 ## parseUd
 ```buzz
-fun parseUd(str string) > ud?
+fun parseUd(string: str) > ud?
 ```
-Parse `ud`, returns `null` if string does not represent a `ud` (u64)
+Parse ud, returns false if string does not represent a ud (u64)
 - **`string`:** string to parse
+**Returns:** ud parsed or null
 
-**Returns:** `ud` parsed or `null`
-
-**Returns:** casted value
 ## char
 ```buzz
-fun char(int byte) > str 
+fun char(byte: int) > str
 ```
 Return ascii char for given byte
 
 ## random
 ```buzz
-fun random(int? min = null, int? max = null) > int
+fun random(min: int? = null, max: int? = null) > int
 ```
 Return evenly distributed random number between `min` and `max`
-- **`min`**: Minimum value, if omitted `0`
-- **`max`**: Maximum value, if omitted `min + 1`
-
+- **`min`:** Minimum value, if omitted `0`
+- **`max`:** Maximum value, if omitted `min + 1`
 **Returns:** Random value
 
 ## currentFiber
 ```buzz
 fun currentFiber() > fib<any, any?>
 ```
-**Returns:** the current fiber
+**Returns:** Current fiber
+
+## args
+```buzz
+fun args() > [str]
+```
+Returns the command line arguments with which the script was launched
 
 ## panic
 ```buzz
-fun panic(str message) > void
+fun panic(message: str) > void
 ```
 Print message and exit program
+

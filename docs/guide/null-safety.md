@@ -8,10 +8,10 @@ final aStringOrNull: str? = "hello";
 ```
 
 It'll also require you to check for `null` before accessing the value.
-This reduces greatly any runtime error related to nullable values. The language provides some useful tools to do so with minimal effort.
+This greatly reduces any runtime errors related to nullable values. The language provides some useful tools to do so with minimal effort.
 
 ```buzz
-// Null coalescing operator is `??`
+// The null coalescing operator is `??`
 final unwrapped: str = aStringOrNull ?? "default value"
 
 // Force unwrapping with `!`
@@ -22,7 +22,7 @@ final optList: [int]? = null;
 
 std\print(optList?.len()); // -> null
 
-// If unwrap
+// If unwrapping
 if (aStringOrNull -> aString) {
     std\print("{aString} is not null");
 } else {

@@ -4,13 +4,13 @@
 ```buzz
 fun toList() > [int]
 ```
-**Returns:** A list containing the sequence of integers of that range
+**Returns:** A list containing the sequence of integers in that range
 
 ## len
 ```buzz
 fun len() > int
 ```
-**Returns:** How many integers there is in that range
+**Returns:** How many integers there are in that range
 
 ## invert
 ```buzz
@@ -28,7 +28,7 @@ fun subsetOf(other: rg) > bool
 
 ## intersect
 ```buzz
-fun intersect(other: rg) > bool
+fun intersect(other: rg) > rg
 ```
 - **`other`**: Range to intersect it with
 
@@ -36,11 +36,19 @@ fun intersect(other: rg) > bool
 
 ## union
 ```buzz
-fun union(other: rg) > bool
+fun union(other: rg) > rg
 ```
 - **`other`**: Range to union it with
 
 **Returns:** A new range which is the union of the two ranges
+
+## contains
+```buzz
+fun contains(value: int) > bool
+```
+- **`value`**: Integer to look for in the range
+
+**Returns:** `true` if `value` is inside the range
 
 ## high
 ```buzz

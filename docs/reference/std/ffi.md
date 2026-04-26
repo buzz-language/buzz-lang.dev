@@ -2,45 +2,67 @@
 
 ## cstr
 ```buzz
-fun cstr(str string) > str
+fun cstr(string: str) > str
 ```
-Append `\0` at the end of the string
+Convert a Buzz string to a null-terminated C string.
+- **`string`:** string to terminate
+**Returns:** null-terminated string
 
-**Returns:** Null terminated string
+## FFITypeMismatchError
+```buzz
+object FFITypeMismatchError
+```
+Error raised when a Buzz value does not match the expected FFI type.
+
+## FFIZigTypeParseError
+```buzz
+object FFIZigTypeParseError
+```
+Error raised when a Zig type string cannot be parsed.
+
+## ValueNotForeignContainer
+```buzz
+object ValueNotForeignContainer
+```
+Error raised when raw foreign data is requested from a non-foreign value.
 
 ## alignOf
 ```buzz
-fun alignOf(str zigType) > int
+fun alignOf(zigType: str) > int !> FFIZigTypeParseError
 ```
-Get alignment of zig type
-- **`zigType`:** Zig type (must match C ABI)
-
-**Returns:** Alignement of zig type
+Returns the ABI alignment of a Zig type.
+- **`zigType`:** Zig type expression
+**Returns:** alignment in bytes
 
 ## sizeOf
 ```buzz
-fun sizeOf(str zigType) > int
+fun sizeOf(zigType: str) > int !> FFIZigTypeParseError
 ```
-Get size of zig type
-- **`zigType`:** Zig type (must match C ABI)
-
-**Returns:** Size of zig type
+Returns the ABI size of a Zig type.
+- **`zigType`:** Zig type expression
+**Returns:** size in bytes
 
 ## sizeOfStruct
 ```buzz
-fun sizeOfStruct(type structType) > int
+fun sizeOfStruct(structType: type) > int
 ```
-Get size of struct
-- **`structType`:** Struct type
-
-**Returns:** Size of the struct
-
+Returns the ABI size of a Buzz object laid out as a Zig struct.
+- **`structType`:** Buzz object type to measure
+**Returns:** size in bytes
 
 ## alignOfStruct
 ```buzz
-fun alignOfStruct(type structType) > int
+fun alignOfStruct(structType: type) > int
 ```
-Get alignement of struct
-- **`structType`:** Struct type
+Returns the ABI alignment of a Buzz object laid out as a Zig struct.
+- **`structType`:** Buzz object type to measure
+**Returns:** alignment in bytes
 
-**Returns:** Alignement of the struct
+## rawData
+```buzz
+fun rawData(data: any) > str !> ValueNotForeignContainer
+```
+Returns the raw foreign data bytes stored in a foreign container.
+- **`data`:** foreign container value
+**Returns:** raw bytes
+

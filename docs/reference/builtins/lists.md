@@ -4,15 +4,15 @@
 ```buzz
 fun append(value: T) > void
 ```
-Append new element at end of the list
+Append a new element at the end of the list
 - **`value`**: New element
 
 ## insert
 ```buzz
 fun insert(index: int, value: T) > T
 ```
-Insert new element at `index` of the list. If `index` is less than `0`, element will be inserted at `0`. If `index` is greather than list length, it'll be appended at the end of the list.
-- **`index`**: Index at which element will be inserted
+Insert a new element at `index` of the list. If `index` is less than `0`, the element will be inserted at `0`. If `index` is greater than the list length, it'll be appended at the end of the list.
+- **`index`**: Index at which the element will be inserted
 - **`value`**: New element
 
 **Returns:** The inserted value
@@ -21,62 +21,74 @@ Insert new element at `index` of the list. If `index` is less than `0`, element 
 ```buzz
 fun remove(at: int) > T
 ```
-Remove element form the list shifting elements after index
-- **`at`**: Index of element to remove
+Remove an element from the list, shifting elements after the index
+- **`at`**: Index of the element to remove
 
-**Returns:** Removed element
+**Returns:** The removed element
 
 ## pop
 ```buzz
 fun pop() > T?
 ```
-Remove and return last element of list or `null` if list is empty
+Remove and return the last element of the list or `null` if the list is empty
 
-**Returns:** Last element
+**Returns:** The last element
 
 ## len
 ```buzz
 fun len() > int
 ```
-**Returns:** Length of list
+**Returns:** Length of the list
 
 ## sub
 ```buzz
 fun sub(start: int, len: int?) > [T]
 ```
-Get sub list
-- **`start`**: Start index of sub list
-- **`len`**: Length of sub list, if `null` will go to end of list
+Get a sublist
+- **`start`**: Start index of the sublist
+- **`len`**: Length of the sublist, if `null` will go to the end of the list
 
-**Returns:** Sub list
+**Returns:** Sublist
 
 ## indexOf
 ```buzz
 fun indexOf(needle: T) > int?
 ```
-Search first occurence of the needle
+Search the first occurrence of the needle
 - **`needle`**: Element to find
 
-**Returns:** Index of element or `null` if not found
+**Returns:** Index of the element or `null` if not found
 
 ## cloneMutable
 ```buzz
-fun clone() > mut [T]
+fun cloneMutable() > mut [T]
 ```
 **Returns:** Mutable clone of the list
 
 ## cloneImmutable
 ```buzz
-fun clone() > [T]
+fun cloneImmutable() > [T]
 ```
 **Returns:** Immutable clone of the list
+
+## copyMutable
+```buzz
+fun copyMutable() > mut [T]
+```
+**Returns:** Mutable copy of the list
+
+## copyImmutable
+```buzz
+fun copyImmutable() > [T]
+```
+**Returns:** Immutable copy of the list
 
 ## join
 ```buzz
 fun join(separator: str) > str
 ```
-Join list element in a string with a separator. Elements are converted to a string just like an interpolation would.
-- **`separator`**: Separator to put between each elements
+Join list elements in a string with a separator. Elements are converted to a string just like an interpolation would.
+- **`separator`**: Separator to put between each element
 
 **Returns:** Elements joined as a string
 
@@ -100,7 +112,7 @@ Stable in-place sort. O(n) best case, O(n*log(n)) worst case and average case.
 ```buzz
 fun map::<S>(callback: fun (index: int, element: T) > S) > [S]
 ```
-Map list to new list of target type by running `callback` for each element of the list.
+Map the list to a new list of target type by running `callback` for each element of the list.
 - **`callback`:** Ran for each element
 
 **Returns:** New list of item type `S`
@@ -109,16 +121,16 @@ Map list to new list of target type by running `callback` for each element of th
 ```buzz
 fun fill(value: T) > [T]
 ```
-Fill the list with `value` and returns itself.
+Fill the list with `value` and return itself.
 - **`value`:** Value to fill the list with
 
-**Returns:** the list
+**Returns:** The list
 
 ## filter
 ```buzz
 fun filter(callback: fun (index: int, element: T) > bool) > [T]
 ```
-Filter list keeping element for which `callback` returns `true`.
+Filter the list, keeping elements for which `callback` returns `true`.
 - **`callback`:** Ran for each element
 
 **Returns:** Filtered list
@@ -127,7 +139,7 @@ Filter list keeping element for which `callback` returns `true`.
 ```buzz
 fun reduce::<S>(callback: fun (index: int, element: T, accumulator: S) > S, S initial) > S
 ```
-Reduce list to value of type `S` by running `callback` with `accumulator` being the value being built.
+Reduce the list to a value of type `S` by running `callback` with `accumulator` being the value being built.
 - **`callback`:** Ran for each element
 - **`initial`:** Initial value
 

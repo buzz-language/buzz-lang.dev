@@ -2,131 +2,121 @@
 
 ## abs
 ```buzz
-fun abs(double n) > double 
+fun abs(n: double) > double
 ```
+**Returns:** absolute value of n
 
-
-**Returns:**  absolute value of n
 ## acos
 ```buzz
-fun acos(double n) > double 
+fun acos(n: double) > double
 ```
+**Returns:** acos of n
 
-
-**Returns:**  acos of n
 ## asin
 ```buzz
-fun asin(double n) > double 
+fun asin(n: double) > double
 ```
+**Returns:** asin of n
 
-
-**Returns:**  asin of n
 ## atan
 ```buzz
-fun atan(double n) > double 
+fun atan(n: double) > double
 ```
+**Returns:** atan of n
 
+## sqrt
+```buzz
+fun sqrt(n: double) > double
+```
+**Returns:** square root of n
 
-**Returns:**  atan of n
 ## ceil
 ```buzz
-fun ceil(double n) > int 
+fun ceil(n: double) > int
 ```
+**Returns:** ceiled n
 
-
-**Returns:**  ceiled n
 ## cos
 ```buzz
-fun cos(double n) > double 
+fun cos(n: double) > double
 ```
+**Returns:** cos of n
 
-
-**Returns:**  cos of n
-## `final double pi`
-π
 ## deg
 ```buzz
-fun deg(double n) > double 
+fun deg(n: double) > double
 ```
 Convert radian to degree
+
 ## exp
 ```buzz
-fun exp(double n) > double 
+fun exp(n: double) > double
 ```
+**Returns:** exp of n
 
-
-**Returns:**  exp of n
 ## floor
 ```buzz
-fun floor(double n) > int 
+fun floor(n: double) > int
 ```
+**Returns:** floored n
 
 ## log
 ```buzz
-fun log(double base, double n) > double 
+fun log(base: double, n: double) > double
 ```
+**Returns:** log(base) of n
 
-
-**Returns:**  log(base) of n
-## maxDouble
-```buzz
-fun maxDouble(double a, double b) > double 
-```
-
-
-**Returns:**  max of a and b
 ## minDouble
 ```buzz
-fun minDouble(double a, double b) > double
+fun minDouble(a: double, b: double) > double
 ```
+**Returns:** min of a and b
 
-
-**Returns:**  min of a and b
-## maxInt
+## maxDouble
 ```buzz
-fun maxInt(int a, int b) > int
+fun maxDouble(a: double, b: double) > double
 ```
+**Returns:** max of a and b
 
-
-**Returns:**  max of a and b
 ## minInt
 ```buzz
-fun minInt(int a, int b) > int
+fun minInt(a: int, b: int) > int
 ```
+**Returns:** min of a and b
 
+## maxInt
+```buzz
+fun maxInt(a: int, b: int) > int
+```
+**Returns:** max of a and b
 
-**Returns:**  min of a and b
+## pi
+```buzz
+final pi: double
+```
+π
+
 ## rad
 ```buzz
-fun rad(double n) > double 
+fun rad(n: double) > double
 ```
 Convert degree to radian
 
 ## sin
 ```buzz
-fun sin(double n) > double 
+fun sin(n: double) > double
 ```
+**Returns:** sin of n
 
-
-**Returns:**  sin of n
-## sqrt
-```buzz
-fun sqrt(double n) > double 
-```
-
-
-**Returns:**  square root of n
 ## tan
 ```buzz
-fun tan(double n) > double 
+fun tan(n: double) > double
 ```
+**Returns:** tan of n
 
-
-**Returns:**  tan of n
 ## pow
 ```buzz
-fun pow(double x, double y) > double !> OverflowError, UnderflowError 
+fun pow(x: double, y: double) > double !> OverflowError, UnderflowError
 ```
+**Returns:** `x`^`y`
 
-
-**Returns:**  `x`^`y`

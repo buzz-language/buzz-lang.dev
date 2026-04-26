@@ -14,7 +14,7 @@ final mapToNothing = { "hello": void };  
 The difference between `null` and `void` is a semantic one. `null` is mainly useful to handle the absence of data with [null safety](/guide/null-safety.html) whereas `void` is mainly used to specify that a function returns nothing.
 
 ## Numbers
-Numbers can either be `int` (32 bits integers) or `double` (64 bits floating point).
+Numbers can either be `int` (48-bit integers) or `double` (64-bit floating point numbers).
 ```buzz
 var aNumber: int = 23; // Decimal notation
 aNumber = 0b110;  // Binary notation
@@ -30,15 +30,15 @@ final myLargeNumber = 1_000_000;
 `double` and `int` can be compared without casting but are otherwise not compatible with each other.
 
 ## Strings
-`str` represents an immutable sequence of bytes. Buzz makes no assumption about the content of a string.
+`str` represents an immutable sequence of bytes. buzz makes no assumption about the content of a string.
 ```buzz
 final aString: str = "hello world";
 ```
 
-Strings can span accross multiple lines when using the ` delimiters:
+Strings can span across multiple lines when using backtick delimiters:
 ```buzz
 final multiline = `
-    i'm on several
+    I'm on several
     lines
     yes
 `;
@@ -57,11 +57,11 @@ final msg = "Hello there, I'm {age} years old";
 "here's a new line: \n";
 "here's a tab: \t";
 "here's a brace: \{";
-"here's a explicit byte \123";
+"here's an explicit byte \123";
 ```
 
 ### Checked subscript
-If you make an out-of-bound access to a string you will get a runtime error. The _checked subscript_ notation will resolve to `null` if the provided index is out of bounds.
+If you make an out-of-bounds access to a string you will get a runtime error. The _checked subscript_ notation will resolve to `null` if the provided index is out of bounds.
 ```buzz
 final string = "hello world";
 
@@ -75,8 +75,8 @@ string[?100]; // Will return null
 User data are buzz values that wrap a pointer to foreign data. They are mainly used when [binding to native code](/guide/calling-native-code.html).
 
 ## Patterns
-Patterns are PCRE regexes. They are commonly used so chances are you are already familiar with them. You can otherwise read the [documentation](https://www.pcre.org/).
-Patterns have their own buzz value type because they wrap a compiled PCRE regex. Arguably, we could lazily compile them at runtime but this would go against the philosophy of buzz which is to prevent runtime errors that could have been detected at compile time.
+Patterns are PCRE regexes. They are commonly used, so chances are you are already familiar with them. You can otherwise read the [documentation](https://www.pcre.org/).
+Patterns have their own buzz value type because they wrap a compiled PCRE regex. Arguably, we could lazily compile them at runtime but this would go against the philosophy of buzz, which is to prevent runtime errors that could have been detected at compile time.
 Patterns are delimited with `$"..."`. To use `"` in the pattern, escape it with `\`.
 ```buzz
 final aPattern: pat = $"hello [a-z]+";
@@ -86,7 +86,7 @@ final aPattern: pat = $"hello [a-z]+";
 ## Data structures
 
 ### Lists
-Lists are a sequence of a given type.
+Lists are sequences of a given type.
 ```buzz
 final words = ["hello", "world", "yes"];
 ```
@@ -105,7 +105,7 @@ immutableList[0] = 10; // Will not compile
 ```
 
 #### Checked subscript
-If you make an out-of-bound access to a list you will get a runtime error. The _checked subscript_ notation will resolve to `null` if the provided index is out of bounds.
+If you make an out-of-bounds access to a list you will get a runtime error. The _checked subscript_ notation will resolve to `null` if the provided index is out of bounds.
 ```buzz
 final list = [ 1, 2, 3 ];
 
@@ -116,13 +116,13 @@ list[?100]; // Will return null
 [More on lists](/reference/builtins/lists.html)
 
 ### Ranges
-Ranges are useful to create quick list of integers. They can also be used in `foreach` statements:
+Ranges are useful to create quick lists of integers. They can also be used in `foreach` statements:
 ```buzz
 foreach (i in 0..n) {
     // ...
 }
 
-// Boundaries can be descendant
+// Boundaries can be descending
 final range: rg = n..0;
 
 // You can make a list from it
@@ -133,7 +133,7 @@ std\print("My range is {range.low()}..{range.high()}");
 ```
 
 ### Maps
-Maps are key-value records. Order is not guaranted.
+Maps are key-value records. Order is not guaranteed.
 ```buzz
 final aMap: {str: int} = {
     "one": 1,

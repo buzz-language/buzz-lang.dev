@@ -2,44 +2,52 @@
 
 ## currentDirectory
 ```buzz
-fun currentDirectory() > str !> FileSystemError, InvalidArgumentError 
+fun currentDirectory() > str !> FileSystemError
 ```
 Returns current directory absolute path
+**Returns:** current directory
 
-**Returns:**  current directory
 ## makeDirectory
 ```buzz
-fun makeDirectory(str path) > void !> FileSystemError, UnexpectedError 
+fun makeDirectory(path: str) > void !> FileSystemError, UnexpectedError
 ```
 Creates directory path
 - **`path`:** directory to create
 
-## delete
+## deleteFile
 ```buzz
-fun delete(str path) > void !> FileSystemError, UnexpectedError 
+fun deleteFile(path: str) > void !> FileSystemError, UnexpectedError
 ```
-Deletes directory or file at path
+Deletes file at path
+- **`path`:** direcotry/file to delete
+
+## deleteDirectory
+```buzz
+fun deleteDirectory(path: str) > void !> FileSystemError, UnexpectedError
+```
+Deletes directory at path
 - **`path`:** direcotry/file to delete
 
 ## move
 ```buzz
-fun move(str source, str destination) > void !> FileSystemError, UnexpectedError 
+fun move(source: str, destination: str) > void !> FileSystemError, UnexpectedError
 ```
 Moves/renames file
+- **`source`:** file to move
 - **`destination`:** where to move it
 
 ## list
 ```buzz
-fun list(str path) > [str] !> FileSystemError, UnexpectedError 
+fun list(path: str) > [str] !> FileSystemError, UnexpectedError
 ```
 List files under path
 - **`path`:** directory to list
 
 ## exists
 ```buzz
-fun exists(str path) > bool !> FileSystemError
+fun exists(path: str) > bool !> FileSystemError
 ```
 Returns true if path exists
-- **`path`:** Directory/file to test
+- **`path`:** directory/file to test
+**Returns:** wether file exists
 
-**Returns:** `true` if file exists

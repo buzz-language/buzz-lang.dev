@@ -1,6 +1,6 @@
 # crypto
 
-### HashAlgorithm
+## HashAlgorithm
 ```buzz
 enum HashAlgorithm {
     Md5,
@@ -9,7 +9,8 @@ enum HashAlgorithm {
     Sha256,
     Sha384,
     Sha512,
-    Sha512256,
+    Sha512_224,
+    Sha512_256,
     Sha512T256,
     Sha3224,
     Sha3256,
@@ -19,12 +20,12 @@ enum HashAlgorithm {
 ```
 Hash algorithms
 
-### hash
+## hash
 ```buzz
-fun hash(HashAlgorithm algo, str data) > str 
+fun hash(algo: HashAlgorithm, data: str) > str
 ```
 Returns hash of data using given algorithm
-- **`algo`:** Hash aglorithm to use
+- **`algo`:** Hash algorithm to use
 - **`data`:** Data to hash
+**Returns:** Hash of data has hex string
 
-**Returns:**  Hash of data has hex string

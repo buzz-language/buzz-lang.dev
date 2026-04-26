@@ -14,7 +14,7 @@ actions:
       type: secondary
 features:
   - title: Statically typed
-    details: Find out bugs in your IDE rather than production
+    details: Find bugs in your IDE rather than production
   - title: JIT compiled
     details: Uses MIR, a fast and lightweight JIT compiler
   - title: Unambiguous
@@ -24,7 +24,7 @@ features:
   - title: Interoperability with C
     details: Call C functions easily with FFIs and embed buzz with its C API
   - title: Fibers
-    details: Single threaded cooperative multitasking
+    details: Single-threaded cooperative multitasking
 footer: MIT licensed | Copyright © 2021-present Benoit Giannangeli
 ---
 ```buzz

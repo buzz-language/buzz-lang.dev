@@ -1,8 +1,8 @@
 # API reference
 
-This API is compliant with C ABI and can thus be used by any language that can conform to it (C, C++, Zig, Rust, etc.).
+This API is compliant with the C ABI and can thus be used by any language that can conform to it (C, C++, Zig, Rust, etc.).
 
-::: tip Warning
+::: warning
 This API is unstable and will likely change a lot in the future.
 :::
 
@@ -10,7 +10,7 @@ This API is unstable and will likely change a lot in the future.
 ```zig
 fn bz_allocated(self: *VM) usize;
 ```
-Return the memory currently allocated by the given VM and any VM using the same garbage collector
+Returns the memory currently allocated by the given VM and any VM using the same garbage collector
 
 ## `bz_at`
 ```zig
@@ -167,7 +167,7 @@ fn bz_listConcat(list: Value, other_list: Value, vm: *VM) Value;
 
 ## `bz_listGet`
 ```zig
-fn bz_listGet(list: Value, index: i32, checked: bool) Value;
+fn bz_listGet(list: Value, index: i64, checked: bool) Value;
 ```
 
 ## `bz_listLen`
@@ -252,7 +252,7 @@ fn bz_newQualifiedObjectInstance(self: *VM, qualified_name: [*]const u8, len: us
 
 ## `bz_newRange`
 ```zig
-fn bz_newRange(vm: *VM, low: i32, high: i32) Value;
+fn bz_newRange(vm: *VM, low: i64, high: i64) Value;
 ```
 
 ## `bz_newUserData`
@@ -449,4 +449,3 @@ fn bz_zigTypeSize(self: *ZigType) usize;
 ```zig
 fn bz_zigTypeToCString(self: *ZigType, vm: *VM) [*:0]const u8;
 ```
-

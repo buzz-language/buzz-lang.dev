@@ -1,13 +1,17 @@
 # Foreign Function Interface
 
+::: warning
+FFI support is still relatively immature and limited
+:::
+
 When you want to call a foreign function from a buzz program you can use [buzz's API](/guide/calling-native-code.html) to build the function call by:
 1. Taking its arguments from the stack
 2. Converting them to the expected types
-3. Make the call to the foreign function
-4. Convert its result to a buzz value
-5. Push it on the stack
+3. Making the call to the foreign function
+4. Converting its result to a buzz value
+5. Pushing it on the stack
 
-This is called a binding and writing those can be time consuming for very little added value to your program. Another option is using the FFI feature of buzz which will generate a JIT compiled function that will do this work for you.
+This is called a binding and writing those can be time-consuming for very little added value to your program. Another option is using the FFI feature of buzz, which will generate a JIT-compiled function that will do this work for you.
 
 ## `zdef` statements
 
@@ -23,7 +27,7 @@ zdef("/path/to/libforeign", `
 zdef("/path/to/libforeign", "fn get_id(data: *Data) u32;")
 ```
 
-The definitions are written in C ABI compatible zig code. Once you've declared your interface with `zdef`s. You can use it just like any other buzz function, assuming you use the appropriate buzz values.
+The definitions are written in C ABI-compatible Zig code. Once you've declared your interface with `zdef`s, you can use it just like any other buzz function, assuming you use the appropriate buzz values.
 ```buzz
 import "ffi";
 
@@ -40,15 +44,15 @@ get_id(data) == 42;
 ```
 
 ::: tip
-When a `[*:0]const u8` pointer is expected, you can provide a buzz string. Note however that we use the `ffi\cstr` helper which will add `\0` to the end of the string.
-Avoid using a buzz strings that has multiple `\0` embedded in them.
+When a `[*:0]const u8` pointer is expected, you can provide a buzz string. Note, however, that we use the `ffi\cstr` helper which will add `\0` to the end of the string.
+Avoid using buzz strings that have multiple `\0` embedded in them.
 :::
 
-`struct` instances are always passed by reference right now (passing a struct by value can be complex depending on your system ABI). This is why you can pass them directly to functions expecting pointer to a struct.
+`struct` instances are always passed by reference right now (passing a struct by value can be complex depending on your system ABI). This is why you can pass them directly to functions expecting a pointer to a struct.
 
 ## Pointers
 
-For any other type of pointers. You can use the `Buffer` object provided by the [buffer standard library](/reference/std/buffer.html).
+For any other type of pointer, you can use the `Buffer` object provided by the [buffer standard library](/reference/std/buffer.html).
 ```buzz
 zdef("/path/to/libforeign", "fn sum(values: [*]i32, len: i32) u32;");
 
@@ -63,10 +67,10 @@ sum(buffer.ptr(), len: 3) == 6;
 
 To write a list of structs, you must use `writeStruct`.
 ```buzz
-buffer.writeStruct(<Data>, Data, values: [data1, data2, datae3]);
+buffer.writeStruct(<Data>, Data, values: [data1, data2, data3]);
 ```
 
-## Supported zig types and statements
+## Supported Zig types and statements
 
 Here's the list of supported types and their buzz counterparts:
 | Zig type        | buzz type      |
@@ -77,11 +81,11 @@ Here's the list of supported types and their buzz counterparts:
 | `u16`           | `int`          |
 | `i16`           | `int`          |
 | `i32`           | `int`          |
-| `c_uint`        | `double`        |
-| `u32`           | `double`        |
-| `i64`           | `double`        |
-| `f32`           | `double`        |
-| `f64`           | `double`        |
+| `c_uint`        | `double`       |
+| `u32`           | `double`       |
+| `i64`           | `double`       |
+| `f32`           | `double`       |
+| `f64`           | `double`       |
 | `u64`           | `ud`           |
 | `usize`         | `ud`           |
 | `bool`          | `bool`         |

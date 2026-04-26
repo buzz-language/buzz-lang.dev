@@ -46,26 +46,26 @@ Find needle in string
 ```buzz
 fun startsWith(needle: str) > bool
 ```
-Test if strings starts with needle
+Test if string starts with needle
 - **`needle`**: needle to find
 
-**Returns:** `true` if strings starts with needle
+**Returns:** `true` if string starts with needle
 
 ## endsWith
 ```buzz
 fun endsWith(needle: str) > bool
 ```
-Test if strings ends with needle
+Test if string ends with needle
 - **`needle`**: needle to find
 
-**Returns:** `true` if strings ends with needle
+**Returns:** `true` if string ends with needle
 
 
 ## replace
 ```buzz
 fun replace(needle: str, with: str) > str
 ```
-Replace first occurence of needle
+Replace first occurrence of needle
 - **`needle`**: needle to find
 - **`with`**: replacement
 
@@ -78,15 +78,15 @@ fun split(separator: str) > [str]
 Split string
 - **`separator`**: separator by which the string will be split
 
-**Returns:** Splitted string
+**Returns:** Split string
 
 ## sub
 ```buzz
 fun sub(start: int, len: int?) > str
 ```
-Get sub string
-- **`start`**: Sub string start index
-- **`end`**: Length of sub string, if `null` will go until end of string
+Get substring
+- **`start`**: Substring start index
+- **`end`**: Length of substring, if `null` will go to the end of the string
 
 **Returns:** The substring
 
@@ -137,18 +137,18 @@ Converts hexadecimal string to binary string
 fun utf8Len() > int
 ```
 
-**Returns:** Number of UTF8 codepoints in the string or `0` if string is not a valid UTF8 sequence
+**Returns:** Number of UTF-8 codepoints in the string or `0` if string is not a valid UTF-8 sequence
 
 ## utf8Valid
 ```buzz
 fun utf8Valid() > bool
 ```
 
-**Returns:** `true` if string is a valid UTF8 sequence
+**Returns:** `true` if string is a valid UTF-8 sequence
 
 ## utf8Codepoints
 ```buzz
 fun utf8Codepoints() > [str]
 ```
 
-**Returns:** Return a list of the UTF8 string codepoints or an empty list if the string is not a valid UTF8 sequence
+**Returns:** A list of the UTF-8 string codepoints or an empty list if the string is not a valid UTF-8 sequence

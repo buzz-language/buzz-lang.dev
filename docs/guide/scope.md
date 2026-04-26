@@ -29,7 +29,7 @@ while (condition) {
 ```
 
 ## Upvalues
-If a reference to a variable from a upper scope is made inside a function's body, the function will carry a reference to it even when the variable goes out of scope. This is **an upvalue**.
+If a reference to a variable from an upper scope is made inside a function's body, the function will carry a reference to it even when the variable goes out of scope. This is **an upvalue**.
 ```buzz
 fun getFn() > fun() > void {
     final upvalue = "up there";
@@ -40,4 +40,3 @@ fun getFn() > fun() > void {
 // `upvalue` is out of scope but still exists as an upvalue of `hello`
 getFn()();
 ```
-

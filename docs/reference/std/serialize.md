@@ -6,23 +6,19 @@ object Boxed
 ```
 Utility object to manage deserialized data from, for example, decoded JSON
 
+### data
+```buzz
+data: any
+```
+Wrapped data.
+
 ### init
 ```buzz
-static fun init(any data) > Boxed !> CircularReference, NotSerializable
+static fun init(data: any) > Boxed !> CircularReference, NotSerializable
 ```
-Wrap `data` in a new `Boxed` instance
+Creates a `Boxed` wrapper around serializable data.
 - **`data`:** Data to wrap
-
-**Returns:** New `Boxed` instance
-
-### q
-```buzz
-fun q([str] path) > Boxed
-```
-Query the json element at `path`, if nothing matches return `Boxed{}`
-- **`path`:** Path to query
-
-**Returns:** Found `Boxed` or `Boxed{}` (which wraps `null`)
+**Returns:** A new `Boxed`
 
 ### string
 ```buzz
@@ -42,9 +38,9 @@ fun integer() > int?
 ```
 When wrapped data is a int
 
-### floating
+### float
 ```buzz
-fun floating() > double?
+fun float() > double?
 ```
 When wrapped data is a double
 
@@ -78,11 +74,11 @@ fun integerValue() > int
 ```
 **Returns:** wrapped data number value or `0` if not an integer
 
-### floatingValue
+### floatValue
 ```buzz
-fun floatingValue() > double
+fun floatValue() > double
 ```
-**Returns:** wrapped data number value or `0.0` if not a double
+**Returns:** wrapped data number value or `0` if not a double
 
 ### mapValue
 ```buzz
@@ -96,29 +92,52 @@ fun listValue() > [Boxed]
 ```
 **Returns:** wrapped data list value or empty list if not a list
 
-## serialize
+### q
 ```buzz
-fun serialize(any value) > any !> CircularReference, NotSerializable
+fun q(path: [any]) > Boxed
 ```
-Transform `value` to data that can be serialized.
-- **`value`:** Data to serialize
+Query the json element at `path`, if nothing matches return `Boxed{}`
+- **`path`:** Path to query
+**Returns:** Found `Boxed` or `Boxed{}` (which is `null`)
 
-**Return:** Serializable data
+## CircularReference
+```buzz
+object CircularReference
+```
+Error raised when serialization detects a circular reference.
+
+## NotSerializable
+```buzz
+object NotSerializable
+```
+Error raised when a value cannot be serialized.
+
+## serializeValue
+```buzz
+fun serializeValue(value: any) > any !> CircularReference, NotSerializable
+```
+Converts any serializable Buzz value into JSON-compatible data.
+- **`value`:** Value to serialize
+**Returns:** Serialized data
+
+## JsonParseError
+```buzz
+object JsonParseError
+```
+Error raised when JSON parsing fails.
 
 ## jsonEncode
 ```buzz
-fun jsonEncode(Boxed data) > str !> CircularReference, NotSerializable
+fun jsonEncode(data: Boxed) > str !> CircularReference, NotSerializable
 ```
-Encode a [`Boxed`](/reference/std/serialize.html#boxed) instance to a JSON string
-- **`data`:** Data to encode
-
-**Returns:** The JSON string
+Encode to a JSON string
+**Returns:** the JSON string
 
 ## jsonDecode
 ```buzz
-fun jsonDecode(str json) > Boxed !> JsonParseError, WriteWhileReadingError
+fun jsonDecode(json: str) > Boxed !> JsonParseError, WriteWhileReadingError
 ```
-Decode string into a [`Boxed`](/reference/std/serialize.html#boxed) instance
-- **`json`:** The JSON string
+Decode string into a Json instance
+- **`str`:** json The JSON string
+**Returns:** Boxed
 
-**Returns:** A [`Boxed`](/reference/std/serialize.html#boxed) instance wrapping the decoded data

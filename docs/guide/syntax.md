@@ -2,14 +2,14 @@
 
 ## Comments
 
-Comments are any text following `//` up until a new line.
+Comments are any text following `//` up until a newline.
 ```buzz
 // A comment
-std\print("Comment ended with a new line");
+std\print("Comment ended with a newline");
 ```
 
 ## Variables and identifiers
-A variable declaration is a qualifier (either `var` or `final`) followed by an identifier and a type which can be omitted
+A variable declaration is a qualifier (either `var` or `final`) followed by an identifier and a type which can be omitted.
 ```buzz
 final hello: str = "hello";
 var bye = "bye"; // Here the `str` type will be inferred from the initial value
@@ -21,12 +21,12 @@ final helloWorld2 = "valid";
 final hello_world = "valid too";
 ```
 
-However you can actually use anything as an identifier if you surround it with the `@"..."` notation.
+However, you can actually use anything as an identifier if you surround it with the `@"..."` notation.
 ```buzz
 final @"this is valid too!" = "hello";
 ```
 
-A nullable variable can omit its initial value which will automatically be `null`:
+A nullable variable can omit its initial value, which will automatically be `null`:
 ```buzz
 var maybe: str?;
 
@@ -34,12 +34,49 @@ assert(maybe == null);
 ```
 
 ### `final`
-A `final` variable can only be assigned once
+A `final` variable can only be assigned once.
 ```buzz
 final hello = "hello";
 
 hello = "bye"; // Not allowed
 ```
+
+### Mutability
+`final` and `var` control whether a variable can be assigned again. They do not make the value itself mutable.
+
+Scalar values like numbers, booleans and strings are immutable. Composite values like lists, maps and object instances are also immutable by default:
+```buzz
+final list = [1, 2, 3];
+
+list[0] = 10; // Not allowed
+```
+
+Use `mut` when you need to change a composite value:
+```buzz
+final list = mut [1, 2, 3];
+
+list[0] = 10;
+list.append(4);
+```
+
+The same rule applies to maps and object instances:
+```buzz
+final map = mut { "one": 1 };
+map["two"] = 2;
+```
+
+Object methods that mutate `this` must also be marked with `mut`:
+```buzz
+object Counter {
+    value: int = 0,
+
+    mut fun increment() > void {
+        this.value = this.value + 1;
+    }
+}
+```
+
+Object properties declared with `final` can only be assigned during initialization, even when the object instance is mutable.
 
 ## Operators
 

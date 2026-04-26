@@ -1,6 +1,6 @@
 # Objects
 
-An `object` is a struct-like data structures. 
+An `object` is a struct-like data structure.
 ```buzz
 object Person {
     name: str = "Joe", // Fields can have default values
@@ -8,8 +8,8 @@ object Person {
 }
 ```
 
-## Instanciation
-Instanciating an object is simple. Properties with default values can be omitted.
+## Instantiation
+Instantiating an object is simple. Properties with default values can be omitted.
 ```buzz
 final me = Person{
     name = "Giann"
@@ -40,7 +40,7 @@ mutablePerson.name = "Joe"; // Will compile
 ```
 
 ## `final` properties
-Properties declared `final` can only be assigned once even if the instance if mutable.
+Properties declared `final` can only be assigned once even if the instance is mutable.
 ```buzz
 object Person{
     final name: str 
@@ -54,7 +54,7 @@ person.name = "John"; // Won't compile
 ```
 
 ## Methods
-Methods are function associated with an object. Within a method you can use the current instance of the object with `this`.
+Methods are functions associated with an object. Within a method you can use the current instance of the object with `this`.
 ```buzz
 object Person {
     name: str = "Joe", // Fields can have default values
@@ -84,7 +84,7 @@ object Person {
 ### Special methods
 
 #### `toString`
-If your object has a `fun toString() > str` method, it will be called whenever you interpolate a instance of the object in a string.
+If your object has a `fun toString() > str` method, it will be called whenever you interpolate an instance of the object in a string.
 ```buzz
 object Person {
     name: str = "Joe",
@@ -100,7 +100,7 @@ std\print("His name is {person}"); // -> `His name is Joe`
 ```
 
 ##### `collect`
-If your object has a `fun collect() > void` method, it which will be called just before the object instance is collected by the garbage collector. It's useful when your object holds resources that need to be released.
+If your object has a `fun collect() > void` method, it will be called just before the object instance is collected by the garbage collector. It's useful when your object holds resources that need to be released.
 ```buzz
 object Data {
     buffer: Buffer,
@@ -112,7 +112,7 @@ object Data {
 ```
 
 ## `static`
-Objects can have static methods and properties. Meaning they are associated with the object rather than its instances.
+Objects can have static methods and properties, meaning they are associated with the object rather than its instances.
 Objects don't have constructors but you can use a static method to write one.
 ```buzz
 object Person {
@@ -145,8 +145,26 @@ fun getInfo() > obj{ name: str, age: int } {
 final info = getInfo();
 ```
 
+When a named object type is expected, an anonymous object literal can infer that named type. Provided fields must match fields on the named object, and omitted fields must have default values.
+```buzz
+object Payload {
+    data: str,
+    suffix: str = "!",
+
+    fun describe() => "{this.data}{this.suffix}";
+}
+
+final payload: Payload = .{
+    data = "hello",
+};
+
+payload.describe(); // -> "hello!"
+```
+
+Extra fields or fields with different types will keep the anonymous object from matching the named object type.
+
 ### Tuples
-Tuples are anonymous object for which you omit properties name.
+Tuples are anonymous objects for which you omit property names.
 ```buzz
 fun getTuple > obj{ :int, :str, :[int] } {
     return .{ 42, "hello", [ 1, 2, 3 ]};
@@ -157,7 +175,7 @@ You can access its properties like so:
 ```buzz
 final tuple = .{ 42, "John" };
 
-std\print("I'm {tuple@"1"} and i'm {tuple@"0"}");
+std\print("I'm {tuple@"1"} and I'm {tuple@"0"}");
 ```
 
 ## Generic types

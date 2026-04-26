@@ -1,9 +1,9 @@
 # Fibers
 
-Similar to Lua's coroutines. Buzz's fibers have their own state and stack and can be switched in and out from.
-Fibers can yield from within any call depth. Any function can be wrapped in a fiber. Unlike Lua, `yield` are evaluated and dismissed
-if a function is not called within a fiber and do not raise an error.
-`resolve` allows to run a fiber until completion without stopping for any `yield`. It can be called after the fiber is over in order to
+Similar to Lua's coroutines, buzz's fibers have their own state and stack and can be switched in and out.
+Fibers can yield from within any call depth. Any function can be wrapped in a fiber. Unlike Lua, if a function is not called within a fiber,
+`yield` expressions are evaluated and dismissed without raising an error.
+`resolve` allows you to run a fiber until completion without stopping for any `yield`. It can be called after the fiber is over in order to
 get the wrapped function return value.
 
 ```buzz
@@ -11,7 +11,7 @@ get the wrapped function return value.
 // Always yields an optional type because null is returned if you resume a terminated fiber
 fun count(n: int) > str *> int? {  
     for (i: int = 0; i < n; i = i + 1) {
-        // If the function is not called in a fiber, yields are evaluated and dismissed
+        // If the function is not called in a fiber, yield expressions are evaluated and dismissed
         // Otherwise the value is returned as `resume` result
         _ = yield i;
     }
@@ -25,7 +25,7 @@ fun main(_: [str]) > void {
 
     int sum = 0;
     while (!counter.over()) {
-        // resume returns null if nothing was yielded and/or fiber is over
+        // resume returns null if nothing was yielded and/or the fiber is over
         sum = sum + resume counter ?? 0;
     }
 

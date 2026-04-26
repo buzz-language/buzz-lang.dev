@@ -1,9 +1,12 @@
 # Introduction
 
-Buzz is a small/lightweight statically typed scripting language written in [Zig](https://ziglang.org). It started as a toy language following the excellent book [Crafting Interpreters](https://craftinginterpreters.com/) by Robert Nystrom. It is:
-- Small in size and complexity (just a bit more than Lua though)
+buzz is a small/lightweight statically typed scripting language written in [Zig](https://ziglang.org). It is:
+- Small in size and complexity
 - Statically typed
 - Unambiguous
 - Without nonsensical coercion
 - JIT compiled with [MIR](https://github.com/vnmakarov/mir)
-- FFI
+
+::: warning
+buzz is in alpha and is **not** ready for any professional or production use
+:::

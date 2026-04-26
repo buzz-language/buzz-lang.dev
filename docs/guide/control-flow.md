@@ -31,9 +31,83 @@ if (anything as something: str) {
 }
 ```
 
-`if` can also be inlined and act as an expression. However this expression does not support `null` unwrapping or downcasting (those are available in expression using `??` and `as?`);
+`if` can also be inlined and act as an expression. However this expression does not support `null` unwrapping or downcasting (those are available in expressions using `??` and `as?`).
 ```buzz
 final value = if (something > 0) 12 else 13;
+```
+
+## `match`
+`match` selects the first branch whose condition matches the value. Each branch can list one or more conditions separated by commas.
+```buzz
+final category = match (code) {
+    200 -> "ok",
+    400, 404 -> "client error",
+    // code is within this range
+    500..599 -> "server error",
+    else -> "unknown",
+};
+```
+
+It can also be used as a statement.
+```buzz
+match (state) {
+    "ready" -> std\print("starting"),
+    "done" -> std\print("already finished"),
+    else -> std\print("waiting"),
+}
+```
+
+A statement branch can use a lexical blocks:
+```buzz
+var result = "unset";
+
+match (input) {
+    $"hello [a-z]+" -> {
+        final branch = "pattern";
+        result = branch;
+    },
+    else -> {
+        result = "unknown";
+    },
+}
+```
+
+How conditions are matched depends on the matched value:
+- When matching a `str`, a `str` condition uses simple equality and a `pat` condition matches the string against the pattern.
+- When matching a `pat`, a `pat` condition uses simple equality and a `str` condition matches the pattern against the string.
+- When matching a number, a numeric condition uses simple equality and a `rg` condition matches when the number is contained in the range.
+- When matching a `type`, a `type` condition uses simple equality. Any other condition matches when the condition value is of the matched type.
+- When matching any other value, a `type` condition is checked as `value is Type`; other conditions use simple equality.
+
+For example:
+```buzz
+final greeting = match ("hello joe") {
+    $"hello [a-z]+" -> "friendly",
+    else -> "unknown",
+};
+```
+
+```buzz
+final value: any = 42;
+final kind = match (value) {
+    <str> -> "string",
+    <int> -> "integer",
+    else -> "other",
+};
+```
+
+`match` must be exhaustive. Use an `else` branch unless the compiler can prove that all possible cases are covered, such as every value of a boolean or every case of an enum.
+```buzz
+enum Status {
+    draft,
+    published,
+}
+
+final status = Status.published;
+final action = match (status) {
+    .draft -> "edit",
+    .published -> "read",
+};
 ```
 
 ## `while` and `do .. until`
@@ -79,8 +153,8 @@ foreach (i, char in aString) {
     // ...
 }
 
-final fibonnaciFib = &fibonnaci(10);
-foreach (value in fibonnaciFib) {
+final fibonacciFib = &fibonacci(10);
+foreach (value in fibonacciFib) {
     // ...
 }
 
@@ -128,7 +202,7 @@ while (true) :here {
 
 ## Block expression
 
-Block expression are lexical blocks that produce a value:
+Block expressions are lexical blocks that produce a value:
 ```buzz
 var value = from {
     // Doing some work here...

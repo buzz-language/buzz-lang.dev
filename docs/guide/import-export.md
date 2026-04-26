@@ -9,7 +9,7 @@ import "std";
 std\print("hello");
 ```
 
-When importing, buzz will search the script in common places. With `?` being the library name:
+When importing, buzz will search for the script in common places. With `?` being the library name:
 - `./?.buzz`
 - `./?/main.buzz`
 - `./?/src/main.buzz`
@@ -27,7 +27,7 @@ When importing, buzz will search the script in common places. With `?` being the
 - `$BUZZ_PATH/?/src/?.buzz`
 - `$BUZZ_PATH/?/src/main.buzz`
 
-When defining [`extern` functions](/guide/calling-native-code.html), buzz will search the symbol in a dynamic library. It'll be searched in the same common places:
+When defining [`extern` functions](/guide/calling-native-code.html), buzz will search for the symbol in a dynamic library. It'll search in the same common places:
 - `./?.so`
 - `./?/src/lib?.so`
 - `/usr/share/so/lib?.so`
@@ -56,9 +56,36 @@ import "std" as _;
 print("hello");
 ```
 
+Or import only the symbols you need. Selective imports are added directly to the current namespace:
+```buzz
+import print, parseInt from "std";
+
+final number = parseInt("42")!;
+print("{number}");
+```
+
+When an imported namespace has a prefix in common with the current script namespace, buzz keeps only the remaining part of the imported namespace.
+```buzz
+// lib.buzz
+namespace app\utils;
+
+export fun greet() > str {
+    return "hello";
+}
+```
+
+```buzz
+// main.buzz
+namespace app;
+
+import "lib";
+
+utils\greet();
+```
+
 ## Exporting
 
-To export symbols, use the `export` statement. If your script exports at least one symbol. You have to define a namespace for the script:
+To export symbols, use the `export` statement. If your script exports at least one symbol, you have to define a namespace for the script:
 
 ```buzz
 // hello.buzz

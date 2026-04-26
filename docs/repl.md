@@ -39,12 +39,15 @@ const ansi = {
     97: 'ansi-bright ansi-white',
 }
 
-// Delcared here because js functions exposed to buzz do not have access to vue's this
+// Declared here because js functions exposed to buzz do not have access to vue's this
 type StdoutElement = {
     type: string,
     content: string
 }
 let stdout: Ref<Array<StdoutElement>> = ref([]);
+let stdinBuffer = new Uint8Array(0);
+let stdinOffset = 0;
+let stdinEncoder = new TextEncoder();
 
 type StdoutFormattedElement = {
     class?: string,
@@ -72,9 +75,10 @@ export default defineComponent({
         run(e) {
             if (!e.shiftKey && this.stdin?.length > 0) {
                 const stdin = document.querySelector('#stdin') as HTMLInputElement
+                const currentInput = stdin.value
 
-                if (this.replHistory.length == 0 || this.replHistory[this.replHistory.length - 1] !== stdin.value) {
-                    this.replHistory.push(stdin.value)
+                if (this.replHistory.length == 0 || this.replHistory[this.replHistory.length - 1] !== currentInput) {
+                    this.replHistory.push(currentInput)
                     // limit history depth
                     this.replHistory = this.replHistory.slice(-100)
                     this.historyIndex = this.replHistory.length;
@@ -84,9 +88,14 @@ export default defineComponent({
 
                 stdout.value.push({
                     type: 'input',
-                    content: `\n> ${stdin.value}\n`
+                    content: `\n> ${currentInput}\n`
                 })
 
+                // Snapshot input for wasm stdin consumer.
+                stdinBuffer = stdinEncoder.encode(currentInput)
+                stdinOffset = 0
+
+                this.stdin = null
                 this.wasmImports.runLine(this.ctx)
 
                 // Scroll to end (wait a bit for the content to be rerendered)
@@ -95,7 +104,6 @@ export default defineComponent({
                     stdoutElement.scrollTop = stdoutElement.scrollHeight
                 }, 100)
 
-                this.stdin = null
             }
         },
 
@@ -211,17 +219,17 @@ export default defineComponent({
         }
 
         function readFromStdin(bufferPtr: number, bufferLength: number): number {
-            // This is run by wasm, vue's this is not there
-            const stdin = document.querySelector('#stdin') as HTMLInputElement
-            let value = stdin.value;
+            // Called directly by wasm, so consume from shared stdin buffer.
+            if (stdinOffset >= stdinBuffer.length) {
+                return 0;
+            }
 
-            let buffer = new Uint8Array(memory.buffer, bufferPtr, bufferLength)
-            // Write input value into provided memory (truncate if too much)
-            buffer.set(encoder.encode(value).slice(0, bufferLength))
+            const n = Math.min(bufferLength, stdinBuffer.length - stdinOffset)
+            const buffer = new Uint8Array(memory.buffer, bufferPtr, n)
+            buffer.set(stdinBuffer.slice(stdinOffset, stdinOffset + n))
+            stdinOffset += n
 
-            stdin.value = ''
-
-            return Math.min(bufferLength, value.length)
+            return n
         }
 
         // We use JS regexes in place of pcre
@@ -387,6 +395,7 @@ export default defineComponent({
             await WebAssembly.instantiateStreaming(fetch('buzz.wasm'), {
                 env: {
                     memory: memory,
+                    writeToStdout: writeToStderr,
                     writeToStderr: writeToStderr,
                     readFromStdin: readFromStdin,
                     patternReplace: patternReplace,
@@ -520,9 +529,7 @@ export default defineComponent({
 </style>
 
 <div class="language-buzz">
-    <pre id="stdout">
-        <template v-for="element in stdout.value"><template v-for="formattedElement in ansiToHtml(element.content)"><code v-if="formattedElement.content.length > 0" :class="formattedElement.class ?? ''">{{formattedElement.content}}</code></template></template>
-    </pre>
+    <pre id="stdout"><template v-for="element in stdout.value"><template v-for="formattedElement in ansiToHtml(element.content)"><code v-if="formattedElement.content.length > 0" :class="formattedElement.class ?? ''">{{formattedElement.content}}</code></template></template></pre>
     <div class="stdin-container">
         <span id="prompt">»</span>
         <input

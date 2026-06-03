@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-5773ffc6","path":"/guide/fibers.html","title":"Fibers","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1780492509000,"contributors":[{"name":"Benoit Giannangeli","email":"giann008@gmail.com","commits":1}]},"filePathRelative":"guide/fibers.md"}');export{e as data};

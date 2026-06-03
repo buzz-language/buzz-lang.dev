@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-2de778aa","path":"/guide/calling-native-code.html","title":"buzz API","lang":"en-US","frontmatter":{},"headers":[],"git":{"updatedTime":1780492509000,"contributors":[{"name":"Benoit Giannangeli","email":"giann008@gmail.com","commits":1}]},"filePathRelative":"guide/calling-native-code.md"}');export{e as data};

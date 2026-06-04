@@ -175,7 +175,7 @@ You can access its properties like so:
 ```buzz
 final tuple = .{ 42, "John" };
 
-std\print("I'm {tuple@"1"} and I'm {tuple@"0"}");
+std\print("I'm {tuple.1} and I'm {tuple.0}");
 ```
 
 ## Generic types

@@ -30,7 +30,7 @@ features:
 footer: MIT licensed | Copyright © 2021-present Benoit Giannangeli
 ---
 ```buzz
-import "std";
+import "buzz:std";
 
 fun fibonacci(n: int) > void *> int? {
     var n1 = 0;

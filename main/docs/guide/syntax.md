@@ -101,6 +101,24 @@ Object properties declared with `final` can only be assigned during initializati
 ```
 Arithmetic operators are allowed between numbers of the same type.
 
+The arithmetic and bitwise operators also have shortcut assignment forms:
+```buzz
+var value = 3;
+
+value += 2; // value = value + 2
+value -= 1;
+value *= 4;
+value /= 2;
+value %= 3;
+value <<= 1;
+value >>= 1;
+value ^= 2;
+value |= 1;
+value &= 3;
+```
+
+`+=` also works with the same types accepted by `+`, such as strings, lists, and maps.
+
 ### Logical
 ```buzz
 12 > 3 and 5 < 12;

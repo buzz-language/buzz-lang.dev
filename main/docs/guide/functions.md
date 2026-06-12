@@ -117,11 +117,15 @@ fun main() > void {
 ```
 
 ## `test`
-`test` blocks are functions that will be executed when invoked with `buzz --test`.
+`test` blocks are functions that will be executed when invoked with `buzz test`.
 ```buzz
 test "Some test" {
     std\assert(something() == 12, message: "Could use `something`");
 }
+```
+
+```zsh
+buzz test <script>.buzz
 ```
 
 ## Generic types

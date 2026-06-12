@@ -4,43 +4,34 @@
 
 To import another script, use the `import` statement:
 ```buzz
-import "std";
+import "buzz:std";
 
 std\print("hello");
 ```
 
-When importing, buzz will search for the script in common places. With `?` being the library name:
-- `./?.buzz`
-- `./?/main.buzz`
-- `./?/src/main.buzz`
-- `./?/src/?.buzz`
-- `/usr/share/buzz/?.buzz`
-- `/usr/share/buzz/?/main.buzz`
-- `/usr/share/buzz/?/src/main.buzz`
-- `/usr/share/buzz/?/src/?.buzz`
-- `/usr/local/share/buzz/?.buzz`
-- `/usr/local/share/buzz/?/main.buzz`
-- `/usr/local/share/buzz/?/src/main.buzz`
-- `/usr/local/share/buzz/?/src/?.buzz`
-- `$BUZZ_PATH/?.buzz`
-- `$BUZZ_PATH/?/main.buzz`
-- `$BUZZ_PATH/?/src/?.buzz`
-- `$BUZZ_PATH/?/src/main.buzz`
+Import paths use one of these forms:
 
-When defining [`extern` functions](/guide/calling-native-code.html), buzz will search for the symbol in a dynamic library. It'll search in the same common places:
-- `./?.so`
-- `./?/src/lib?.so`
-- `/usr/share/so/lib?.so`
-- `/usr/share/so/lib?/src/?.so`
-- `/usr/local/share/so/lib?.so`
-- `/usr/local/share/so/lib?/src/?.so`
-- `$BUZZ_PATH/lib?.so`
-- `$BUZZ_PATH/?/src/lib?.so`
+- `buzz:<library>` imports a buzz standard library script, for example `buzz:std`, `buzz:fs`, or `buzz:math`.
+- `pkg:<name>/path/to/<script>` imports a script from a package dependency. The path after the package name is resolved inside `vendors/<name>/src/`.
+- Relative paths import files next to the current script. The `.buzz` extension is optional.
+- Absolute paths import the exact file at that path.
+
+Package imports require dependencies to be prepared with [`buzz fetch`](/main/guide/package.html#buzz-fetch).
+
+```buzz
+import "buzz:std";
+import "pkg:logger/logger.buzz";
+import "utils/math";
+```
+
+When defining [`extern` functions](/main/guide/calling-native-code.html), buzz searches for the symbol in a dynamic library named after the script that declares the extern function. A script named `date.buzz` expects `libdate.so` on Linux, `libdate.dylib` on macOS, or `date.dll` on Windows.
+
+Package scripts look for that library at the package root. Standalone scripts look next to the script, and `-L` paths can add fallback directories for standalone scripts.
 
 ### Alias
 You can rename the imported namespace like so:
 ```buzz
-import "std" as standard;
+import "buzz:std" as standard;
 
 // ...
 
@@ -49,7 +40,7 @@ standard\print("hello");
 
 You can also erase the namespace:
 ```buzz
-import "std" as _;
+import "buzz:std" as _;
 
 // ...
 
@@ -58,7 +49,7 @@ print("hello");
 
 Or import only the symbols you need. Selective imports are added directly to the current namespace:
 ```buzz
-import print, parseInt from "std";
+import print, parseInt from "buzz:std";
 
 final number = parseInt("42")!;
 print("{number}");
@@ -78,7 +69,7 @@ export fun greet() > str {
 // main.buzz
 namespace app;
 
-import "lib";
+import "lib.buzz";
 
 utils\greet();
 ```
@@ -98,18 +89,18 @@ export fun sayHello() > void {
 
 ```buzz
 // main.buzz
-import "hello";
+import "hello.buzz";
 
 fun main(_: [str]) > void {
     hello\sayHello();
 }
 ```
 
-You can also put `export` right before the declaration:
+You can also export an existing declaration by name:
 ```buzz
-export fun sayHello() > void {
-    print("Hello world!");
-};
+final myConstant = 3.14;
+
+export myConstant;
 ```
 
 ### Namespace
@@ -132,7 +123,7 @@ export sayHello as hello;
 
 ```buzz
 // main.buzz
-import "hello";
+import "hello.buzz";
 
 fun main(args: [str]) > void {
     hello\hello();

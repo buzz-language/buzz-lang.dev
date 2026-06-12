@@ -29,7 +29,7 @@ zdef("/path/to/libforeign", "fn get_id(data: *Data) u32;")
 
 The definitions are written in C ABI-compatible Zig code. Once you've declared your interface with `zdef`s, you can use it just like any other buzz function, assuming you use the appropriate buzz values.
 ```buzz
-import "ffi";
+import "buzz:ffi";
 
 // ...
 

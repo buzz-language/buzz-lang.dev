@@ -66,6 +66,7 @@ export default defineUserConfig({
           text: "Guide",
           children: [
             "building-installing",
+            "get-started",
             "syntax",
             "types",
             "functions",
@@ -77,6 +78,7 @@ export default defineUserConfig({
             "scope",
             "errors",
             "import-export",
+            "package",
             "fibers",
             "calling-native-code",
             "ffi",
@@ -98,6 +100,7 @@ export default defineUserConfig({
                 "/reference/std/gc",
                 "/reference/std/http",
                 "/reference/std/io",
+                "/reference/std/manifest",
                 "/reference/std/math",
                 "/reference/std/os",
                 "/reference/std/serialize",

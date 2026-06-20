@@ -32,24 +32,39 @@ footer: MIT licensed | Copyright © 2021-present Benoit Giannangeli
 ```buzz
 import "buzz:std";
 
-fun fibonacci(n: int) > void *> int? {
-    var n1 = 0;
-    var n2 = 1;
-    var next: int? = null;
+enum State { todo, doing, done }
 
-    foreach (_ in 0..n) {
-        _ = yield n1;
-        next = n1 + n2;
-        n1 = n2;
-        n2 = next!;
-    }
+object Task {
+    title: str,
+    points: int?,
+    state: State = .todo,
+
+    fun score() => match (this.state) {
+        .done -> this.points ?? 0,
+        .doing, .todo -> 0
+    };
 }
 
-fun main(args: [str]) > void {
-    final N = std\parseInt(args[?0] ?? "10")!;
-
-    foreach (n in &fibonacci(N)) {
-        std\print("{n}");
+fun scores(tasks: [Task]) > str *> int? {
+    foreach (task in tasks) {
+        _ = yield task.score();
     }
+    return "scored {tasks.len()} tasks";
+}
+
+fun main() > void {
+    final tasks: [Task] = [
+        .{ title = "parser", points = 8, state = .done },
+        .{ title = "lsp", points = 5, state = .doing },
+        .{ title = "docs", points = 3 },
+    ];
+
+    var total = 0;
+    final fiber = &scores(tasks);
+    foreach (score in fiber) {
+        total += score ?? 0;
+    }
+
+    std\print("completed points: {total}, message is {resolve fiber}");
 }
 ```

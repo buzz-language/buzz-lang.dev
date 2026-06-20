@@ -24,7 +24,7 @@ You can downcast a value with the `as` operator.
 ```buzz
 final anything: any = "hello";
 
-|...
+//...
 
 if (anything as something: str) {
     std\print(something);

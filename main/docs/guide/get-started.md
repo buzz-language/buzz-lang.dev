@@ -22,16 +22,16 @@ If you are building buzz from source, use `zig build run` to start the same REPL
 
 ## Standalone scripts
 
-Use `buzz run-script` to run a single script file:
+Pass a script path to run a single script file:
 
 ```zsh
-buzz run-script <script>.buzz
+buzz <script>.buzz
 ```
 
 Any arguments after the script path are passed to the script's `main` function:
 
 ```zsh
-buzz run-script hello.buzz Alice
+buzz hello.buzz Alice
 ```
 
 ## Package
@@ -45,7 +45,7 @@ buzz init
 The command asks for package metadata, then writes `manifest.buzz`, `build.zig`, `src/main.buzz`, a small library example, and a `vendors/<package-name>` link back to the package. After that, run:
 
 ```zsh
-buzz run
+buzz .
 ```
 
-`buzz run` executes `src/main.buzz` from the current package and passes any extra command-line arguments to that script.
+`buzz <directory>` expects the directory to be a buzz package with a `manifest.buzz` file. It executes `src/main.buzz` from that package and passes any extra command-line arguments to that script.

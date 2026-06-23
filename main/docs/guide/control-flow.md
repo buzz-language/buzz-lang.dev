@@ -204,10 +204,13 @@ while (true) :here {
 
 Block expressions are lexical blocks that produce a value:
 ```buzz
-var value = from {
-    // Doing some work here...
+final value = from {
+    if (flag) {
+        out 1;
+    }
 
-    out result;
-}
+    out 2;
+};
 ```
-`out` must appear once at the end of the block.
+
+`out` exits the nearest block expression immediately. It can appear in branches, but if any reachable path uses `out`, every reachable path must end with `out` or another terminal statement such as `return` or `throw`.

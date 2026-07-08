@@ -153,8 +153,11 @@ See [Null safety](/guide/null-safety.html).
 ### Type operators
 ```buzz
 something is str;  // true if `something` is of type `str`
-something as? int; // if `something` is not an `int`, will result in a `null`
+something as? int; // safe cast, returns `null` if `something` is not an `int`
+something as! int; // strict cast, raises a runtime error if `something` is not an `int`
 ```
+
+`as?` returns an optional value. `as!` returns the target type directly and raises a runtime error when the cast fails.
 
 See [Null safety](/guide/null-safety.html), [`any` type](/guide/types.html#any).
 

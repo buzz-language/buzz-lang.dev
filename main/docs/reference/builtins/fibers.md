@@ -4,16 +4,16 @@
 ```buzz
 fun over() > bool
 ```
-**Returns:** `true` if fiber is over
+**Returns:** `true` once the fiber has completed or has been cancelled
 
 ## cancel
 ```buzz
 fun cancel() > void
 ```
-Cancel the fiber by changing its internal status to `over`, preventing further `resume` or `resolve`
+Mark the fiber as `over`, preventing further `resume` or `resolve`. The main fiber cannot be cancelled.
 
 ## isMain
 ```buzz
 fun isMain() > bool
 ```
-**Returns:** `true` if current fiber is the main fiber
+**Returns:** `true` if this fiber is the main fiber

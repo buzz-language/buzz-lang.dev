@@ -45,7 +45,7 @@ object Task {
     };
 }
 
-fun scores(tasks: [Task]) > str *> int? {
+fun scores(tasks: [Task]) > str *> int {
     foreach (task in tasks) {
         _ = yield task.score();
     }
@@ -62,7 +62,7 @@ fun main() > void {
     var total = 0;
     final fiber = &scores(tasks);
     foreach (score in fiber) {
-        total += score ?? 0;
+        total += score;
     }
 
     std\print("completed points: {total}, message is {resolve fiber}");

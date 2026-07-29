@@ -8,12 +8,14 @@ fun sayHiTo(name: str, lastName: str?, age: int) > str {
 }
 ```
 
-If the function can yield (see [Fibers](/guide/fibers.html)) or contains a function call to another function that can yield, the yield type must be specified after `*>`. The yield type is always nullable.
+If the function can yield (see [Fibers](/guide/fibers.html)) or contains a function call to another function that can yield, the yield type must be specified after `*>`. This is the type produced by `yield`. That rule also applies when the function does not write `yield` itself: if one of its callees can suspend, then it also needs a compatible yield type. Calling the function normally keeps execution synchronous and discards yielded values, while prefixing the call with `&` wraps it in a fiber.
 ```buzz
-fun mayYield() > str *> int? {
+fun mayYield() > str *> int {
     //...
 }
 ```
+
+Even when the yield type is non-null, `resume fiber` is nullable because the fiber may complete without yielding a new value.
 
 ## Arrow function
 A function whose body would only be `return <expression>` can be written with an arrow function. Arrow functions can omit their return type, which will be inferred from the expression returned.

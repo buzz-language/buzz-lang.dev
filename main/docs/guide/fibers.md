@@ -52,7 +52,7 @@ fun main() > void {
 If `wrapper()` were declared as `fun wrapper() > void`, buzz would reject it because calling `leaf()` means `wrapper()` can also suspend when
 it runs inside a fiber.
 
-## Regular Call Or Fiber Call
+## Regular call or fiber call
 
 A yieldable function can still be called like any other function. Without `&`, each `yield` expression evaluates to its operand and execution
 continues immediately, so yielded values are discarded instead of being exposed to the caller.
@@ -79,7 +79,7 @@ fun main() > void {
 `yield n` is an expression. When the function is running inside a fiber, `resume fiber` returns `n`, execution pauses, and when the fiber is
 resumed the whole expression evaluates to `n` inside the function. That is why `final value = yield n;` works.
 
-## `resume` And `resolve`
+## `resume` and `resolve`
 
 `resume fiber` advances the fiber until the next `yield` or until the function completes. Its type is always nullable because the fiber might
 finish without producing another yielded value:
@@ -94,7 +94,7 @@ resume fiber; // -> null
 `resolve fiber` is different: it keeps running the fiber until the wrapped function returns, discards any yielded values along the way, and
 returns the function's return value. It can also be used after the fiber is already over to read that return value again.
 
-## Iterating Over A Fiber
+## Iterating over a fiber
 
 Fibers are iterable. `foreach` repeatedly resumes the fiber until it is over and gives you each yielded value:
 
@@ -120,7 +120,7 @@ fun main() > void {
 
 This is often the simplest way to consume a fiber when you only care about its yielded values.
 
-## Inspecting The Current Fiber
+## Inspecting the current fiber
 
 Inside a running fiber, `std\currentFiber()` returns the active fiber, and `fiber.isMain()` tells you whether it is the main fiber:
 

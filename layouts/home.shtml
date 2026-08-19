@@ -1,0 +1,37 @@
+<extend template="base.shtml">
+<head id="head"></head>
+<body id="body">
+	<main class="home">
+		<header class="hero">
+			<img src="$site.asset('logo.png').link()" alt="buzz" height="280">
+			<h1 class="main-title" :text="$page.title"></h1>
+			<p class="description" :text="$page.description"></p>
+			<p class="actions" :loop="$page.custom.get('actions')">
+				<ctx is_external="$loop.it.getOr('external', false)" version="$page.custom.get('version')">
+					<ctx :if="$ctx.is_external" text="$loop.it.get('text')" link="$loop.it.get('link')">
+						<a href="$ctx.link"
+						   class="external-link action-button secondary"
+						   rel="noopener noreferrer"
+						   target="_blank"
+						   aria-label="$ctx.text"
+						>
+							<span :text="$ctx.text"></span>
+							<span :html="$site.asset('external-link-icon.svg').bytes()"></span>
+						</a>
+					</ctx>
+					<ctx :if="$ctx.is_external.not()" text="$loop.it.get('text')" subpage="$loop.it.get('link')">
+						<a href="$site.page($ctx.version, $ctx.subpage).link()" class="action-button primary" aria-label="$ctx.text" :text="$ctx.text"></a>
+					</ctx>
+				</ctx>
+			</p>
+		</header>
+
+		<div class="features" :loop="$page.custom.get('features')">
+			<div class="feature">
+				<h2 :text="$loop.it.get('title')"></h2>
+				<p :text="$loop.it.get('details')"></p>
+			</div>
+		</div>
+		<div :html="$page.content()"></div>
+	</main>
+</body>

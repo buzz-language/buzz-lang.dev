@@ -1,0 +1,117 @@
+:root {
+  --light-yellow: #e5c07b;
+  --dark-yellow: #d19a66;
+  --blue: #61afef;
+  --cyan: #56b6c2;
+  --light-red: #e06c75;
+  --dark-red: #be5046;
+  --comment-gray: #5c6370;
+  --magenta: #c678dd;
+
+  /* Colorscheme colors */
+  --base1-color: light-dark(#4f565d, #c4c0b9);
+  --base2-color: light-dark(#636b73, #aaa8a1);
+  --base3-color: light-dark(#75808e, #7f8a96);
+  --base4-color: light-dark(#aab3bc, #5c6773);
+  --base5-color: light-dark(#d1d4d7, #2d3640);
+  --base6-color: light-dark(#e3e7eb, #1b222b);
+  --base7-color: light-dark(#fafafa, #0f1419);
+  --accent-color: light-dark(#946ec0, #d2a6ff);
+  --orange-text-color: light-dark(#e88437, #ffad66);
+  --orange-text-sec-color: light-dark(#f29a2a, #e6b450);
+  --orange-bg-color: light-dark(#f7e8d0, #302a20);
+  --green-text-color: light-dark(#739b00, #aad94c);
+  --green-text-sec-color: light-dark(#89b317, #c2e675);
+  --green-bg-color: light-dark(#e3f0cc, #23301f);
+  --teal-text-color: light-dark(#429fbe, #73b8ff);
+  --teal-text-sec-color: light-dark(#59afcc, #8ac7ff);
+  --teal-bg-color: light-dark(#d8ebf2, #1f2d3a);
+  --blue-text-color: light-dark(#2f8fd1, #59c2ff);
+  --blue-text-sec-color: light-dark(#4aa6c8, #86d2ff);
+  --blue-bg-color: light-dark(#d6e7f7, #1c2b38);
+  --purple-text-color: light-dark(#8e66b8, #d2a6ff);
+  --purple-text-sec-color: light-dark(#a080c8, #e1c4ff);
+  --purple-bg-color: light-dark(#e6dcf1, #2d2438);
+  --diff-add-color: light-dark(#739b00, #aad94c);
+  --diff-change-color: light-dark(#f29a2a, #e6b450);
+  --diff-change-dark-color: light-dark(#a86f18, #5a4728);
+  --diff-delete-color: light-dark(#e26363, #f07178);
+  --diff-renamed-color: light-dark(#2f8fd1, #59c2ff);
+  --white-color: light-dark(#ffffff, #ffffff);
+  --comment-bg-color: light-dark(#f1cdcd, #3a2228);
+  --comment-fg-color: light-dark(#e26363, #f07178);
+  --inlay-fg-color: light-dark(#df8e1e, #c9a15a);
+  --inlay-bg-color: light-dark(#f7e8d0, #2a241a);
+  --foreground-color: light-dark(#4f565d, #cdcac4);
+  --black-color: light-dark(#dde2e8, #131721);
+  --blue-color: light-dark(#2f8fd1, #59c2ff);
+  --orange-color: light-dark(#e88437, #ff8f40);
+  --magenta-color: light-dark(#8e66b8, #d2a6ff);
+  --gray-color: light-dark(#75808e, #5c6773);
+  --dark-gray-color: light-dark(#cdd1d5, #2d3640);
+  --background-color: light-dark(#fafafa, #0f1419);
+  --dark-background-color: light-dark(#edf0f3, #080a0d);
+  --cyan-color: light-dark(#3f7fbd, #73b8ff);
+  --green-color: light-dark(#739b00, #aad94c);
+  --red-color: light-dark(#e26363, #f07178);
+  --yellow-color: light-dark(#f29a2a, #e6b450);
+  --color: light-dark(#545a62, #bbb7b1);
+
+  /* Token colors */
+  --code-comment-fg: var(--comment-fg-color);
+  --code-comment-bg: var(--comment-bg-color);
+  --code-punctuation: var(--base3-color); /* NOTE: Same background */
+  --code-namespace-fg: var(--teal-text-color);
+  --code-namespace-bg: var(--teal-bg-color);
+  --code-constant-fg: var(--blue-text-color);
+  --code-constant-bg: var(--blue-bg-color);
+  --code-string-fg: var(--green-text-color);
+  --code-string-bg: var(--green-bg-color);
+  --code-operator: var(--base1-color); /* NOTE: Same background */
+  --code-keyword-fg: var(--purple-text-color);
+  --code-keyword-bg: var(--purple-bg-color);
+  --code-function: var(--orange-text-color);
+  --code-variable: var(--color);
+}
+
+pre[class*="language-"] {
+  background-color: var(--background-color);
+  padding: 10px 5px;
+}
+
+code.kotlin {
+  .comment {
+    color: var(--comment-fg-color);
+    background-color: var(--comment-bg-color);
+  }
+  .punctuation_bracket,
+  .punctuation_delimiter {
+    color: var(--code-punctuation);
+  }
+  .boolean,
+  .number {
+    color: var(--code-constant-fg);
+    background-color: var(--code-constant-bg);
+  }
+  .string {
+    color: var(--code-string-fg);
+    background-color: var(--code-string-bg);
+  }
+  .operator {
+    color: var(--code-operator);
+  }
+  .variable {
+    color: var(--code-variable);
+  }
+  .keyword_function,
+  .include,
+  .keyword,
+  .type_builtin {
+    color: var(--code-keyword-fg);
+    background-color: var(--code-keyword-bg);
+  }
+  .function,
+  .class-name {
+    color: var(--code-function);
+  }
+}

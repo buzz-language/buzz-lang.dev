@@ -1,0 +1,11 @@
+---
+.title = "buzz",
+.description = "A small/lightweight statically typed scripting language",
+.date = .date("1990-01-01T00:00:00"),
+.custom = {
+  "version": "main",
+},
+.layout = "page.shtml",
+---
+
+TODO: Guide

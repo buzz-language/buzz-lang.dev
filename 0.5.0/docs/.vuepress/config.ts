@@ -4,7 +4,7 @@ import { googleAnalyticsPlugin } from "@vuepress/plugin-google-analytics";
 export default defineUserConfig({
   base: "/0.5.0/",
 
-  title: "buzz",
+  title: "buzz (0.5.0)",
 
   description:
     "A small/lightweight statically typed scripting language (in development)",
@@ -50,8 +50,8 @@ export default defineUserConfig({
         link: "https://discord.gg/VnMdNSdpNV",
       },
       {
-        text: "Unreleased",
-        link: "https://buzz-lang.dev/main/",
+        text: "0.6.0",
+        link: "https://buzz-lang.dev/0.6.0/",
         target: "_self",
         rel: "",
       },

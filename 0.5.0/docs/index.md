@@ -10,7 +10,7 @@ actions:
     - text: Try it
       link: /repl
     - text: Latest release
-      link: https://github.com/buzz-language/buzz/releases/tag/0.5.0
+      link: https://github.com/buzz-language/buzz/releases/tag/0.6.0
       type: secondary
 features:
   - title: Statically typed
